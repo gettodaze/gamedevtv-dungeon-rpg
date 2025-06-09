@@ -12,7 +12,7 @@ config_version=5
 
 config/name="GameDevTV Dungeon RPG"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://diu34ba5ioffj"
 
 [dotnet]
 
