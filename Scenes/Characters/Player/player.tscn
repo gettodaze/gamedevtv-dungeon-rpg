@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://t35crg5pv1l"]
+[gd_scene load_steps=25 format=3 uid="uid://t35crg5pv1l"]
 
 [ext_resource type="Texture2D" uid="uid://dt13ve78xqo8l" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Texture2D" uid="uid://dfuafxieyet1h" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_001.png" id="2_pr2lv"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://sv7ybmdi2ktp" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_016.png" id="17_me3gr"]
 [ext_resource type="Texture2D" uid="uid://dsowr0p07hdo1" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_017.png" id="18_2iqoh"]
 [ext_resource type="Texture2D" uid="uid://dxl5lmtvqxa5i" path="res://Assets/Sprites/Characters/Player/Running/Running_000.png" id="19_pr2lv"]
+[ext_resource type="Texture2D" uid="uid://2j8qh7x03hxh" path="res://Assets/Sprites/Characters/Player/Running/Running_001.png" id="20_cvakg"]
 
 [sub_resource type="Animation" id="Animation_gii1i"]
 resource_name = "Idle"
@@ -64,7 +65,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv")]
+"values": [ExtResource("19_pr2lv"), ExtResource("20_cvakg"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv"), ExtResource("19_pr2lv")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs6v2"]
