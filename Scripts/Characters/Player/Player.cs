@@ -4,7 +4,15 @@ using System;
 public partial class Player : CharacterBody3D
 {
 	[Export] private float speed = 5.0f;
+	[Export] private AnimationPlayer AnimPlayerNode;
+	[Export] private Sprite3D Sprite3DNode;
 	private Vector2 direction = new();
+
+	public override void _Ready()
+	{
+		base._Ready();
+		AnimPlayerNode.Play("Idle");
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -17,6 +25,15 @@ public partial class Player : CharacterBody3D
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
+		Vector2 old_dir = direction;
 		direction = Input.GetVector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward");
+		if (old_dir == Vector2.Zero && direction != Vector2.Zero)
+		{
+			AnimPlayerNode.Play("Move");
+		}
+		else if (old_dir != Vector2.Zero && direction == Vector2.Zero)
+		{
+			AnimPlayerNode.Play("Idle");
+		}
 	}
 }

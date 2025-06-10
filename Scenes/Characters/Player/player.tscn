@@ -34,6 +34,7 @@
 
 [sub_resource type="Animation" id="Animation_gii1i"]
 resource_name = "Idle"
+loop_mode = 1
 step = 0.0555556
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -65,6 +66,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_cvakg"]
 resource_name = "Move"
+loop_mode = 1
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -86,8 +88,10 @@ _data = {
 &"RESET": SubResource("Animation_1ujki")
 }
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode")]
 script = ExtResource("1_eiaiy")
+AnimPlayerNode = NodePath("AnimationPlayer")
+Sprite3DNode = NodePath("Sprite3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture_filter = 0
