@@ -11,7 +11,7 @@ public partial class Player : CharacterBody3D
 	public override void _Ready()
 	{
 		base._Ready();
-		AnimPlayerNode.Play("Idle");
+		AnimPlayerNode.Play(GameConstants.ANIM_IDLE);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -25,14 +25,14 @@ public partial class Player : CharacterBody3D
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
-		direction = Input.GetVector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward");
+		direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
 		if (direction == Vector2.Zero)
 		{
-			AnimPlayerNode.Play("Idle");
+			AnimPlayerNode.Play(GameConstants.ANIM_IDLE);
 		}
 		else
 		{
-			AnimPlayerNode.Play("Move");
+			AnimPlayerNode.Play(GameConstants.ANIM_MOVE);
 		}
 		if (direction.X < 0)
 		{
