@@ -8,7 +8,8 @@ public partial class StateMachine : Node
 	public override void _Ready()
 	{
 		PlayerState[] states = GetChildren().OfType<PlayerState>().ToArray();
-		GD.Print(states);
+		GD.Print(string.Join(", ", states.Select(s => s.Name)));
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
