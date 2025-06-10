@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://t35crg5pv1l"]
+[gd_scene load_steps=39 format=3 uid="uid://t35crg5pv1l"]
 
 [ext_resource type="Texture2D" uid="uid://dt13ve78xqo8l" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Script" uid="uid://clqbk6hfnui8g" path="res://Scripts/Characters/Player/Player.cs" id="1_eiaiy"]
@@ -31,8 +31,9 @@
 [ext_resource type="Texture2D" uid="uid://ch1umcjxs7ttl" path="res://Assets/Sprites/Characters/Player/Running/Running_009.png" id="28_1ujki"]
 [ext_resource type="Texture2D" uid="uid://cscslu2hy4m7m" path="res://Assets/Sprites/Characters/Player/Running/Running_010.png" id="29_gs6v2"]
 [ext_resource type="Texture2D" uid="uid://icfrugp2dlkm" path="res://Assets/Sprites/Characters/Player/Running/Running_011.png" id="30_ywskp"]
-[ext_resource type="Script" uid="uid://jx00p00d06ju" path="res://Scenes/Characters/Player/PlayerIdleState.cs" id="32_4yec0"]
-[ext_resource type="Script" uid="uid://viwe32bjp2v1" path="res://Scenes/Characters/Player/PlayerMoveState.cs" id="33_me3gr"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerMoveState.cs" id="32_me3gr"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerDashState.cs" id="33_2iqoh"]
+[ext_resource type="Script" uid="uid://jx00p00d06ju" path="res://Scripts/Characters/Player/PlayerIdleState.cs" id="34_gii1i"]
 
 [sub_resource type="Animation" id="Animation_gii1i"]
 resource_name = "Idle"
@@ -104,8 +105,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_gs6v2")
 }
 
-[node name="IdleState" type="Node" parent="."]
-script = ExtResource("32_4yec0")
+[node name="StateMachine" type="Node" parent="."]
 
-[node name="MoveState" type="Node" parent="."]
-script = ExtResource("33_me3gr")
+[node name="MoveState" type="Node" parent="StateMachine"]
+script = ExtResource("32_me3gr")
+
+[node name="DashState" type="Node" parent="StateMachine"]
+script = ExtResource("33_2iqoh")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("34_gii1i")
