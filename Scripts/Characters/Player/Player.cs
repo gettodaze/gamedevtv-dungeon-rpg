@@ -35,5 +35,13 @@ public partial class Player : CharacterBody3D
 		{
 			AnimPlayerNode.Play("Idle");
 		}
+		if (direction.X < 0)
+		{
+			Sprite3DNode.FlipH = true;
+		}
+		else if (direction.X > 0)
+		{
+			Sprite3DNode.FlipH = false;
+		}
 	}
 }
