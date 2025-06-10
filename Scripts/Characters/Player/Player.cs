@@ -25,15 +25,14 @@ public partial class Player : CharacterBody3D
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
-		Vector2 old_dir = direction;
 		direction = Input.GetVector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward");
-		if (old_dir == Vector2.Zero && direction != Vector2.Zero)
-		{
-			AnimPlayerNode.Play("Move");
-		}
-		else if (old_dir != Vector2.Zero && direction == Vector2.Zero)
+		if (direction == Vector2.Zero)
 		{
 			AnimPlayerNode.Play("Idle");
+		}
+		else
+		{
+			AnimPlayerNode.Play("Move");
 		}
 		if (direction.X < 0)
 		{
