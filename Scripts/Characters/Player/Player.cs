@@ -4,8 +4,9 @@ using System;
 public partial class Player : CharacterBody3D
 {
 	[Export] private float speed = 5.0f;
-	[Export] private AnimationPlayer AnimPlayerNode;
-	[Export] private Sprite3D Sprite3DNode;
+	[ExportGroup("Required Nodes")]
+	[Export] public AnimationPlayer AnimPlayerNode;
+	[Export] public Sprite3D Sprite3DNode;
 	private Vector2 direction = new();
 
 	public override void _Ready()
