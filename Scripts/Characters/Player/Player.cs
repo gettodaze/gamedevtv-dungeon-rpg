@@ -5,8 +5,9 @@ public partial class Player : CharacterBody3D
 {
 	[Export] private float speed = 5.0f;
 	[ExportGroup("Required Nodes")]
-	[Export] public AnimationPlayer AnimPlayerNode;
-	[Export] public Sprite3D Sprite3DNode;
+	[Export] public AnimationPlayer animPlayerNode;
+	[Export] public Sprite3D sprite3DNode;
+	[Export] public StateMachine stateMachine;
 	public Vector2 direction = new();
 
 	public override void _Ready()
@@ -28,11 +29,11 @@ public partial class Player : CharacterBody3D
 
 		if (direction.X < 0)
 		{
-			Sprite3DNode.FlipH = true;
+			sprite3DNode.FlipH = true;
 		}
 		else if (direction.X > 0)
 		{
-			Sprite3DNode.FlipH = false;
+			sprite3DNode.FlipH = false;
 		}
 	}
 }

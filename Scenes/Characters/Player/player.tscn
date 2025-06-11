@@ -92,10 +92,11 @@ _data = {
 &"RESET": SubResource("Animation_1ujki")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animPlayerNode", "sprite3DNode", "stateMachine")]
 script = ExtResource("1_eiaiy")
-AnimPlayerNode = NodePath("AnimationPlayer")
-Sprite3DNode = NodePath("Sprite3D")
+animPlayerNode = NodePath("AnimationPlayer")
+sprite3DNode = NodePath("Sprite3D")
+stateMachine = NodePath("StateMachine")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture_filter = 0
@@ -108,7 +109,7 @@ libraries = {
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("CurrentState")]
 script = ExtResource("32_2iqoh")
-CurrentState = NodePath("MoveState")
+CurrentState = NodePath("IdleState")
 
 [node name="DashState" type="Node" parent="StateMachine"]
 script = ExtResource("33_2iqoh")

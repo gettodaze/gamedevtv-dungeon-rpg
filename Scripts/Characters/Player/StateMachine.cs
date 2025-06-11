@@ -13,6 +13,7 @@ public partial class StateMachine : Node
 		set
 		{
 			GD.Print($"Setting state from {_currentState} to {value}");
+			if (isReady) _currentState.DisableState();
 			_currentState = value;
 			if (isReady) value.EnableState();
 		}
@@ -31,5 +32,24 @@ public partial class StateMachine : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+
+	public void SwitchState<T>()
+	{
+		PlayerState newState = null;
+		foreach (PlayerState state in states)
+		{
+			if (state is T)
+			{
+				newState = state;
+			}
+		}
+		if (newState == null)
+		{
+			GD.Print($"Could not find a valid state for {typeof(T)} in {states}");
+			return;
+		}
+
+		CurrentState = newState;
 	}
 }

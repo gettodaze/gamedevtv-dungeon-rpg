@@ -16,10 +16,16 @@ public abstract partial class PlayerState : Node
     {
     }
 
+    public void DisableState()
+    {
+        GD.Print($"Disabling {AnimationString}");
+
+    }
+
     public void EnableState()
     {
         GD.Print($"Enabling {AnimationString}");
-        characterNode.AnimPlayerNode.Play(AnimationString);
+        characterNode.animPlayerNode.Play(AnimationString);
 
     }
 }
