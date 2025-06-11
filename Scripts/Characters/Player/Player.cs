@@ -25,14 +25,7 @@ public partial class Player : CharacterBody3D
 	{
 		base._Input(@event);
 		direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
-		if (direction == Vector2.Zero)
-		{
-			AnimPlayerNode.Play(GameConstants.ANIM_IDLE);
-		}
-		else
-		{
-			AnimPlayerNode.Play(GameConstants.ANIM_MOVE);
-		}
+
 		if (direction.X < 0)
 		{
 			Sprite3DNode.FlipH = true;

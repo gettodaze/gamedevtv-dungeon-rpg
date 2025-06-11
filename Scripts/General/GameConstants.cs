@@ -10,4 +10,8 @@ public class GameConstants
     public const string INPUT_MOVE_FORWARD = "MoveForward";
     public const string INPUT_MOVE_BACKWARD = "MoveBackward";
 
+
+    // Notifications
+    public const int NOTIFICATION_ENABLE_STATE = 5001;
+
 }
