@@ -4,7 +4,7 @@ using System;
 public partial class Player : CharacterBody3D
 {
 	[Export] private float speed = 5.0f;
-	[Export] private float dashSpeed = 10.0f;
+	[Export] public float dashSpeed = 10.0f;
 	[ExportGroup("Required Nodes")]
 	[Export] public AnimationPlayer animPlayerNode;
 	[Export] public Sprite3D sprite3DNode;
