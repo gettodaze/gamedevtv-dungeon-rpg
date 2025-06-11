@@ -7,12 +7,10 @@ public partial class Player : CharacterBody3D
 	[ExportGroup("Required Nodes")]
 	[Export] public AnimationPlayer AnimPlayerNode;
 	[Export] public Sprite3D Sprite3DNode;
-	private Vector2 direction = new();
+	public Vector2 direction = new();
 
 	public override void _Ready()
 	{
-		base._Ready();
-		AnimPlayerNode.Play(GameConstants.ANIM_IDLE);
 	}
 
 	public override void _PhysicsProcess(double delta)
