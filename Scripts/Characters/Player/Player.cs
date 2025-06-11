@@ -35,11 +35,10 @@ public partial class Player : CharacterBody3D
 		}
 	}
 
-	public override void _Input(InputEvent @event)
+	public void SetInputDirection()
 	{
-		base._Input(@event);
+		var oldDir = direction;
 		direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
-
-
+		GD.Print($"Set character direction from {oldDir} to {direction}");
 	}
 }

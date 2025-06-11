@@ -16,6 +16,7 @@ public partial class PlayerPostDashState : PlayerState
 	public override void EnableState()
 	{
 		GD.Print("Enabling PostDashState");
+		characterNode.direction = Vector2.Zero;
 		characterNode.AnimPlayerNode.Stop();
 		timerNode.Start();
 	}

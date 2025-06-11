@@ -23,8 +23,8 @@ public partial class PlayerDashState : PlayerState
         var dir = characterNode.direction;
         // note: maybe do this only when not already 0?
         // if (dir == Vector2.Zero)
-        dir.X = characterNode.Sprite3DNode.FlipH ? -1 : 1;
-        dir.Y = 0;
+        characterNode.direction.X = characterNode.Sprite3DNode.FlipH ? -1 : 1;
+        characterNode.direction.Y = 0;
 
         // characterNode.Velocity = new(dir.X, 0, dir.Y);
         // characterNode.Velocity *= characterNode.dashSpeed;
@@ -34,7 +34,8 @@ public partial class PlayerDashState : PlayerState
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        characterNode.MoveAndSlide();
-
+        GD.Print($"Processing dash physics with direction {characterNode.direction} and velocity {characterNode.Velocity}");
+        characterNode.Move(true);
     }
+
 }
