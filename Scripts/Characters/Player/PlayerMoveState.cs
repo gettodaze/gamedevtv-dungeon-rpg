@@ -8,6 +8,10 @@ public partial class PlayerMoveState : PlayerState
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
+        if (Input.IsActionPressed(GameConstants.INPUT_JUMP) & characterNode.IsOnFloor())
+        {
+            characterNode.Jump();
+        }
         if (characterNode.direction == Vector2.Zero)
         {
             characterNode.StateMachine.SwitchState<PlayerIdleState>();
@@ -20,11 +24,8 @@ public partial class PlayerMoveState : PlayerState
     {
         base._Input(@event);
         characterNode.SetInputDirection();
-        if (Input.IsActionJustPressed(GameConstants.INPUT_JUMP))
-        {
-            characterNode.Jump();
-        }
-        else if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
+
+        if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
             characterNode.StateMachine.SwitchState<PlayerDashState>();
         }

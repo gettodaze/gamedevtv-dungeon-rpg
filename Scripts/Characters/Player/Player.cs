@@ -5,7 +5,8 @@ public partial class Player : CharacterBody3D
 {
 	[Export(PropertyHint.Range, "0,20,1")] private float speed = 5.0f;
 	[Export(PropertyHint.Range, "0,50,1")] public float dashSpeed = 15.0f;
-	[Export(PropertyHint.Range, "0,10,0.1")] public float jumpSpeed = 10.0f;
+	[Export(PropertyHint.Range, "0,10,0.01")] public float gravity = 0.2f;
+	[Export(PropertyHint.Range, "0,10,0.01")] public float jumpSpeed = 5f;
 	[ExportGroup("Required Nodes")]
 	[Export] public AnimationPlayer AnimPlayerNode { get; private set; }
 	[Export] public Sprite3D Sprite3DNode { get; private set; }
@@ -24,18 +25,12 @@ public partial class Player : CharacterBody3D
 
 	public void Move(bool dash = false)
 	{
-		GD.Print($"Moved: OG velocity {Velocity}");
 		var scaledDir = direction * (dash ? dashSpeed : speed);
 		// float velY = IsOnFloor() ? 0 : Velocity.Y - 0.1f;
-		Velocity = new(scaledDir.X, Velocity.Y - 0.1f, scaledDir.Y);
+		Velocity = new(scaledDir.X, Velocity.Y, scaledDir.Y);
+		if (!IsOnFloor()) Velocity += Vector3.Down * gravity;
 		Flip();
 		MoveAndSlide();
-		GD.Print($"Moved with velocity {Velocity}");
-		var collision = GetLastSlideCollision();
-		if (collision != null)
-		{
-			GD.Print(collision);
-		}
 	}
 
 	private void Flip()
