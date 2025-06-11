@@ -15,10 +15,10 @@ public partial class Player : CharacterBody3D
 	{
 	}
 
-	public void Move()
+	public void Move(bool dash = false)
 	{
 		Velocity = new(direction.X, 0, direction.Y);
-		Velocity *= speed;
+		Velocity *= dash ? dashSpeed : speed;
 		Flip();
 		MoveAndSlide();
 	}
