@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://t35crg5pv1l"]
+[gd_scene load_steps=49 format=3 uid="uid://t35crg5pv1l"]
 
 [ext_resource type="Texture2D" uid="uid://dt13ve78xqo8l" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Script" uid="uid://clqbk6hfnui8g" path="res://Scripts/Characters/Player/Player.cs" id="1_eiaiy"]
@@ -116,6 +116,9 @@ _data = {
 &"RESET": SubResource("Animation_1ujki")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5xbx"]
+height = 1.41595
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine")]
 script = ExtResource("1_eiaiy")
 AnimPlayerNode = NodePath("AnimationPlayer")
@@ -157,3 +160,7 @@ timerNode = NodePath("PostDashTimer")
 [node name="PostDashTimer" type="Timer" parent="StateMachine/PostDashState"]
 wait_time = 0.2
 one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0503924, 0.0108163, 0)
+shape = SubResource("CapsuleShape3D_e5xbx")
