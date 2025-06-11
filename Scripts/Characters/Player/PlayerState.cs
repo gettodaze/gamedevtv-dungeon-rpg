@@ -10,6 +10,7 @@ public abstract partial class PlayerState : Node
     {
         characterNode = GetOwner<Player>();
         SetPhysicsProcess(false);
+        SetProcessInput(false);
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,6 +22,7 @@ public abstract partial class PlayerState : Node
     {
         GD.Print($"Disabling {AnimationString}");
         SetPhysicsProcess(false);
+        SetProcessInput(false);
 
     }
 
@@ -29,5 +31,6 @@ public abstract partial class PlayerState : Node
         GD.Print($"Enabling {AnimationString}");
         characterNode.animPlayerNode.Play(AnimationString);
         SetPhysicsProcess(true);
+        SetProcessInput(true);
     }
 }
