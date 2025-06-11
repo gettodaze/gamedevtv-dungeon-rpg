@@ -12,6 +12,7 @@ public partial class StateMachine : Node
 		get => _currentState;
 		set
 		{
+			if (_currentState == value) return;
 			GD.Print($"Setting state from {_currentState} to {value}");
 			if (isReady) _currentState.DisableState();
 			_currentState = value;
