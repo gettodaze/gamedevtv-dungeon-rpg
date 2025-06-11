@@ -11,7 +11,7 @@ public partial class PlayerDashState : PlayerState
     public override void _Ready()
     {
         base._Ready();
-        timerNode.Timeout += characterNode.stateMachine.SwitchState<PlayerState>;
+        timerNode.Timeout += characterNode.stateMachine.SwitchState<PlayerPostDashState>;
     }
 
     public override void EnableState()
