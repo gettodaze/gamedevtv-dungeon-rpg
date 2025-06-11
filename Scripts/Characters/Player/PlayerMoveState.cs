@@ -12,6 +12,8 @@ public partial class PlayerMoveState : PlayerState
         {
             characterNode.stateMachine.SwitchState<PlayerIdleState>();
         }
+        else characterNode.Move();
+
     }
 
     public override void _Input(InputEvent @event)

@@ -14,19 +14,16 @@ public partial class Player : CharacterBody3D
 	{
 	}
 
-	public override void _PhysicsProcess(double delta)
+	public void Move()
 	{
-		base._PhysicsProcess(delta);
 		Velocity = new(direction.X, 0, direction.Y);
 		Velocity *= speed;
+		Flip();
 		MoveAndSlide();
 	}
 
-	public override void _Input(InputEvent @event)
+	private void Flip()
 	{
-		base._Input(@event);
-		direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
-
 		if (direction.X < 0)
 		{
 			sprite3DNode.FlipH = true;
@@ -35,5 +32,13 @@ public partial class Player : CharacterBody3D
 		{
 			sprite3DNode.FlipH = false;
 		}
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+		direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
+
+
 	}
 }
