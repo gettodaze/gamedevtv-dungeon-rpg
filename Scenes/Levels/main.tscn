@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpk1eynmpag34"]
+[gd_scene load_steps=6 format=3 uid="uid://cpk1eynmpag34"]
 
 [ext_resource type="Script" uid="uid://bbwu8fhhhcrxg" path="res://Scripts/Levels/Main.cs" id="1_s0gyx"]
 [ext_resource type="PackedScene" uid="uid://t35crg5pv1l" path="res://Scenes/Characters/Player/player.tscn" id="2_yjsus"]
 [ext_resource type="MeshLibrary" uid="uid://cc6sx75alelic" path="res://Resources/tiles.tres" id="3_u872a"]
+
+[sub_resource type="Sky" id="Sky_u872a"]
+
+[sub_resource type="Environment" id="Environment_nk5xi"]
+sky = SubResource("Sky_u872a")
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_s0gyx")
@@ -12,6 +17,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77165, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.446981, 2.95484)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_energy = 5.0
+omni_range = 11.101
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -36,3 +46,6 @@ cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(29, 65532, 1441798, 29, 65535, 1441798)
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nk5xi")
