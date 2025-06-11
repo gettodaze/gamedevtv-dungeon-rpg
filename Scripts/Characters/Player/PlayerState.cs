@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract partial class PlayerState : Node
+public abstract partial class PlayerState : CharacterState
 {
     protected Player characterNode;
     protected abstract string AnimationString { get; }
@@ -13,7 +13,7 @@ public abstract partial class PlayerState : Node
         SetProcessInput(false);
     }
 
-    public virtual void DisableState()
+    public override void DisableState()
     {
         GD.Print($"Disabling {AnimationString}");
         SetPhysicsProcess(false);
@@ -21,7 +21,7 @@ public abstract partial class PlayerState : Node
 
     }
 
-    public virtual void EnableState()
+    public override void EnableState()
     {
         GD.Print($"Enabling {AnimationString}");
         characterNode.AnimPlayerNode.Play(AnimationString);

@@ -5,9 +5,9 @@ using System.Linq;
 public partial class StateMachine : Node
 {
 	private bool isReady = false;
-	private PlayerState _currentState;
+	private CharacterState _currentState;
 	[Export]
-	private PlayerState CurrentState
+	private CharacterState CurrentState
 	{
 		get => _currentState;
 		set
@@ -19,11 +19,11 @@ public partial class StateMachine : Node
 			if (isReady) value.EnableState();
 		}
 	}
-	private PlayerState[] states;
+	private CharacterState[] states;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		states = GetChildren().OfType<PlayerState>().ToArray();
+		states = GetChildren().OfType<CharacterState>().ToArray();
 		GD.Print(string.Join(", ", states.Select(s => s.Name)));
 		isReady = true;
 		CurrentState.EnableState();
@@ -37,8 +37,8 @@ public partial class StateMachine : Node
 
 	public void SwitchState<T>()
 	{
-		PlayerState newState = null;
-		foreach (PlayerState state in states)
+		CharacterState newState = null;
+		foreach (CharacterState state in states)
 		{
 			if (state is T)
 			{
