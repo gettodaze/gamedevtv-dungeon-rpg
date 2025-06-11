@@ -3,5 +3,5 @@ using System;
 
 public partial class PlayerDashState : PlayerState
 {
-    protected override string AnimationString => GameConstants.ANIM_IDLE;
+    protected override string AnimationString => GameConstants.ANIM_DASH;
 }

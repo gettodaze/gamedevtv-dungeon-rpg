@@ -17,8 +17,10 @@ public partial class PlayerIdleState : PlayerState
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
+        GD.Print(@event);
         if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
+            GD.Print("dashed!");
             characterNode.stateMachine.SwitchState<PlayerDashState>();
         }
 
