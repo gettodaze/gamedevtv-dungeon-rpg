@@ -3,8 +3,8 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
-	[Export] private float speed = 5.0f;
-	[Export] public float dashSpeed = 15.0f;
+	[Export(PropertyHint.Range, "0,20,1")] private float speed = 5.0f;
+	[Export(PropertyHint.Range, "0,50,1")] public float dashSpeed = 15.0f;
 	[ExportGroup("Required Nodes")]
 	[Export] public AnimationPlayer animPlayerNode;
 	[Export] public Sprite3D sprite3DNode;
