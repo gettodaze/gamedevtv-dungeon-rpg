@@ -20,7 +20,11 @@ public partial class PlayerMoveState : PlayerState
     {
         base._Input(@event);
         characterNode.SetInputDirection();
-        if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
+        if (Input.IsActionJustPressed(GameConstants.INPUT_JUMP))
+        {
+            characterNode.Jump();
+        }
+        else if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
             characterNode.StateMachine.SwitchState<PlayerDashState>();
         }
