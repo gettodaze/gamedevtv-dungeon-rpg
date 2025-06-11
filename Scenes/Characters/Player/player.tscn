@@ -106,9 +106,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_gs6v2")
 }
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("CurrentState")]
 script = ExtResource("32_2iqoh")
-currentState = NodePath("IdleState")
+CurrentState = NodePath("MoveState")
 
 [node name="DashState" type="Node" parent="StateMachine"]
 script = ExtResource("33_2iqoh")
