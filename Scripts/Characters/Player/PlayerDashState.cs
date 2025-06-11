@@ -6,7 +6,6 @@ public partial class PlayerDashState : PlayerState
     protected override string AnimationString => GameConstants.ANIM_DASH;
     [Export]
     private Timer timerNode;
-    [Export] private float dashSpeed = 10;
 
     public override void _Ready()
     {
@@ -28,7 +27,7 @@ public partial class PlayerDashState : PlayerState
         dir.Y = 0;
 
         characterNode.Velocity = new(dir.X, 0, dir.Y);
-        characterNode.Velocity *= dashSpeed;
+        characterNode.Velocity *= characterNode.dashSpeed;
         GD.Print($"Enable Dash: New Velocity {characterNode.Velocity}");
     }
 
