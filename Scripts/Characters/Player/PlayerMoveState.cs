@@ -10,7 +10,7 @@ public partial class PlayerMoveState : PlayerState
         base._PhysicsProcess(delta);
         if (characterNode.direction == Vector2.Zero)
         {
-            characterNode.stateMachine.SwitchState<PlayerIdleState>();
+            characterNode.StateMachine.SwitchState<PlayerIdleState>();
         }
         else characterNode.Move();
 
@@ -21,7 +21,7 @@ public partial class PlayerMoveState : PlayerState
         base._Input(@event);
         if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
-            characterNode.stateMachine.SwitchState<PlayerDashState>();
+            characterNode.StateMachine.SwitchState<PlayerDashState>();
         }
 
     }

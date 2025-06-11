@@ -11,12 +11,12 @@ public partial class PlayerPostDashState : PlayerState
 	{
 		base._Ready();
 		timerNode.Timeout += () => GD.Print("PostDash timer stopped");
-		timerNode.Timeout += characterNode.stateMachine.SwitchState<PlayerIdleState>;
+		timerNode.Timeout += characterNode.StateMachine.SwitchState<PlayerIdleState>;
 	}
 	public override void EnableState()
 	{
 		GD.Print("Enabling PostDashState");
-		characterNode.animPlayerNode.Stop();
+		characterNode.AnimPlayerNode.Stop();
 		timerNode.Start();
 	}
 }

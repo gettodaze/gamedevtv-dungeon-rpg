@@ -10,7 +10,7 @@ public partial class PlayerDashState : PlayerState
     public override void _Ready()
     {
         base._Ready();
-        timerNode.Timeout += characterNode.stateMachine.SwitchState<PlayerPostDashState>;
+        timerNode.Timeout += characterNode.StateMachine.SwitchState<PlayerPostDashState>;
     }
 
     public override void EnableState()
@@ -23,7 +23,7 @@ public partial class PlayerDashState : PlayerState
         var dir = characterNode.direction;
         // note: maybe do this only when not already 0?
         // if (dir == Vector2.Zero)
-        dir.X = characterNode.sprite3DNode.FlipH ? -1 : 1;
+        dir.X = characterNode.Sprite3DNode.FlipH ? -1 : 1;
         dir.Y = 0;
 
         characterNode.Velocity = new(dir.X, 0, dir.Y);

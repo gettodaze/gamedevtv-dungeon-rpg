@@ -24,7 +24,7 @@ public abstract partial class PlayerState : Node
     public virtual void EnableState()
     {
         GD.Print($"Enabling {AnimationString}");
-        characterNode.animPlayerNode.Play(AnimationString);
+        characterNode.AnimPlayerNode.Play(AnimationString);
         SetPhysicsProcess(true);
         SetProcessInput(true);
     }

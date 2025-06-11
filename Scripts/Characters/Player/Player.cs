@@ -6,9 +6,9 @@ public partial class Player : CharacterBody3D
 	[Export(PropertyHint.Range, "0,20,1")] private float speed = 5.0f;
 	[Export(PropertyHint.Range, "0,50,1")] public float dashSpeed = 15.0f;
 	[ExportGroup("Required Nodes")]
-	[Export] public AnimationPlayer animPlayerNode;
-	[Export] public Sprite3D sprite3DNode;
-	[Export] public StateMachine stateMachine;
+	[Export] public AnimationPlayer AnimPlayerNode { get; private set; }
+	[Export] public Sprite3D Sprite3DNode { get; private set; }
+	[Export] public StateMachine StateMachine { get; private set; }
 	public Vector2 direction = new();
 
 	public override void _Ready()
@@ -27,11 +27,11 @@ public partial class Player : CharacterBody3D
 	{
 		if (direction.X < 0)
 		{
-			sprite3DNode.FlipH = true;
+			Sprite3DNode.FlipH = true;
 		}
 		else if (direction.X > 0)
 		{
-			sprite3DNode.FlipH = false;
+			Sprite3DNode.FlipH = false;
 		}
 	}
 
