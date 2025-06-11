@@ -134,8 +134,9 @@ libraries = {
 script = ExtResource("32_2iqoh")
 CurrentState = NodePath("IdleState")
 
-[node name="DashState" type="Node" parent="StateMachine"]
+[node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerNode")]
 script = ExtResource("33_2iqoh")
+timerNode = NodePath("DashTimer")
 
 [node name="DashTimer" type="Timer" parent="StateMachine/DashState"]
 

@@ -13,4 +13,14 @@ public partial class PlayerMoveState : PlayerState
             characterNode.stateMachine.SwitchState<PlayerIdleState>();
         }
     }
+
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+        if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
+        {
+            characterNode.stateMachine.SwitchState<PlayerDashState>();
+        }
+
+    }
 }

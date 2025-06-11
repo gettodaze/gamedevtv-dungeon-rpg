@@ -13,12 +13,7 @@ public abstract partial class PlayerState : Node
         SetProcessInput(false);
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-    }
-
-    public void DisableState()
+    public virtual void DisableState()
     {
         GD.Print($"Disabling {AnimationString}");
         SetPhysicsProcess(false);
@@ -26,7 +21,7 @@ public abstract partial class PlayerState : Node
 
     }
 
-    public void EnableState()
+    public virtual void EnableState()
     {
         GD.Print($"Enabling {AnimationString}");
         characterNode.animPlayerNode.Play(AnimationString);
