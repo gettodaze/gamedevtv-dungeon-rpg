@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://t35crg5pv1l"]
+[gd_scene load_steps=47 format=3 uid="uid://t35crg5pv1l"]
 
 [ext_resource type="Texture2D" uid="uid://dt13ve78xqo8l" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Script" uid="uid://clqbk6hfnui8g" path="res://Scripts/Characters/Player/Player.cs" id="1_eiaiy"]
@@ -33,8 +33,14 @@
 [ext_resource type="Texture2D" uid="uid://icfrugp2dlkm" path="res://Assets/Sprites/Characters/Player/Running/Running_011.png" id="30_ywskp"]
 [ext_resource type="Script" uid="uid://dnecagje3lvx8" path="res://Scripts/Characters/Player/StateMachine.cs" id="32_2iqoh"]
 [ext_resource type="Script" uid="uid://viwe32bjp2v1" path="res://Scripts/Characters/Player/PlayerMoveState.cs" id="32_me3gr"]
+[ext_resource type="Texture2D" uid="uid://cafgyesudha07" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_000.png" id="32_uvgfe"]
 [ext_resource type="Script" uid="uid://c8rk73haultf7" path="res://Scripts/Characters/Player/PlayerDashState.cs" id="33_2iqoh"]
+[ext_resource type="Texture2D" uid="uid://u042sx0tx2md" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_001.png" id="33_e5xbx"]
+[ext_resource type="Texture2D" uid="uid://5rburr1olhh6" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_002.png" id="34_8uivy"]
 [ext_resource type="Script" uid="uid://jx00p00d06ju" path="res://Scripts/Characters/Player/PlayerIdleState.cs" id="34_gii1i"]
+[ext_resource type="Texture2D" uid="uid://cxw20oxrfc5q1" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="35_yfcdn"]
+[ext_resource type="Texture2D" uid="uid://b85tldshor1jg" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="36_68bc3"]
+[ext_resource type="Texture2D" uid="uid://dw2as0ptfpon7" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="37_mf3wh"]
 
 [sub_resource type="Animation" id="Animation_gii1i"]
 resource_name = "Idle"
@@ -85,8 +91,25 @@ tracks/0/keys = {
 "values": [ExtResource("1_7x37g")]
 }
 
+[sub_resource type="Animation" id="Animation_2qsty"]
+resource_name = "Dash"
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("32_uvgfe"), ExtResource("33_e5xbx"), ExtResource("34_8uivy"), ExtResource("35_yfcdn"), ExtResource("36_68bc3"), ExtResource("37_mf3wh")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs6v2"]
 _data = {
+&"Dash": SubResource("Animation_2qsty"),
 &"Idle": SubResource("Animation_gii1i"),
 &"Move": SubResource("Animation_cvakg"),
 &"RESET": SubResource("Animation_1ujki")
