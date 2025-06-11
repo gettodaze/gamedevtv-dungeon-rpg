@@ -11,7 +11,7 @@ public partial class StateMachine : Node
 	{
 		states = GetChildren().OfType<PlayerState>().ToArray();
 		GD.Print(string.Join(", ", states.Select(s => s.Name)));
-		currentState.Notification(GameConstants.NOTIFICATION_ENABLE_STATE);
+		currentState.EnableState();
 
 
 	}
