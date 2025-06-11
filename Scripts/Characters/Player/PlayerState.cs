@@ -1,31 +1,25 @@
 using Godot;
 using System;
 
-public abstract partial class PlayerState : Node
+public abstract partial class PlayerState : CharacterState<Player>
 {
-    protected Player characterNode;
-    protected abstract string AnimationString { get; }
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        characterNode = GetOwner<Player>();
-        SetPhysicsProcess(false);
+        base._Ready();
         SetProcessInput(false);
     }
 
-    public virtual void DisableState()
+    public override void DisableState()
     {
-        GD.Print($"Disabling {AnimationString}");
-        SetPhysicsProcess(false);
+        base.EnableState();
         SetProcessInput(false);
 
     }
 
-    public virtual void EnableState()
+    public override void EnableState()
     {
-        GD.Print($"Enabling {AnimationString}");
-        characterNode.AnimPlayerNode.Play(AnimationString);
-        SetPhysicsProcess(true);
+        base.EnableState();
         SetProcessInput(true);
     }
 }
