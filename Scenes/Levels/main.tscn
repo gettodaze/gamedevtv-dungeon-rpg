@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpk1eynmpag34"]
+[gd_scene load_steps=8 format=3 uid="uid://cpk1eynmpag34"]
 
 [ext_resource type="Script" uid="uid://bbwu8fhhhcrxg" path="res://Scripts/Levels/Main.cs" id="1_s0gyx"]
 [ext_resource type="PackedScene" uid="uid://t35crg5pv1l" path="res://Scenes/Characters/Player/player.tscn" id="2_yjsus"]
 [ext_resource type="MeshLibrary" uid="uid://cc6sx75alelic" path="res://Resources/tiles.tres" id="3_u872a"]
+[ext_resource type="PackedScene" uid="uid://5b7jc08scehq" path="res://Scenes/Characters/Enemy/enemy.tscn" id="4_nk5xi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u872a"]
 size = Vector3(0.313965, 8.4989, 83.5604)
@@ -65,3 +66,6 @@ shape = SubResource("BoxShape3D_u872a")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nk5xi")
+
+[node name="Enemy" parent="." instance=ExtResource("4_nk5xi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.57026, 1.83187, 1.93042)
