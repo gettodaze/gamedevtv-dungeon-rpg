@@ -10,11 +10,7 @@ public partial class Player : CharacterBody3D
 	[Export] public AnimationPlayer AnimPlayerNode { get; private set; }
 	[Export] public Sprite3D Sprite3DNode { get; private set; }
 	[Export] public StateMachine StateMachine { get; private set; }
-	public Vector2 Direction
-	{
-		get => new(Velocity.X, Velocity.Z);
-		set => Velocity = new(value.X, Velocity.Y, value.Y);
-	}
+	public Vector2 direction = new();
 
 	public override void _Ready()
 	{
@@ -57,7 +53,7 @@ public partial class Player : CharacterBody3D
 	public void SetInputDirection()
 	{
 		var oldDir = direction;
-		Direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
+		direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
 		GD.Print($"Set character direction from {oldDir} to {direction}");
 	}
 
