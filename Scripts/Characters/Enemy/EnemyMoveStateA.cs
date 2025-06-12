@@ -10,7 +10,7 @@ public partial class EnemyMoveStateA : CharacterState
         base._Ready();
         timerNode.Timeout += () =>
         {
-            GD.Print("EnemyMove timer stopped");
+            GD.Print($"{Name} EnemyMove timer stopped");
             if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveStateA) EnableState();
         };
     }

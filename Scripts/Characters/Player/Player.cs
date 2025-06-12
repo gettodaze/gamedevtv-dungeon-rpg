@@ -8,6 +8,6 @@ public partial class Player : Character
 	{
 		var oldDir = direction;
 		direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
-		GD.Print($"Set character direction from {oldDir} to {direction}");
+		GD.Print($"{Name} Set character direction from {oldDir} to {direction}");
 	}
 }

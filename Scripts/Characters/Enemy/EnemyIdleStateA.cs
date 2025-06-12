@@ -8,7 +8,7 @@ public partial class EnemyIdleStateA : CharacterState
     public override void _Ready()
     {
         base._Ready();
-        timerNode.Timeout += () => GD.Print("EnemyIdle timer stopped");
+        timerNode.Timeout += () => GD.Print($"{Name} EnemyIdle timer stopped");
         timerNode.Timeout += () => characterNode.StateMachine.SwitchStateRandom();
     }
 

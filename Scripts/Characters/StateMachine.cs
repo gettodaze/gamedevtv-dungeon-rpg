@@ -13,7 +13,7 @@ public partial class StateMachine : Node
 		set
 		{
 			if (_currentState == value) return;
-			GD.Print($"Setting state from {_currentState} to {value}");
+			// GD.Print($"Setting state from {_currentState} to {value}");
 			if (isReady) _currentState.DisableState();
 			_currentState = value;
 			if (isReady) value.EnableState();
