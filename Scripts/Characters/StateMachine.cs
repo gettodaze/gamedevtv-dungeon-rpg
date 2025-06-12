@@ -20,10 +20,14 @@ public partial class StateMachine : Node
 		}
 	}
 	private CharacterState[] states;
+	private CharacterState[] statesRandom;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		states = GetChildren().OfType<CharacterState>().ToArray();
+		statesRandom = states
+			.Where(state => state.IsEligibleForRandom)
+			.ToArray();
 		var stateString = string.Join(", ", states.Select(s => s.Name));
 		GD.Print($"{Name} ready with states ({stateString}). Enabling {CurrentState.characterNode.Name} {CurrentState.Name}");
 		isReady = true;
@@ -56,13 +60,13 @@ public partial class StateMachine : Node
 	}
 	public CharacterState SwitchStateRandom()
 	{
-		if (states == null || states.Length == 0)
+		if (statesRandom == null || statesRandom.Length == 0)
 		{
-			GD.Print("No states available to switch to.");
+			GD.Print("No statesRandom available to switch to.");
 			return null;
 		}
 
-		CurrentState = states[GD.Randi() % states.Length];
+		CurrentState = statesRandom[GD.Randi() % statesRandom.Length];
 		return CurrentState;
 	}
 }

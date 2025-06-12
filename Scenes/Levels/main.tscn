@@ -30,7 +30,7 @@ sky = SubResource("Sky_u872a")
 script = ExtResource("1_s0gyx")
 
 [node name="Player" parent="." instance=ExtResource("2_yjsus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.95, 1.77165, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76748, 1.77165, 0)
 collision_layer = 2
 gravity = 0.35
 
@@ -91,7 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643897, 0)
 curve = SubResource("Curve3D_nk5xi")
 
 [node name="EnemyBPatrol" parent="Enemies/Path3D" node_paths=PackedStringArray("StateMachine", "PathNode") instance=ExtResource("4_nk5xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5803, 1.19863, 1.93042)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2784, 1.19863, -2.57326)
 speed = 3.0
 StateMachine = NodePath("StateMachineBPatrol")
 PathNode = NodePath("..")

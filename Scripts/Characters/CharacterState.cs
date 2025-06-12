@@ -5,6 +5,8 @@ public abstract partial class CharacterState : Node
 {
     public Character characterNode;
     protected abstract string AnimationString { get; }
+    public virtual bool IsEligibleForRandom => true;
+
     public override void _Ready()
     {
         base._Ready();
