@@ -67,5 +67,13 @@ shape = SubResource("BoxShape3D_u872a")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nk5xi")
 
-[node name="Enemy" parent="." instance=ExtResource("4_nk5xi")]
+[node name="EnemyA" parent="." instance=ExtResource("4_nk5xi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.57026, 1.83187, 1.93042)
+speed = 3.0
+
+[node name="EnemyB" parent="." node_paths=PackedStringArray("StateMachine") instance=ExtResource("4_nk5xi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.57026, 1.83187, 1.93042)
+StateMachine = NodePath("StateMachineB")
+
+[editable path="EnemyA"]
+[editable path="EnemyB"]

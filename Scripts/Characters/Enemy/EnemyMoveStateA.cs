@@ -8,8 +8,11 @@ public partial class EnemyMoveStateA : CharacterState
     public override void _Ready()
     {
         base._Ready();
-        timerNode.Timeout += () => GD.Print("EnemyMove timer stopped");
-        timerNode.Timeout += characterNode.StateMachine.SwitchState<EnemyIdleStateA>;
+        timerNode.Timeout += () =>
+        {
+            GD.Print("EnemyMove timer stopped");
+            if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveStateA) EnableState();
+        };
     }
     public override void DisableState()
     {

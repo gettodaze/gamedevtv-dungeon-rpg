@@ -53,4 +53,15 @@ public partial class StateMachine : Node
 
 		CurrentState = newState;
 	}
+	public CharacterState SwitchStateRandom()
+	{
+		if (states == null || states.Length == 0)
+		{
+			GD.Print("No states available to switch to.");
+			return null;
+		}
+
+		CurrentState = states[GD.Randi() % states.Length];
+		return CurrentState;
+	}
 }
