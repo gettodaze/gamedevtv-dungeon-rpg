@@ -8,7 +8,7 @@ public partial class ReturnState : CharacterState
 	public override void EnableState()
 	{
 		base.EnableState();
-		var startPoint = characterNode.PathNode.Curve.GetPointPosition(0);
+		var startPoint = characterNode.PathNode.Curve.GetPointPosition(0) + characterNode.PathNode.GlobalPosition;
 		GD.Print("Point 0", startPoint);
 		characterNode.GlobalPosition = startPoint;
 	}
