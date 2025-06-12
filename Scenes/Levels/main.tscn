@@ -9,6 +9,9 @@
 size = Vector3(0.313965, 8.4989, 83.5604)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nk5xi"]
+vertices = PackedVector3Array(-20.25, 1.5, -4.5, -20.5, 1.5, -5.5, -21.5, 1.5, -5.5, -21.5, 1.5, 9.5, 24.5, 2, 0.75, 27.75, 4.5, 0.5, 27.75, 4.5, -4.25, 23.0564, 1.5, 0.580645, 24.6532, 2, -4.26613, 23.1048, 1.5, -4.27419, 25.9853, 3, -1.48934, 29, 1.5, 9.5, 29, 1.5, 1.75, 24.5, 1.5, 1.75, 29, 5, 0.5, 29.5, 5.5, 0, 31, 5.5, 0.25, 31, 5.5, 9.5, 61, 5.5, 9.5, 61, 5.5, -4.5, 30.6413, 5.5, -4.27174)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(9, 7, 0), PackedInt32Array(7, 10, 4), PackedInt32Array(4, 10, 5), PackedInt32Array(5, 10, 6), PackedInt32Array(6, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(9, 10, 7), PackedInt32Array(13, 12, 11), PackedInt32Array(4, 13, 7), PackedInt32Array(7, 13, 0), PackedInt32Array(13, 11, 0), PackedInt32Array(0, 11, 3), PackedInt32Array(14, 5, 15), PackedInt32Array(15, 5, 6), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(15, 6, 16), PackedInt32Array(16, 6, 20), PackedInt32Array(16, 20, 19)]
+agent_max_climb = 0.5
 
 [sub_resource type="Curve3D" id="Curve3D_nk5xi"]
 closed = true
