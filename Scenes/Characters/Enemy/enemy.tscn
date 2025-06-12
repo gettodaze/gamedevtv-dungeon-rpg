@@ -247,12 +247,13 @@ height = 1.26741
 [sub_resource type="SphereShape3D" id="SphereShape3D_dwudo"]
 radius = 6.0
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine", "NavigationAgentNode")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine", "NavigationAgentNode", "Area3DNode")]
 script = ExtResource("1_1215o")
 AnimPlayerNode = NodePath("AnimationPlayer")
 Sprite3DNode = NodePath("Sprite3D")
 StateMachine = NodePath("StateMachineARandom")
 NavigationAgentNode = NodePath("NavigationAgent3D")
+Area3DNode = NodePath("Area3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
@@ -310,6 +311,8 @@ debug_enabled = true
 debug_path_custom_color = Color(0.697642, 0.1077, 0.276825, 1)
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_dwudo")
