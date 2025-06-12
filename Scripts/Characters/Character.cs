@@ -23,7 +23,7 @@ public partial class Character : CharacterBody3D
         Velocity += Vector3.Up * jumpSpeed;
     }
 
-    public void Move(bool dash = false)
+    public void Move(bool dash = false, Action<KinematicCollision3D> onCollision = null)
     {
         var scaledDir = direction * (dash ? dashSpeed : speed);
         // float velY = IsOnFloor() ? 0 : Velocity.Y - 0.1f;
@@ -31,6 +31,14 @@ public partial class Character : CharacterBody3D
         if (!IsOnFloor()) Velocity += Vector3.Down * gravity;
         Flip();
         MoveAndSlide();
+
+
+        int collisionCount = GetSlideCollisionCount();
+        for (int i = 0; i < collisionCount; i++)
+        {
+            var collision = GetSlideCollision(i);
+            onCollision?.Invoke(collision); // Call the callback if provided
+        }
     }
 
     private void Flip()

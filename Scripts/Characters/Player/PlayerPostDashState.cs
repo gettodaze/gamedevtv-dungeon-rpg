@@ -3,8 +3,7 @@ using System;
 
 public partial class PlayerPostDashState : PlayerState
 {
-	[Export]
-	private Timer timerNode;
+	[Export] private Timer timerNode;
 	protected override string AnimationString => null;
 
 	public override void _Ready()
