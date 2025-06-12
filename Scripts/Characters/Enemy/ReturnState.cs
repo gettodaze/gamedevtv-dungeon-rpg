@@ -15,7 +15,7 @@ public partial class ReturnState : CharacterState
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (characterNode.GlobalPosition == characterNode.destination) { GD.Print("Reached Destination"); characterNode.StateMachine.SwitchState<EnemyIdleStateB>(); };
+		if (characterNode.GlobalPosition.DistanceTo(characterNode.destination) < 0.1f) { GD.Print("Reached Destination"); characterNode.StateMachine.SwitchState<EnemyIdleStateB>(); };
 		base._PhysicsProcess(delta);
 		characterNode.Velocity = characterNode.GlobalPosition.DirectionTo(characterNode.destination);
 		characterNode.Flip();
