@@ -87,6 +87,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5803, 1.83187, 1.93042)
 StateMachine = NodePath("StateMachineBPatrol")
 PathNode = NodePath("..")
 
+[node name="StateMachineARandom" parent="Enemies/Path3D/EnemyBPatrol" index="3" node_paths=PackedStringArray("CurrentState")]
+CurrentState = NodePath("../../../EnemyARandom/StateMachineARandom/IdleState")
+
 [node name="StateMachineBPatrol" parent="Enemies/Path3D/EnemyBPatrol" index="4" node_paths=PackedStringArray("CurrentState")]
 CurrentState = NodePath("ReturnState")
 

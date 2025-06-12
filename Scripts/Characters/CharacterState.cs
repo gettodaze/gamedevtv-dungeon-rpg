@@ -3,7 +3,7 @@ using System;
 
 public abstract partial class CharacterState : Node
 {
-    protected Character characterNode;
+    public Character characterNode;
     protected abstract string AnimationString { get; }
     public override void _Ready()
     {

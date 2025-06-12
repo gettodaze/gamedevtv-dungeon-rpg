@@ -24,7 +24,8 @@ public partial class StateMachine : Node
 	public override void _Ready()
 	{
 		states = GetChildren().OfType<CharacterState>().ToArray();
-		GD.Print(string.Join(", ", states.Select(s => s.Name)));
+		var stateString = string.Join(", ", states.Select(s => s.Name));
+		GD.Print($"{Name} ready with states ({stateString}). Enabling {CurrentState.characterNode.Name} {CurrentState.Name}");
 		isReady = true;
 		CurrentState.EnableState();
 
