@@ -8,25 +8,25 @@ public partial class PlayerIdleState : PlayerState
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        if (Input.IsActionPressed(GameConstants.INPUT_JUMP) & characterNode.IsOnFloor())
+        if (Input.IsActionPressed(GameConstants.INPUT_JUMP) & playerNode.IsOnFloor())
         {
-            characterNode.Jump();
+            playerNode.Jump();
         }
-        characterNode.Move();
-        if (characterNode.direction != Vector2.Zero)
+        playerNode.Move();
+        if (playerNode.direction != Vector2.Zero)
         {
-            characterNode.StateMachine.SwitchState<PlayerMoveState>();
+            playerNode.StateMachine.SwitchState<PlayerMoveState>();
         }
     }
 
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
-        characterNode.SetInputDirection();
+        playerNode.SetInputDirection();
 
         if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
-            characterNode.StateMachine.SwitchState<PlayerDashState>();
+            playerNode.StateMachine.SwitchState<PlayerDashState>();
         }
 
     }

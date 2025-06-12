@@ -3,29 +3,23 @@ using System;
 
 public abstract partial class PlayerState : CharacterState
 {
-    protected Player characterNode;
-    protected abstract string AnimationString { get; }
-    // Called when the node enters the scene tree for the first time.
+    protected Player playerNode;
     public override void _Ready()
     {
-        characterNode = GetOwner<Player>();
-        SetPhysicsProcess(false);
-        SetProcessInput(false);
+        base._Ready();
+        playerNode = characterNode as Player;
     }
 
     public override void DisableState()
     {
-        GD.Print($"Disabling {AnimationString}");
-        SetPhysicsProcess(false);
+        base.DisableState();
         SetProcessInput(false);
 
     }
 
     public override void EnableState()
     {
-        GD.Print($"Enabling {AnimationString}");
-        characterNode.AnimPlayerNode.Play(AnimationString);
-        SetPhysicsProcess(true);
+        base.EnableState();
         SetProcessInput(true);
     }
 }

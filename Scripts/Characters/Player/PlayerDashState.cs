@@ -10,32 +10,32 @@ public partial class PlayerDashState : PlayerState
     public override void _Ready()
     {
         base._Ready();
-        timerNode.Timeout += characterNode.StateMachine.SwitchState<PlayerPostDashState>;
+        timerNode.Timeout += playerNode.StateMachine.SwitchState<PlayerPostDashState>;
     }
 
     public override void EnableState()
     {
         base.EnableState();
-        GD.Print($"Enable Dash: Old Direction {characterNode.direction}");
+        GD.Print($"Enable Dash: Old Direction {playerNode.direction}");
         timerNode.Start();
 
         // set dash velocity
-        var dir = characterNode.direction;
+        var dir = playerNode.direction;
         // note: maybe do this only when not already 0?
         // if (dir == Vector2.Zero)
-        characterNode.direction.X = characterNode.Sprite3DNode.FlipH ? -1 : 1;
-        characterNode.direction.Y = 0;
+        playerNode.direction.X = playerNode.Sprite3DNode.FlipH ? -1 : 1;
+        playerNode.direction.Y = 0;
 
-        // characterNode.Velocity = new(dir.X, 0, dir.Y);
-        // characterNode.Velocity *= characterNode.dashSpeed;
-        GD.Print($"Enable Dash: New Direction {characterNode.direction}");
+        // playerNode.Velocity = new(dir.X, 0, dir.Y);
+        // playerNode.Velocity *= playerNode.dashSpeed;
+        GD.Print($"Enable Dash: New Direction {playerNode.direction}");
     }
 
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        GD.Print($"Processing dash physics with direction {characterNode.direction} and velocity {characterNode.Velocity}");
-        characterNode.Move(true);
+        GD.Print($"Processing dash physics with direction {playerNode.direction} and velocity {playerNode.Velocity}");
+        playerNode.Move(true);
     }
 
 }
