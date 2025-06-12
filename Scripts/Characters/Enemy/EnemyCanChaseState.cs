@@ -7,19 +7,22 @@ public abstract partial class EnemyCanChaseState : CharacterState
 	{
 		base.EnableState();
 		GD.Print($"{Name}: Adding chase handler");
-		characterNode.Area3DNode.AreaEntered += EnemyHandleEnterArea3DNode;
+		characterNode.Area3DNode.BodyEntered += EnemyHandleEnterArea3DNode;
+	}
+
+	private void EnemyHandleEnterArea3DNode(Node3D body)
+	{
+		GD.Print($"EnemyHandleEnterArea3DNode {Name}, {body}");
+
 	}
 
 	public override void DisableState()
 	{
 		base.DisableState();
 		GD.Print($"{Name}: Removing chase handler");
-		characterNode.Area3DNode.AreaEntered -= EnemyHandleEnterArea3DNode;
+		characterNode.Area3DNode.BodyEntered -= EnemyHandleEnterArea3DNode;
 
 	}
 
-	private void EnemyHandleEnterArea3DNode(Area3D area)
-	{
-		GD.Print($"EnemyHandleEnterArea3DNode {Name}, {area}");
-	}
+
 }
