@@ -91,7 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643897, 0)
 curve = SubResource("Curve3D_nk5xi")
 
 [node name="EnemyBPatrol" parent="Enemies/Path3D" node_paths=PackedStringArray("StateMachine", "PathNode") instance=ExtResource("4_nk5xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5803, 1.83187, 1.93042)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5803, 1.19863, 1.93042)
 StateMachine = NodePath("StateMachineBPatrol")
 PathNode = NodePath("..")
 
