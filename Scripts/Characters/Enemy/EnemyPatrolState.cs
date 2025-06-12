@@ -23,7 +23,6 @@ public partial class EnemyPatrolState : CharacterState
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
-		incrementPathIdx();
 		characterNode.MoveToDestination();
 
 	}

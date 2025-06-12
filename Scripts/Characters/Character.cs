@@ -66,9 +66,10 @@ public partial class Character : CharacterBody3D
     }
     public void MoveToDestination()
     {
-        Velocity = GlobalPosition.DirectionTo(NavigationAgentNode.TargetPosition) * speed;
-        Flip();
-        MoveAndSlide();
+        NavigationAgentNode.GetNextPathPosition();
+        Velocity = GlobalPosition.DirectionTo(NavigationAgentNode.TargetPosition);
+        direction = new(Velocity.X, Velocity.Z);
+        Move();
     }
 
 
