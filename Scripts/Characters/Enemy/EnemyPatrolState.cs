@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EnemyPatrolState : CharacterState
+public partial class EnemyPatrolState : EnemyCanChaseState
 {
 	protected override string AnimationString => GameConstants.ANIM_MOVE;
 	private int pathIdx = 0;

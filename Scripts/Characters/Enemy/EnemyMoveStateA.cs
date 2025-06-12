@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EnemyMoveStateA : CharacterState
+public partial class EnemyMoveStateA : EnemyCanChaseState
 {
     [Export] private Timer timerNode;
     protected override string AnimationString => GameConstants.ANIM_MOVE;

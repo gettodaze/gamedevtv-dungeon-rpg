@@ -15,6 +15,8 @@ public partial class Character : CharacterBody3D
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
     [Export] public NavigationAgent3D NavigationAgentNode { get; private set; }
+    [Export] public Area3D Area3DNode { get; private set; }
+
     public Vector2 direction = new();
 
     public override void _Ready()
@@ -23,6 +25,8 @@ public partial class Character : CharacterBody3D
         if (NavigationAgentNode == null) return;
         NavigationAgentNode.NavigationFinished += () => GD.Print($"{Name} navigation finished.");
     }
+
+
 
     public void Jump()
     {
@@ -71,6 +75,8 @@ public partial class Character : CharacterBody3D
         direction = new(Velocity.X, Velocity.Z);
         Move();
     }
+
+
 
 
 
