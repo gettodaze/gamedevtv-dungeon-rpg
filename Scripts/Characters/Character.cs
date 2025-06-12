@@ -15,6 +15,7 @@ public partial class Character : CharacterBody3D
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
     public Vector2 direction = new();
+    public Vector3 destination = new();
 
     public override void _Ready()
     {
@@ -44,7 +45,7 @@ public partial class Character : CharacterBody3D
         }
     }
 
-    private void Flip()
+    public void Flip()
     {
         if (direction.X < 0)
         {
