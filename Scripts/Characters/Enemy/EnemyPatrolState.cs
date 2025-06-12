@@ -10,19 +10,27 @@ public partial class EnemyPatrolState : CharacterState
 		base.EnableState();
 		pathIdx = 0;
 		incrementPathIdx();
+		characterNode.NavigationAgentNode.NavigationFinished += incrementPathIdx;
+	}
+
+	public override void DisableState()
+	{
+		base.DisableState();
+		characterNode.NavigationAgentNode.NavigationFinished -= incrementPathIdx;
+
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
 		incrementPathIdx();
-		characterNode.MoveToDestination(incrementPathIdx);
+		characterNode.MoveToDestination();
 
 	}
 
 	public void incrementPathIdx()
 	{
 		pathIdx = (pathIdx + 1) % characterNode.PathNode.Curve.PointCount;
-		characterNode.destination = characterNode.GetPathIdxGlobalPosition(pathIdx);
+		characterNode.NavigationAgentNode.TargetPosition = characterNode.GetPathIdxGlobalPosition(pathIdx);
 	}
 }

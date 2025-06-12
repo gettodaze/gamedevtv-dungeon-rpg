@@ -243,11 +243,12 @@ _data = {
 radius = 0.460131
 height = 1.26741
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine", "NavigationAgentNode")]
 script = ExtResource("1_1215o")
 AnimPlayerNode = NodePath("AnimationPlayer")
 Sprite3DNode = NodePath("Sprite3D")
 StateMachine = NodePath("StateMachineARandom")
+NavigationAgentNode = NodePath("NavigationAgent3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
@@ -296,3 +297,4 @@ script = ExtResource("107_dwudo")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
+debug_path_custom_color = Color(0.697642, 0.1077, 0.276825, 1)

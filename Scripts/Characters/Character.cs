@@ -16,10 +16,12 @@ public partial class Character : CharacterBody3D
     [Export] public Path3D PathNode { get; private set; }
     [Export] public NavigationAgent3D NavigationAgentNode { get; private set; }
     public Vector2 direction = new();
-    public Vector3 destination = new();
 
     public override void _Ready()
     {
+        base._Ready();
+        if (NavigationAgentNode == null) return;
+        NavigationAgentNode.NavigationFinished += () => GD.Print($"{Name} navigation finished.");
     }
 
     public void Jump()
@@ -62,10 +64,9 @@ public partial class Character : CharacterBody3D
     {
         return PathNode.Curve.GetPointPosition(i) + PathNode.GlobalPosition;
     }
-    public void MoveToDestination(Action atDestination)
+    public void MoveToDestination()
     {
-        if (GlobalPosition.DistanceTo(destination) < 0.1f) atDestination.Invoke();
-        Velocity = GlobalPosition.DirectionTo(destination) * speed;
+        Velocity = GlobalPosition.DirectionTo(NavigationAgentNode.TargetPosition) * speed;
         Flip();
         MoveAndSlide();
     }

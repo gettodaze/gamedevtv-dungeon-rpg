@@ -8,12 +8,20 @@ public partial class EnemyReturnState : CharacterState
 	public override void EnableState()
 	{
 		base.EnableState();
-		characterNode.destination = characterNode.GetPathIdxGlobalPosition(0);
+		characterNode.NavigationAgentNode.TargetPosition = characterNode.GetPathIdxGlobalPosition(0);
+		characterNode.NavigationAgentNode.NavigationFinished += characterNode.StateMachine.SwitchState<EnemyPatrolState>;
+
 	}
 
+	public override void DisableState()
+	{
+		base.DisableState();
+		characterNode.NavigationAgentNode.NavigationFinished -= characterNode.StateMachine.SwitchState<EnemyPatrolState>;
+
+	}
 	public override void _PhysicsProcess(double delta)
 	{
-		characterNode.MoveToDestination(() => { GD.Print("Reached Destination"); characterNode.StateMachine.SwitchState<EnemyPatrolState>(); });
+		base._PhysicsProcess(delta);
+		characterNode.MoveToDestination();
 	}
-
 }
