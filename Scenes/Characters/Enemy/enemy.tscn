@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://5b7jc08scehq"]
+[gd_scene load_steps=114 format=3 uid="uid://5b7jc08scehq"]
 
 [ext_resource type="Script" uid="uid://cavtccruymnk7" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_1215o"]
 [ext_resource type="Texture2D" uid="uid://dl31bp13kp4co" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="1_g0lfc"]
@@ -101,8 +101,10 @@
 [ext_resource type="Texture2D" uid="uid://c3gg6mc2vfidw" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_010.png" id="98_i3rop"]
 [ext_resource type="Texture2D" uid="uid://buws07h64x0u0" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_011.png" id="99_j6wvg"]
 [ext_resource type="PackedScene" uid="uid://ba02b174hpscc" path="res://Scenes/Characters/state_machine.tscn" id="101_g7ysa"]
-[ext_resource type="Script" uid="uid://b2wgn0gfpk8vv" path="res://Scripts/Characters/Enemy/EnemyIdleState.cs" id="102_1215o"]
-[ext_resource type="Script" uid="uid://0uh3fv7al8if" path="res://Scripts/Characters/Enemy/EnemyMoveState.cs" id="103_lfk4v"]
+[ext_resource type="Script" uid="uid://b2wgn0gfpk8vv" path="res://Scripts/Characters/Enemy/EnemyIdleStateA.cs" id="102_1215o"]
+[ext_resource type="Script" uid="uid://0uh3fv7al8if" path="res://Scripts/Characters/Enemy/EnemyMoveStateA.cs" id="103_lfk4v"]
+[ext_resource type="Script" uid="uid://cjhoj72eyfc63" path="res://Scripts/Characters/Enemy/EnemyIdleStateB.cs" id="104_vpbt8"]
+[ext_resource type="Script" uid="uid://bmssvkfhqxfhy" path="res://Scripts/Characters/Enemy/EnemyMoveStateB.cs" id="105_15hc4"]
 
 [sub_resource type="Animation" id="Animation_gyewu"]
 resource_name = "Attack"
@@ -243,7 +245,7 @@ height = 1.26741
 script = ExtResource("1_1215o")
 AnimPlayerNode = NodePath("AnimationPlayer")
 Sprite3DNode = NodePath("Sprite3D")
-StateMachine = NodePath("StateMachine")
+StateMachine = NodePath("StateMachineA")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
@@ -260,17 +262,26 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0879916, -0.124832, 0)
 shape = SubResource("CapsuleShape3D_8kh56")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("101_g7ysa")]
+[node name="StateMachineA" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("101_g7ysa")]
 CurrentState = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerNode")]
+[node name="IdleState" type="Node" parent="StateMachineA" node_paths=PackedStringArray("timerNode")]
 script = ExtResource("102_1215o")
 timerNode = NodePath("Timer")
 
-[node name="Timer" type="Timer" parent="StateMachine/IdleState"]
+[node name="Timer" type="Timer" parent="StateMachineA/IdleState"]
 
-[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerNode")]
+[node name="MoveState" type="Node" parent="StateMachineA" node_paths=PackedStringArray("timerNode")]
 script = ExtResource("103_lfk4v")
 timerNode = NodePath("Timer")
 
-[node name="Timer" type="Timer" parent="StateMachine/MoveState"]
+[node name="Timer" type="Timer" parent="StateMachineA/MoveState"]
+
+[node name="StateMachineB" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("101_g7ysa")]
+CurrentState = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateMachineB"]
+script = ExtResource("104_vpbt8")
+
+[node name="MoveState" type="Node" parent="StateMachineB"]
+script = ExtResource("105_15hc4")

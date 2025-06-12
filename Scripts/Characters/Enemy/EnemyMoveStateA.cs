@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EnemyMoveState : CharacterState
+public partial class EnemyMoveStateA : CharacterState
 {
     [Export] private Timer timerNode;
     protected override string AnimationString => GameConstants.ANIM_MOVE;
@@ -9,7 +9,7 @@ public partial class EnemyMoveState : CharacterState
     {
         base._Ready();
         timerNode.Timeout += () => GD.Print("EnemyMove timer stopped");
-        timerNode.Timeout += characterNode.StateMachine.SwitchState<EnemyIdleState>;
+        timerNode.Timeout += characterNode.StateMachine.SwitchState<EnemyIdleStateA>;
     }
     public override void DisableState()
     {
