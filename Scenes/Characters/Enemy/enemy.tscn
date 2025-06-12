@@ -295,8 +295,6 @@ script = ExtResource("106_15hc4")
 [node name="PatrolState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("107_dwudo")
 
-[node name="IdleTimer" type="Timer" parent="StateMachineBPatrol/PatrolState"]
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
 debug_path_custom_color = Color(0.697642, 0.1077, 0.276825, 1)
