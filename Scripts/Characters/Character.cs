@@ -3,6 +3,7 @@ using System;
 
 public partial class Character : CharacterBody3D
 {
+    [ExportGroup("Physics Settings")]
     [Export(PropertyHint.Range, "0,20,1")] private float speed = 5.0f;
     [Export(PropertyHint.Range, "0,50,1")] public float dashSpeed = 15.0f;
     [Export(PropertyHint.Range, "0,10,0.01")] public float gravity = 0.2f;
@@ -11,6 +12,8 @@ public partial class Character : CharacterBody3D
     [Export] public AnimationPlayer AnimPlayerNode { get; private set; }
     [Export] public Sprite3D Sprite3DNode { get; private set; }
     [Export] public StateMachine StateMachine { get; private set; }
+    [ExportGroup("AI Nodes")]
+    [Export] public Path3D PathNode { get; private set; }
     public Vector2 direction = new();
 
     public override void _Ready()

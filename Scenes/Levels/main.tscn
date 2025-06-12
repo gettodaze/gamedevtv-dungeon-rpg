@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpk1eynmpag34"]
+[gd_scene load_steps=9 format=3 uid="uid://cpk1eynmpag34"]
 
 [ext_resource type="Script" uid="uid://bbwu8fhhhcrxg" path="res://Scripts/Levels/Main.cs" id="1_s0gyx"]
 [ext_resource type="PackedScene" uid="uid://t35crg5pv1l" path="res://Scenes/Characters/Player/player.tscn" id="2_yjsus"]
@@ -7,6 +7,14 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u872a"]
 size = Vector3(0.313965, 8.4989, 83.5604)
+
+[sub_resource type="Curve3D" id="Curve3D_nk5xi"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 22.4377, 1.41771, -2.53775, 0, 0, 0, 0, 0, 0, 22.9207, 1.41771, 7.88798, 0, 0, 0, 0, 0, 0, 18.8954, 1.41771, 7.80747, 0, 0, 0, 0, 0, 0, 19.0966, 1.41771, -2.45724),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
 [sub_resource type="Sky" id="Sky_u872a"]
 
@@ -17,7 +25,7 @@ sky = SubResource("Sky_u872a")
 script = ExtResource("1_s0gyx")
 
 [node name="Player" parent="." instance=ExtResource("2_yjsus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77165, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.95, 1.77165, 0)
 collision_layer = 2
 gravity = 0.35
 
@@ -56,24 +64,32 @@ data = {
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9194, 1.02445, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+[node name="SideWall" type="CollisionShape3D" parent="Environment/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04529, 3.74945, 1.96759)
 shape = SubResource("BoxShape3D_u872a")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+[node name="FrontWall" type="CollisionShape3D" parent="Environment/StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 41.8889, 4.42607, 8.65708)
 shape = SubResource("BoxShape3D_u872a")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="EnemyARandom" parent="Enemies" instance=ExtResource("4_nk5xi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.57026, 1.83187, 1.93042)
+speed = 2.0
+
+[node name="Path3D" type="Path3D" parent="Enemies"]
+curve = SubResource("Curve3D_nk5xi")
+
+[node name="EnemyBPatrol" parent="Enemies/Path3D" node_paths=PackedStringArray("PathNode") instance=ExtResource("4_nk5xi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5803, 1.83187, 1.93042)
+PathNode = NodePath("..")
+
+[node name="StateMachineBPatrol" parent="Enemies/Path3D/EnemyBPatrol" index="4" node_paths=PackedStringArray("CurrentState")]
+CurrentState = NodePath("ReturnState")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nk5xi")
 
-[node name="EnemyA" parent="." instance=ExtResource("4_nk5xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.57026, 1.83187, 1.93042)
-speed = 3.0
-
-[node name="EnemyB" parent="." node_paths=PackedStringArray("StateMachine") instance=ExtResource("4_nk5xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.57026, 1.83187, 1.93042)
-StateMachine = NodePath("StateMachineB")
-
-[editable path="EnemyA"]
-[editable path="EnemyB"]
+[editable path="Enemies/EnemyARandom"]
+[editable path="Enemies/Path3D/EnemyBPatrol"]
