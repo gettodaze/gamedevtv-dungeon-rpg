@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class ReturnState : CharacterState
+public partial class EnemyReturnState : CharacterState
 {
 	protected override string AnimationString => GameConstants.ANIM_MOVE;
 

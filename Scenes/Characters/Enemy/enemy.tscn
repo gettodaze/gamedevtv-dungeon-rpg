@@ -105,7 +105,7 @@
 [ext_resource type="Script" uid="uid://0uh3fv7al8if" path="res://Scripts/Characters/Enemy/EnemyMoveStateA.cs" id="103_lfk4v"]
 [ext_resource type="Script" uid="uid://cjhoj72eyfc63" path="res://Scripts/Characters/Enemy/EnemyIdleStateB.cs" id="104_vpbt8"]
 [ext_resource type="Script" uid="uid://bmssvkfhqxfhy" path="res://Scripts/Characters/Enemy/EnemyMoveStateB.cs" id="105_15hc4"]
-[ext_resource type="Script" uid="uid://4oa4v1h0lpn5" path="res://Scripts/Characters/Enemy/ReturnState.cs" id="106_15hc4"]
+[ext_resource type="Script" uid="uid://4oa4v1h0lpn5" path="res://Scripts/Characters/Enemy/EnemyReturnState.cs" id="106_15hc4"]
 
 [sub_resource type="Animation" id="Animation_gyewu"]
 resource_name = "Attack"
