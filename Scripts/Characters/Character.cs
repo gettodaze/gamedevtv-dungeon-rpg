@@ -69,9 +69,9 @@ public partial class Character : CharacterBody3D
     {
         return PathNode.Curve.GetPointPosition(i) + PathNode.GlobalPosition;
     }
-    public void MoveToDestination()
+    public void MoveToDestination(bool recalc = true)
     {
-        NavigationAgentNode.GetNextPathPosition();
+        if (recalc) { GD.Print("recalc MoveToDestination"); NavigationAgentNode.GetNextPathPosition(); }
         Velocity = GlobalPosition.DirectionTo(NavigationAgentNode.TargetPosition);
         direction = new(Velocity.X, Velocity.Z);
         Move();

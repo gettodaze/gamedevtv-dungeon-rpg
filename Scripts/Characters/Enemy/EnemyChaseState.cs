@@ -6,13 +6,29 @@ public partial class EnemyChaseState : CharacterState
 {
 	public override bool IsEligibleForRandom => false;
 	protected override string AnimationString => GameConstants.ANIM_MOVE;
+	[Export(PropertyHint.Range, "0,2,0.1")] private float calcMovementInterval = 0.5f;
 	private CharacterBody3D target;
+	private Timer calcMovementTimer;
+
+	public override void _Ready()
+	{
+		base._Ready();
+		calcMovementTimer = new();
+		calcMovementTimer.WaitTime = calcMovementInterval;
+		calcMovementTimer.Timeout += () =>
+		{
+			GD.Print("recalculating movement");
+			characterNode.NavigationAgentNode.GetNextPathPosition();
+		};
+		AddChild(calcMovementTimer);
+	}
 
 	public override void EnableState()
 	{
 		base.EnableState();
 		target = characterNode.Area3DNode.GetOverlappingBodies().First() as CharacterBody3D;
 		characterNode.Area3DNode.BodyExited += HandleBodyExit;
+		calcMovementTimer.Start();
 	}
 
 	private void HandleBodyExit(Node3D body)
@@ -25,6 +41,7 @@ public partial class EnemyChaseState : CharacterState
 	{
 		base.DisableState();
 		characterNode.Area3DNode.BodyExited -= HandleBodyExit;
+		calcMovementTimer.Stop();
 
 	}
 
@@ -32,7 +49,7 @@ public partial class EnemyChaseState : CharacterState
 	{
 		base._PhysicsProcess(delta);
 		characterNode.NavigationAgentNode.TargetPosition = target.GlobalPosition;
-		characterNode.MoveToDestination();
+		characterNode.MoveToDestination(false);
 	}
 
 

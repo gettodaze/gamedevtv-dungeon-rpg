@@ -285,9 +285,9 @@ timerNode = NodePath("Timer")
 
 [node name="ChaseState" type="Node" parent="StateMachineARandom"]
 script = ExtResource("104_u4k2w")
+calcMovementInterval = 2.0
 
-[node name="StateMachineBPatrol" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("101_g7ysa")]
-CurrentState = NodePath("")
+[node name="StateMachineBPatrol" parent="." instance=ExtResource("101_g7ysa")]
 
 [node name="ReturnState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("106_15hc4")
@@ -297,6 +297,7 @@ script = ExtResource("107_dwudo")
 
 [node name="ChaseState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("104_u4k2w")
+calcMovementInterval = 2.0
 
 [node name="IdleState" type="Node" parent="StateMachineBPatrol" node_paths=PackedStringArray("timerNode")]
 script = ExtResource("102_1215o")
