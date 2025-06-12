@@ -22,6 +22,7 @@ public partial class Character : CharacterBody3D
     public override void _Ready()
     {
         base._Ready();
+        StateMachine.CurrentState.EnableState();
         if (NavigationAgentNode == null) return;
         NavigationAgentNode.NavigationFinished += () => GD.Print($"{Name} navigation finished.");
     }

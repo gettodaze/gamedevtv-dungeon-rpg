@@ -7,7 +7,7 @@ public partial class StateMachine : Node
 	private bool isReady = false;
 	private CharacterState _currentState;
 	[Export]
-	private CharacterState CurrentState
+	public CharacterState CurrentState
 	{
 		get => _currentState;
 		set
@@ -29,9 +29,9 @@ public partial class StateMachine : Node
 			.Where(state => state.IsEligibleForRandom)
 			.ToArray();
 		var stateString = string.Join(", ", states.Select(s => s.Name));
-		GD.Print($"{Name} ready with states ({stateString}). Enabling {CurrentState.characterNode.Name} {CurrentState.Name}");
+		// GD.Print($"{Name} ready with states ({stateString}). Enabling {CurrentState.characterNode.Name} {CurrentState.Name}");
 		isReady = true;
-		CurrentState.EnableState();
+		// CurrentState.EnableState();
 
 	}
 

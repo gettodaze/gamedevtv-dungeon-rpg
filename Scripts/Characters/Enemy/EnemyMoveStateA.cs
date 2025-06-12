@@ -11,7 +11,11 @@ public partial class EnemyMoveStateA : EnemyCanChaseState
         timerNode.Timeout += () =>
         {
             GD.Print($"{Name} EnemyMove timer stopped");
-            if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveStateA) EnableState();
+            if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveStateA)
+            {
+                SetRandomDirection();
+                timerNode.Start();
+            }
         };
     }
     public override void DisableState()
