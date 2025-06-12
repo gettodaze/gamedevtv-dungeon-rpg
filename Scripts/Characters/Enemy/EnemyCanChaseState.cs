@@ -13,6 +13,7 @@ public abstract partial class EnemyCanChaseState : CharacterState
 	private void EnemyHandleEnterArea3DNode(Node3D body)
 	{
 		GD.Print($"EnemyHandleEnterArea3DNode {Name}, {body}");
+		characterNode.StateMachine.SwitchState<EnemyChaseState>();
 
 	}
 

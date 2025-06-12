@@ -17,4 +17,10 @@ public partial class EnemyIdleStateA : EnemyCanChaseState
         base.EnableState();
         timerNode.Start();
     }
+    public override void DisableState()
+    {
+        base.DisableState();
+        timerNode.Stop();
+
+    }
 }

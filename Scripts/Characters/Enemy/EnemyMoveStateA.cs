@@ -21,6 +21,7 @@ public partial class EnemyMoveStateA : EnemyCanChaseState
     public override void DisableState()
     {
         base.DisableState();
+        timerNode.Stop();
 
     }
 
