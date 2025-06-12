@@ -17,7 +17,7 @@ public partial class EnemyChaseState : CharacterState
 
 	private void HandleBodyExit(Node3D body)
 	{
-		characterNode.StateMachine.SwitchState<EnemyIdleStateA>();
+		characterNode.StateMachine.SwitchState<EnemyIdleState>();
 	}
 
 

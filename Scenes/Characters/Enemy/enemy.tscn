@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://5b7jc08scehq"]
+[gd_scene load_steps=116 format=3 uid="uid://5b7jc08scehq"]
 
 [ext_resource type="Script" uid="uid://cavtccruymnk7" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_1215o"]
 [ext_resource type="Texture2D" uid="uid://dl31bp13kp4co" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="1_g0lfc"]
@@ -101,11 +101,9 @@
 [ext_resource type="Texture2D" uid="uid://c3gg6mc2vfidw" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_010.png" id="98_i3rop"]
 [ext_resource type="Texture2D" uid="uid://buws07h64x0u0" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_011.png" id="99_j6wvg"]
 [ext_resource type="PackedScene" uid="uid://ba02b174hpscc" path="res://Scenes/Characters/state_machine.tscn" id="101_g7ysa"]
-[ext_resource type="Script" uid="uid://b2wgn0gfpk8vv" path="res://Scripts/Characters/Enemy/EnemyIdleStateA.cs" id="102_1215o"]
-[ext_resource type="Script" uid="uid://0uh3fv7al8if" path="res://Scripts/Characters/Enemy/EnemyMoveStateA.cs" id="103_lfk4v"]
+[ext_resource type="Script" uid="uid://b2wgn0gfpk8vv" path="res://Scripts/Characters/Enemy/EnemyIdleState.cs" id="102_1215o"]
+[ext_resource type="Script" uid="uid://0uh3fv7al8if" path="res://Scripts/Characters/Enemy/EnemyMoveState.cs" id="103_lfk4v"]
 [ext_resource type="Script" uid="uid://njfoah51jio2" path="res://Scripts/Characters/Enemy/EnemyChaseState.cs" id="104_u4k2w"]
-[ext_resource type="Script" uid="uid://cjhoj72eyfc63" path="res://Scripts/Characters/Enemy/EnemyIdleStateB.cs" id="104_vpbt8"]
-[ext_resource type="Script" uid="uid://bmssvkfhqxfhy" path="res://Scripts/Characters/Enemy/EnemyMoveStateB.cs" id="105_15hc4"]
 [ext_resource type="Script" uid="uid://4oa4v1h0lpn5" path="res://Scripts/Characters/Enemy/EnemyReturnState.cs" id="106_15hc4"]
 [ext_resource type="Script" uid="uid://ckn4gvhgsktnx" path="res://Scripts/Characters/Enemy/EnemyPatrolState.cs" id="107_dwudo"]
 
@@ -289,13 +287,7 @@ timerNode = NodePath("Timer")
 script = ExtResource("104_u4k2w")
 
 [node name="StateMachineBPatrol" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("101_g7ysa")]
-CurrentState = NodePath("IdleState")
-
-[node name="IdleState" type="Node" parent="StateMachineBPatrol"]
-script = ExtResource("104_vpbt8")
-
-[node name="MoveState" type="Node" parent="StateMachineBPatrol"]
-script = ExtResource("105_15hc4")
+CurrentState = NodePath("")
 
 [node name="ReturnState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("106_15hc4")
@@ -305,6 +297,18 @@ script = ExtResource("107_dwudo")
 
 [node name="ChaseState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("104_u4k2w")
+
+[node name="IdleState" type="Node" parent="StateMachineBPatrol" node_paths=PackedStringArray("timerNode")]
+script = ExtResource("102_1215o")
+timerNode = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachineBPatrol/IdleState"]
+
+[node name="MoveState" type="Node" parent="StateMachineBPatrol" node_paths=PackedStringArray("timerNode")]
+script = ExtResource("103_lfk4v")
+timerNode = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachineBPatrol/MoveState"]
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true

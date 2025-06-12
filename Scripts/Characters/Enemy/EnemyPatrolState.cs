@@ -8,7 +8,7 @@ public partial class EnemyPatrolState : EnemyCanChaseState
 	private Timer idleTimer;
 	[Export(PropertyHint.Range, "0,20,0.1")] private float maxIdleTime = 4;
 	private bool processMove = true;
-
+	public override bool IsEligibleForRandom => false;
 	public override void _Ready()
 	{
 		base._Ready();

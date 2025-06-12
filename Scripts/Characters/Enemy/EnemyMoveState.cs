@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EnemyMoveStateA : EnemyCanChaseState
+public partial class EnemyMoveState : EnemyCanChaseState
 {
     [Export] private Timer timerNode;
     protected override string AnimationString => GameConstants.ANIM_MOVE;
@@ -11,7 +11,7 @@ public partial class EnemyMoveStateA : EnemyCanChaseState
         timerNode.Timeout += () =>
         {
             GD.Print($"{Name} EnemyMove timer stopped");
-            if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveStateA)
+            if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveState)
             {
                 SetRandomDirection();
                 timerNode.Start();
