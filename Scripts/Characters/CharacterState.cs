@@ -15,7 +15,7 @@ public abstract partial class CharacterState : Node
 
     public virtual void DisableState()
     {
-        GD.Print($"{characterNode.Name}: Disabling {AnimationString}");
+        GD.Print($"{characterNode.Name}: Disabling {Name}");
         SetPhysicsProcess(false);
 
     }
@@ -23,7 +23,7 @@ public abstract partial class CharacterState : Node
     public virtual void EnableState()
     {
         SetPhysicsProcess(true);
-        GD.Print($"{characterNode.Name}: Enabling {AnimationString}");
+        GD.Print($"{characterNode.Name}: Enabling {Name}");
         characterNode.AnimPlayerNode.Play(AnimationString);
     }
 }

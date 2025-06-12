@@ -57,6 +57,18 @@ public partial class Character : CharacterBody3D
         }
     }
 
+    public Vector3 GetPathIdxGlobalPosition(int i)
+    {
+        return PathNode.Curve.GetPointPosition(i) + PathNode.GlobalPosition;
+    }
+    public void MoveToDestination(Action atDestination)
+    {
+        if (GlobalPosition.DistanceTo(destination) < 0.1f) atDestination.Invoke();
+        Velocity = GlobalPosition.DirectionTo(destination) * speed;
+        Flip();
+        MoveAndSlide();
+    }
+
 
 
 }
