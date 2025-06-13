@@ -22,12 +22,18 @@ public partial class EnemyChaseState : CharacterState
 	public override void EnableState()
 	{
 		base.EnableState();
-		target = characterNode.Area3DNode.GetOverlappingBodies().First() as CharacterBody3D;
-		characterNode.Area3DNode.BodyExited += HandleBodyExit;
+		target = characterNode.ChaseAreaNode.GetOverlappingBodies().First() as CharacterBody3D;
+		characterNode.ChaseAreaNode.BodyExited += HandleChaseBodyExit;
+		characterNode.AttackAreaNode.BodyEntered += HandleAttackBodyEntered;
 		calcMovementTimer.Start();
 	}
 
-	private void HandleBodyExit(Node3D body)
+	private void HandleAttackBodyEntered(Node3D body)
+	{
+		characterNode.StateMachine.SwitchState<EnemyAttackState>();
+	}
+
+	private void HandleChaseBodyExit(Node3D body)
 	{
 		characterNode.StateMachine.SwitchState<EnemyIdleState>();
 	}
@@ -36,7 +42,8 @@ public partial class EnemyChaseState : CharacterState
 	public override void DisableState()
 	{
 		base.DisableState();
-		characterNode.Area3DNode.BodyExited -= HandleBodyExit;
+		characterNode.ChaseAreaNode.BodyExited -= HandleChaseBodyExit;
+		characterNode.AttackAreaNode.BodyEntered -= HandleAttackBodyEntered;
 		calcMovementTimer.Stop();
 
 	}

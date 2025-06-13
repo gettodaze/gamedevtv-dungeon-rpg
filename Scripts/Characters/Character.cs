@@ -15,7 +15,8 @@ public partial class Character : CharacterBody3D
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
     [Export] public NavigationAgent3D NavigationAgentNode { get; private set; }
-    [Export] public Area3D Area3DNode { get; private set; }
+    [Export] public Area3D ChaseAreaNode { get; private set; }
+    [Export] public Area3D AttackAreaNode { get; private set; }
 
     public Vector2 direction = new();
 
@@ -76,11 +77,11 @@ public partial class Character : CharacterBody3D
     }
     public void RecalcFaceTarget()
     {
-        var oldDir = direction;
+        // var oldDir = direction;
         var vel = GlobalPosition.DirectionTo(NavigationAgentNode.GetNextPathPosition());
         // Velocity = GlobalPosition.DirectionTo(NavigationAgentNode.TargetPosition);
         direction = new(vel.X, vel.Z);
-        GD.Print($"{Name}: recalculated MoveToDestination from {oldDir} to {direction}");
+        // GD.Print($"{Name}: recalculated MoveToDestination from {oldDir} to {direction}");
     }
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://5b7jc08scehq"]
+[gd_scene load_steps=117 format=3 uid="uid://5b7jc08scehq"]
 
 [ext_resource type="Script" uid="uid://cavtccruymnk7" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_1215o"]
 [ext_resource type="Texture2D" uid="uid://dl31bp13kp4co" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="1_g0lfc"]
@@ -104,6 +104,7 @@
 [ext_resource type="Script" uid="uid://b2wgn0gfpk8vv" path="res://Scripts/Characters/Enemy/EnemyIdleState.cs" id="102_1215o"]
 [ext_resource type="Script" uid="uid://0uh3fv7al8if" path="res://Scripts/Characters/Enemy/EnemyMoveState.cs" id="103_lfk4v"]
 [ext_resource type="Script" uid="uid://njfoah51jio2" path="res://Scripts/Characters/Enemy/EnemyChaseState.cs" id="104_u4k2w"]
+[ext_resource type="Script" uid="uid://j0iqqc3m4mu1" path="res://Scripts/Characters/Enemy/EnemyAttackState.cs" id="105_dwudo"]
 [ext_resource type="Script" uid="uid://4oa4v1h0lpn5" path="res://Scripts/Characters/Enemy/EnemyReturnState.cs" id="106_15hc4"]
 [ext_resource type="Script" uid="uid://ckn4gvhgsktnx" path="res://Scripts/Characters/Enemy/EnemyPatrolState.cs" id="107_dwudo"]
 
@@ -243,15 +244,17 @@ radius = 0.460131
 height = 1.26741
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dwudo"]
-radius = 6.0
+radius = 0.898562
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine", "NavigationAgentNode", "Area3DNode")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine", "NavigationAgentNode", "ChaseAreaNode", "AttackAreaNode")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.821339, -3.58293, 1.30757)
 script = ExtResource("1_1215o")
 AnimPlayerNode = NodePath("AnimationPlayer")
 Sprite3DNode = NodePath("Sprite3D")
 StateMachine = NodePath("StateMachineARandom")
 NavigationAgentNode = NodePath("NavigationAgent3D")
-Area3DNode = NodePath("Area3D")
+ChaseAreaNode = NodePath("ChaseArea")
+AttackAreaNode = NodePath("AttackArea")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
@@ -287,6 +290,9 @@ timerNode = NodePath("Timer")
 script = ExtResource("104_u4k2w")
 calcMovementInterval = 0.2
 
+[node name="AttackState" type="Node" parent="StateMachineARandom"]
+script = ExtResource("105_dwudo")
+
 [node name="StateMachineBPatrol" parent="." instance=ExtResource("101_g7ysa")]
 
 [node name="ReturnState" type="Node" parent="StateMachineBPatrol"]
@@ -311,13 +317,23 @@ timerNode = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachineBPatrol/MoveState"]
 
+[node name="AttackState" type="Node" parent="StateMachineBPatrol"]
+script = ExtResource("105_dwudo")
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
 debug_path_custom_color = Color(0.697642, 0.1077, 0.276825, 1)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="ChaseArea" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseArea"]
+shape = SubResource("SphereShape3D_dwudo")
+
+[node name="AttackArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
 shape = SubResource("SphereShape3D_dwudo")
