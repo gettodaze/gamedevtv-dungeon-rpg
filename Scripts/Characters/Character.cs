@@ -25,14 +25,14 @@ public partial class Character : CharacterBody3D
         base._Ready();
         StateMachine.CurrentState.EnableState();
         if (NavigationAgentNode == null) return;
-        NavigationAgentNode.NavigationFinished += () => GD.Print($"{Name} navigation finished.");
+        NavigationAgentNode.NavigationFinished += () => Log($"navigation finished.");
     }
 
 
 
     public void Jump()
     {
-        GD.Print("Jump!");
+        Log("Jump!");
         Velocity += Vector3.Up * jumpSpeed;
     }
 
@@ -81,9 +81,13 @@ public partial class Character : CharacterBody3D
         var vel = GlobalPosition.DirectionTo(NavigationAgentNode.GetNextPathPosition());
         // Velocity = GlobalPosition.DirectionTo(NavigationAgentNode.TargetPosition);
         direction = new(vel.X, vel.Z);
-        // GD.Print($"{Name}: recalculated MoveToDestination from {oldDir} to {direction}");
+        // Log($"Recalculated MoveToDestination from {oldDir} to {direction}");
     }
 
+    public void Log(object msg)
+    {
+        GD.Print($"{Name}: {msg}");
+    }
 
 
 

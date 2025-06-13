@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://5b7jc08scehq"]
+[gd_scene load_steps=118 format=3 uid="uid://5b7jc08scehq"]
 
 [ext_resource type="Script" uid="uid://cavtccruymnk7" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_1215o"]
 [ext_resource type="Texture2D" uid="uid://dl31bp13kp4co" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="1_g0lfc"]
@@ -244,10 +244,12 @@ radius = 0.460131
 height = 1.26741
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dwudo"]
-radius = 0.898562
+radius = 6.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u4k2w"]
+radius = 0.996016
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine", "NavigationAgentNode", "ChaseAreaNode", "AttackAreaNode")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.821339, -3.58293, 1.30757)
 script = ExtResource("1_1215o")
 AnimPlayerNode = NodePath("AnimationPlayer")
 Sprite3DNode = NodePath("Sprite3D")
@@ -336,4 +338,4 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
-shape = SubResource("SphereShape3D_dwudo")
+shape = SubResource("SphereShape3D_u4k2w")

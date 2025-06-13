@@ -16,7 +16,7 @@ public partial class PlayerDashState : PlayerState
     public override void EnableState()
     {
         base.EnableState();
-        GD.Print($"Enable Dash: Old Direction {playerNode.direction}");
+        Log($"Enable Dash: Old Direction {playerNode.direction}");
         timerNode.Start();
 
         // set dash velocity
@@ -28,13 +28,13 @@ public partial class PlayerDashState : PlayerState
 
         // playerNode.Velocity = new(dir.X, 0, dir.Y);
         // playerNode.Velocity *= playerNode.dashSpeed;
-        GD.Print($"Enable Dash: New Direction {playerNode.direction}");
+        Log($"Enable Dash: New Direction {playerNode.direction}");
     }
 
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        GD.Print($"Processing dash physics with direction {playerNode.direction} and velocity {playerNode.Velocity}");
+        Log($"Processing dash physics with direction {playerNode.direction} and velocity {playerNode.Velocity}");
         playerNode.Move(true);
     }
 

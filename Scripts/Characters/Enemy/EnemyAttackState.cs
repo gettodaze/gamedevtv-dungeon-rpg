@@ -4,7 +4,7 @@ using System.Linq;
 
 public partial class EnemyAttackState : CharacterState
 {
-	// public override bool IsEligibleForRandom => false;
+	public override bool IsEligibleForRandom => false;
 	protected override string AnimationString => GameConstants.ANIM_ATTACK;
 	[Export(PropertyHint.Range, "0,2,0.1")] private float postAttackFatigueDuration = 0.5f;
 
@@ -22,7 +22,7 @@ public partial class EnemyAttackState : CharacterState
 
 	private void HandleFatigueTimerTimeout()
 	{
-		GD.Print($"{characterNode.Name}: attack fatigue timer ended");
+		Log($"attack fatigue timer ended");
 		characterNode.StateMachine.SwitchState<EnemyIdleState>();
 	}
 
@@ -34,7 +34,7 @@ public partial class EnemyAttackState : CharacterState
 
 	private void HandleAnimationEnd(StringName animName)
 	{
-		GD.Print($"{characterNode.Name}: {animName} animation ended");
+		Log($"{animName} animation ended");
 		fatigueTimer.Start();
 	}
 
