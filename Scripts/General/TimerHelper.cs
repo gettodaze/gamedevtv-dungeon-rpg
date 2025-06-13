@@ -30,6 +30,7 @@ public class TimerHelper
         }
         timer.Timeout += OnTimeout;
         timer.Start(timeToUse);
+        isStarted = true;
     }
 
     public void Stop()
@@ -40,7 +41,7 @@ public class TimerHelper
         }
         timer.Stop();
         timer.Timeout -= OnTimeout;
-        onTimeout = null;
+        isStarted = false;
     }
 
     private void OnTimeout()

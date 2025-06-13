@@ -26,6 +26,7 @@ public partial class EnemyIdleState : EnemyCanChaseState
 
     private void HandleTimeout()
     {
+        // JTODO: maybe its the switch state random thats still giving me problems
         Log("timer stopped");
         characterNode.StateMachine.SwitchStateRandom();
 
