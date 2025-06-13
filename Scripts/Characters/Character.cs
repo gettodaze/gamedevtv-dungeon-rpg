@@ -71,10 +71,16 @@ public partial class Character : CharacterBody3D
     }
     public void MoveToDestination(bool recalc = true)
     {
-        if (recalc) { GD.Print("recalc MoveToDestination"); NavigationAgentNode.GetNextPathPosition(); }
-        Velocity = GlobalPosition.DirectionTo(NavigationAgentNode.TargetPosition);
-        direction = new(Velocity.X, Velocity.Z);
+        if (recalc) RecalcFaceTarget();
         Move();
+    }
+    public void RecalcFaceTarget()
+    {
+        var oldDir = direction;
+        var vel = GlobalPosition.DirectionTo(NavigationAgentNode.GetNextPathPosition());
+        // Velocity = GlobalPosition.DirectionTo(NavigationAgentNode.TargetPosition);
+        direction = new(vel.X, vel.Z);
+        GD.Print($"{Name}: recalculated MoveToDestination from {oldDir} to {direction}");
     }
 
 

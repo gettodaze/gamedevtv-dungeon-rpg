@@ -15,11 +15,7 @@ public partial class EnemyChaseState : CharacterState
 		base._Ready();
 		calcMovementTimer = new();
 		calcMovementTimer.WaitTime = calcMovementInterval;
-		calcMovementTimer.Timeout += () =>
-		{
-			GD.Print("recalculating movement");
-			characterNode.NavigationAgentNode.GetNextPathPosition();
-		};
+		calcMovementTimer.Timeout += characterNode.RecalcFaceTarget;
 		AddChild(calcMovementTimer);
 	}
 
@@ -49,7 +45,7 @@ public partial class EnemyChaseState : CharacterState
 	{
 		base._PhysicsProcess(delta);
 		characterNode.NavigationAgentNode.TargetPosition = target.GlobalPosition;
-		characterNode.MoveToDestination(false);
+		characterNode.MoveToDestination(recalc: false);
 	}
 
 
