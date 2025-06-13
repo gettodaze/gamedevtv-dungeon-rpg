@@ -322,15 +322,13 @@ shape = SubResource("CapsuleShape3D_8kh56")
 [node name="StateMachineARandom" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("101_g7ysa")]
 CurrentState = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="StateMachineARandom" node_paths=PackedStringArray("timerNode")]
+[node name="IdleState" type="Node" parent="StateMachineARandom"]
 script = ExtResource("102_1215o")
-timerNode = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachineARandom/IdleState"]
 
-[node name="MoveState" type="Node" parent="StateMachineARandom" node_paths=PackedStringArray("timerNode")]
+[node name="MoveState" type="Node" parent="StateMachineARandom"]
 script = ExtResource("103_lfk4v")
-timerNode = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachineARandom/MoveState"]
 
@@ -353,15 +351,13 @@ script = ExtResource("107_dwudo")
 script = ExtResource("104_u4k2w")
 calcMovementInterval = 0.2
 
-[node name="IdleState" type="Node" parent="StateMachineBPatrol" node_paths=PackedStringArray("timerNode")]
+[node name="IdleState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("102_1215o")
-timerNode = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachineBPatrol/IdleState"]
 
-[node name="MoveState" type="Node" parent="StateMachineBPatrol" node_paths=PackedStringArray("timerNode")]
+[node name="MoveState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("103_lfk4v")
-timerNode = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachineBPatrol/MoveState"]
 

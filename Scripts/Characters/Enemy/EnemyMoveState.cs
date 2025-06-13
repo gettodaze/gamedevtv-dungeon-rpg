@@ -3,21 +3,27 @@ using System;
 
 public partial class EnemyMoveState : EnemyCanChaseState
 {
-    [Export] private Timer timerNode;
+    private Timer timerNode;
     protected override string AnimationString => GameConstants.ANIM_MOVE;
+    [Export] private float duration = 1.0f;
     public override void _Ready()
     {
         base._Ready();
-        timerNode.Timeout += () =>
-        {
-            Log("enemyMoveState timer stopped");
-            if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveState)
-            {
-                SetRandomDirection();
-                timerNode.Start();
-            }
-        };
+        timerNode = AddTimer(duration, HandleTimeout);
+
     }
+
+    private void HandleTimeout()
+    {
+        Log("enemyMoveState timer stopped");
+        if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveState)
+        {
+            SetRandomDirection();
+            timerNode.Start();
+        }
+    }
+
+
     public override void DisableState()
     {
         base.DisableState();

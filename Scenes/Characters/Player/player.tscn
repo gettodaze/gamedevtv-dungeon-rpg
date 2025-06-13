@@ -156,9 +156,8 @@ script = ExtResource("34_gii1i")
 [node name="MoveState" type="Node" parent="StateMachine"]
 script = ExtResource("32_me3gr")
 
-[node name="PostDashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerNode")]
+[node name="PostDashState" type="Node" parent="StateMachine"]
 script = ExtResource("42_e5xbx")
-timerNode = NodePath("PostDashTimer")
 
 [node name="PostDashTimer" type="Timer" parent="StateMachine/PostDashState"]
 wait_time = 0.2

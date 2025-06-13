@@ -13,10 +13,7 @@ public partial class EnemyChaseState : CharacterState
 	public override void _Ready()
 	{
 		base._Ready();
-		calcMovementTimer = new();
-		calcMovementTimer.WaitTime = calcMovementInterval;
-		calcMovementTimer.Timeout += characterNode.RecalcFaceTarget;
-		AddChild(calcMovementTimer);
+		calcMovementTimer = AddTimer(calcMovementInterval, characterNode.RecalcFaceTarget);
 	}
 
 	public override void EnableState()

@@ -13,11 +13,8 @@ public partial class EnemyAttackState : CharacterState
 	public override void _Ready()
 	{
 		base._Ready();
-		fatigueTimer = new();
-		fatigueTimer.WaitTime = postAttackFatigueDuration;
-		fatigueTimer.Timeout += HandleFatigueTimerTimeout;
+		fatigueTimer = AddTimer(postAttackFatigueDuration, HandleFatigueTimerTimeout);
 		fatigueTimer.OneShot = true;
-		AddChild(fatigueTimer);
 	}
 
 	private void HandleFatigueTimerTimeout()

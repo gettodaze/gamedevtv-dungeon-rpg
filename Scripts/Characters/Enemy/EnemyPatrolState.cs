@@ -12,10 +12,15 @@ public partial class EnemyPatrolState : EnemyCanChaseState
 	public override void _Ready()
 	{
 		base._Ready();
-		idleTimer = new Timer();
-		idleTimer.Timeout += () => { processMove = true; characterNode.AnimPlayerNode.Play(GameConstants.ANIM_MOVE); };
-		AddChild(idleTimer);
+		idleTimer = AddTimer(1, HandleIdleTimeout);
 	}
+
+	private void HandleIdleTimeout()
+	{
+		processMove = true;
+		characterNode.AnimPlayerNode.Play(GameConstants.ANIM_MOVE);
+	}
+
 	public override void EnableState()
 	{
 		base.EnableState();
