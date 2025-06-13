@@ -33,13 +33,4 @@ public abstract partial class CharacterState : Node
     {
         characterNode.Log($"[{Name}] {msg}");
     }
-
-    public Timer AddTimer(float waitTime, Action handleTimerTimeout)
-    {
-        Timer timer = new();
-        timer.WaitTime = waitTime;
-        timer.Timeout += handleTimerTimeout;
-        AddChild(timer);
-        return timer;
-    }
 }

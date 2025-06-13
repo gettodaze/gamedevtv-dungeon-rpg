@@ -7,14 +7,15 @@ public class TimerHelper
     private float duration;
     private Action onTimeout;
     private readonly Node owner;
-    private readonly bool loop;
+    private readonly bool oneShot;
+    private bool isStarted = false;
 
-    public TimerHelper(Node owner, Action onTimeout, float duration = 1.0f, bool loop = false)
+    public TimerHelper(Node owner, Action onTimeout, float duration = 1.0f, bool oneShot = false)
     {
         this.owner = owner;
         this.onTimeout = onTimeout;
         this.duration = duration;
-        this.loop = loop;
+        this.oneShot = oneShot;
         timer = new Timer();
         owner.AddChild(timer);
 
@@ -23,8 +24,7 @@ public class TimerHelper
     public void Start(float? timeSeconds = null)
     {
         float timeToUse = timeSeconds ?? duration;
-        timer.Start(timeToUse);
-        if (!timer.IsStopped())
+        if (!timer.IsStopped() || isStarted)
         {
             throw new InvalidOperationException($"{owner.Name} Timer is already running.");
         }
@@ -34,6 +34,10 @@ public class TimerHelper
 
     public void Stop()
     {
+        if (!isStarted)
+        {
+            throw new InvalidOperationException($"{owner.Name} timer is not running.");
+        }
         timer.Stop();
         timer.Timeout -= OnTimeout;
         onTimeout = null;
@@ -42,6 +46,6 @@ public class TimerHelper
     private void OnTimeout()
     {
         onTimeout?.Invoke();
-        if (!loop) Stop();
+        if (oneShot) Stop();
     }
 }

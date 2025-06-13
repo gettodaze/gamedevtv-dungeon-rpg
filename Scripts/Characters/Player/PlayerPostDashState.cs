@@ -6,13 +6,13 @@ public partial class PlayerPostDashState : PlayerState
 	[Export] private float duration = 0.5f;
 	public override bool IsEligibleForRandom => false;
 	protected override string AnimationString => null;
-	Timer timerNode;
+	TimerHelper timerNode;
 
 
 	public override void _Ready()
 	{
 		base._Ready();
-		timerNode = AddTimer(duration, HandleTimeout);
+		timerNode = new(this, HandleTimeout, duration);
 	}
 
 	private void HandleTimeout()

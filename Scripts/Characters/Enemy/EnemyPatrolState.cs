@@ -5,14 +5,14 @@ public partial class EnemyPatrolState : EnemyCanChaseState
 {
 	protected override string AnimationString => GameConstants.ANIM_MOVE;
 	private int pathIdx = 0;
-	private Timer idleTimer;
+	private TimerHelper idleTimer;
 	[Export(PropertyHint.Range, "0,20,0.1")] private float maxIdleTime = 4;
 	private bool processMove = true;
 	public override bool IsEligibleForRandom => false;
 	public override void _Ready()
 	{
 		base._Ready();
-		idleTimer = AddTimer(1, HandleIdleTimeout);
+		idleTimer = new(this, HandleIdleTimeout, oneShot: true);
 	}
 
 	private void HandleIdleTimeout()
@@ -48,8 +48,7 @@ public partial class EnemyPatrolState : EnemyCanChaseState
 		processMove = false;
 		characterNode.AnimPlayerNode.Play(GameConstants.ANIM_IDLE);
 		RandomNumberGenerator rng = new();
-		idleTimer.WaitTime = rng.RandfRange(0, maxIdleTime);
-		idleTimer.Start();
+		idleTimer.Start(rng.RandfRange(0, maxIdleTime));
 		pathIdx = (pathIdx + 1) % characterNode.PathNode.Curve.PointCount;
 		characterNode.NavigationAgentNode.TargetPosition = characterNode.GetPathIdxGlobalPosition(pathIdx);
 

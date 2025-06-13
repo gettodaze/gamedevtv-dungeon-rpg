@@ -5,11 +5,11 @@ public partial class EnemyIdleState : EnemyCanChaseState
 {
     protected override string AnimationString => GameConstants.ANIM_IDLE;
     [Export] private float duration = 1.0f;
-    Timer timerNode;
+    TimerHelper timerNode;
     public override void _Ready()
     {
         base._Ready();
-        timerNode = AddTimer(duration, HandleTimeout);
+        timerNode = new(this, HandleTimeout, duration);
     }
 
     public override void EnableState()

@@ -3,13 +3,13 @@ using System;
 
 public partial class EnemyMoveState : EnemyCanChaseState
 {
-    private Timer timerNode;
+    private TimerHelper timerNode;
     protected override string AnimationString => GameConstants.ANIM_MOVE;
     [Export] private float duration = 1.0f;
     public override void _Ready()
     {
         base._Ready();
-        timerNode = AddTimer(duration, HandleTimeout);
+        timerNode = new(this, HandleTimeout, duration);
 
     }
 

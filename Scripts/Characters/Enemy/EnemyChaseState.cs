@@ -8,12 +8,12 @@ public partial class EnemyChaseState : CharacterState
 	protected override string AnimationString => GameConstants.ANIM_MOVE;
 	[Export(PropertyHint.Range, "0,2,0.1")] private float calcMovementInterval = 0.5f;
 	private CharacterBody3D target;
-	private Timer calcMovementTimer;
+	private TimerHelper calcMovementTimer;
 
 	public override void _Ready()
 	{
 		base._Ready();
-		calcMovementTimer = AddTimer(calcMovementInterval, characterNode.RecalcFaceTarget);
+		calcMovementTimer = new(this, characterNode.RecalcFaceTarget, calcMovementInterval);
 	}
 
 	public override void EnableState()

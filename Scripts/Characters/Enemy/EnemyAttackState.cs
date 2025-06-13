@@ -8,13 +8,12 @@ public partial class EnemyAttackState : CharacterState
 	protected override string AnimationString => GameConstants.ANIM_ATTACK;
 	[Export(PropertyHint.Range, "0,2,0.1")] private float postAttackFatigueDuration = 0.5f;
 
-	private Timer fatigueTimer;
+	private TimerHelper fatigueTimer;
 
 	public override void _Ready()
 	{
 		base._Ready();
-		fatigueTimer = AddTimer(postAttackFatigueDuration, HandleFatigueTimerTimeout);
-		fatigueTimer.OneShot = true;
+		fatigueTimer = new(this, HandleFatigueTimerTimeout, postAttackFatigueDuration, true);
 	}
 
 	private void HandleFatigueTimerTimeout()
