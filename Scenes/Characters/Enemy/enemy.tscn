@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://5b7jc08scehq"]
+[gd_scene load_steps=120 format=3 uid="uid://5b7jc08scehq"]
 
 [ext_resource type="Script" uid="uid://cavtccruymnk7" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_1215o"]
 [ext_resource type="Texture2D" uid="uid://dl31bp13kp4co" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="1_g0lfc"]
@@ -108,8 +108,12 @@
 [ext_resource type="Script" uid="uid://4oa4v1h0lpn5" path="res://Scripts/Characters/Enemy/EnemyReturnState.cs" id="106_15hc4"]
 [ext_resource type="Script" uid="uid://ckn4gvhgsktnx" path="res://Scripts/Characters/Enemy/EnemyPatrolState.cs" id="107_dwudo"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_kb7ur"]
+radius = 0.1
+
 [sub_resource type="Animation" id="Animation_gyewu"]
 resource_name = "Attack"
+length = 1.1
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -122,6 +126,25 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("1_g0lfc"), ExtResource("2_hdnef"), ExtResource("3_g7ysa"), ExtResource("4_1215o"), ExtResource("5_lfk4v"), ExtResource("6_ryjw6"), ExtResource("7_vpbt8"), ExtResource("8_15hc4"), ExtResource("9_dwudo"), ExtResource("10_u4k2w"), ExtResource("11_kb7ur"), ExtResource("12_p0c8j")]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SwordArea")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.333333, 1, 1.2, 0, 0, 1, 1, 1.2, 0, 0, 1.04287, 1, 0, 0, 0)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SwordArea/CollisionShape3D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.04287),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("SphereShape3D_kb7ur"), SubResource("SphereShape3D_kb7ur"), SubResource("SphereShape3D_kb7ur")]
 }
 
 [sub_resource type="Animation" id="Animation_u7si6"]
@@ -186,6 +209,10 @@ tracks/0/keys = {
 "values": [ExtResource("64_0wy6s"), ExtResource("65_l8gm8"), ExtResource("66_qmkbg"), ExtResource("67_m0n32"), ExtResource("68_ul155"), ExtResource("69_rtv4e"), ExtResource("70_46l6y"), ExtResource("71_xyw4a"), ExtResource("72_ge2id"), ExtResource("73_v0b6k"), ExtResource("74_jpt1v"), ExtResource("75_y6atq"), ExtResource("76_bca3e"), ExtResource("77_uyskv"), ExtResource("78_nvptm"), ExtResource("79_ns2cv"), ExtResource("80_hvohv"), ExtResource("81_idqfa"), ExtResource("82_k2vbi"), ExtResource("83_gl5ul"), ExtResource("84_y3e1s"), ExtResource("85_16nge"), ExtResource("86_m1ybm"), ExtResource("87_0w0d4")]
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p0c8j"]
+radius = 0.1
+height = 1.0
+
 [sub_resource type="Animation" id="Animation_on1em"]
 length = 0.001
 tracks/0/type = "value"
@@ -212,6 +239,25 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0025]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SwordArea/CollisionShape3D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CapsuleShape3D_p0c8j")]
+}
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../SwordArea")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_yau8p"]
 resource_name = "TakeHit"
@@ -339,3 +385,11 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
 shape = SubResource("SphereShape3D_u4k2w")
+
+[node name="SwordArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SwordArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.155589, -0.298617, 0)
+shape = SubResource("CapsuleShape3D_p0c8j")

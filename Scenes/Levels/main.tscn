@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpk1eynmpag34"]
+[gd_scene load_steps=11 format=3 uid="uid://cpk1eynmpag34"]
 
 [ext_resource type="Script" uid="uid://bbwu8fhhhcrxg" path="res://Scripts/Levels/Main.cs" id="1_s0gyx"]
 [ext_resource type="PackedScene" uid="uid://t35crg5pv1l" path="res://Scenes/Characters/Player/player.tscn" id="2_yjsus"]
 [ext_resource type="MeshLibrary" uid="uid://cc6sx75alelic" path="res://Resources/tiles.tres" id="3_u872a"]
 [ext_resource type="PackedScene" uid="uid://5b7jc08scehq" path="res://Scenes/Characters/Enemy/enemy.tscn" id="4_nk5xi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nk5xi"]
+size = Vector3(0.803711, 5.14795, 52.0394)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u872a"]
 size = Vector3(0.313965, 8.4989, 11.6046)
@@ -50,8 +53,8 @@ omni_range = 11.101
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9194, 1.02445, 0)
 
 [node name="FrontWall" type="CollisionShape3D" parent="Environment/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 41.8889, 4.42607, 8.65708)
-shape = SubResource("BoxShape3D_u872a")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25.4654, 2.3521, 8.55894)
+shape = SubResource("BoxShape3D_nk5xi")
 
 [node name="BackWall" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9194, 1.02445, -38.9762)
