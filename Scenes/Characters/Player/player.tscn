@@ -136,7 +136,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_bikm2"]
-resource_name = "Attack"
+resource_name = "Attack2"
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -152,7 +152,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_u0fy1"]
-resource_name = "Kick"
+resource_name = "Attack1"
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -169,10 +169,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs6v2"]
 _data = {
-&"Attack": SubResource("Animation_bikm2"),
+&"Attack1": SubResource("Animation_u0fy1"),
+&"Attack2": SubResource("Animation_bikm2"),
 &"Dash": SubResource("Animation_2qsty"),
 &"Idle": SubResource("Animation_gii1i"),
-&"Kick": SubResource("Animation_u0fy1"),
 &"Move": SubResource("Animation_cvakg"),
 &"RESET": SubResource("Animation_1ujki")
 }
@@ -210,6 +210,8 @@ script = ExtResource("42_e5xbx")
 [node name="PostDashTimer" type="Timer" parent="StateMachine/PostDashState"]
 wait_time = 0.2
 one_shot = true
+
+[node name="AttackState" type="Node" parent="StateMachine"]
 
 [node name="Visual Root" type="Node3D" parent="."]
 
