@@ -23,6 +23,7 @@ public class TimerHelper
 
     public void Start(float? timeSeconds = null)
     {
+        Log("Start");
         float timeToUse = timeSeconds ?? duration;
         if (!timer.IsStopped() || isStarted)
         {
@@ -35,6 +36,7 @@ public class TimerHelper
 
     public void Stop()
     {
+        Log("Stop");
         if (!isStarted)
         {
             throw new InvalidOperationException($"{owner.Name} timer is not running.");
@@ -46,7 +48,18 @@ public class TimerHelper
 
     private void OnTimeout()
     {
+        Log("OnTimeout");
         onTimeout?.Invoke();
         if (oneShot) Stop();
+    }
+
+    public void Log(object msg)
+    {
+        string tag = "TimerHelper";
+        if (owner is CharacterState)
+        {
+            tag = $"{(owner as CharacterState).characterNode.Name} {tag}";
+        }
+        GD.Print($"{owner.Name}: [{tag}] {msg}");
     }
 }

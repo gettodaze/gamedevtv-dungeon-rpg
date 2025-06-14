@@ -12,7 +12,12 @@ public partial class StateMachine : Node
 		get => _currentState;
 		set
 		{
-			if (_currentState == value) return;
+			if (_currentState == value)
+			{
+				// _currentState.Log("StateMachine: skipping identity set");
+				_currentState.Log("StateMachine: handling identity set");
+				// return;
+			};
 			// GD.Print($"Setting state from {_currentState} to {value}");
 			if (isReady) _currentState.DisableState();
 			_currentState = value;

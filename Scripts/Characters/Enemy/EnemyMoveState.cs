@@ -9,18 +9,19 @@ public partial class EnemyMoveState : EnemyCanChaseState
     public override void _Ready()
     {
         base._Ready();
-        timerNode = new(this, HandleTimeout, duration);
+        timerNode = new(this, HandleTimeout, duration, oneShot: false);
 
     }
 
     private void HandleTimeout()
     {
         Log("enemyMoveState timer stopped");
-        if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveState)
-        {
-            SetRandomDirection();
-            timerNode.Start();
-        }
+        characterNode.StateMachine.SwitchStateRandom();
+        // if (characterNode.StateMachine.SwitchStateRandom() is EnemyMoveState)
+        // {
+        //     SetRandomDirection();
+        //     timerNode.Start();
+        // }
     }
 
 

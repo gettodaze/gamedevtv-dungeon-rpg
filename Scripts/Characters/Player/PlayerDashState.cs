@@ -4,13 +4,13 @@ using System;
 public partial class PlayerDashState : PlayerState
 {
     protected override string AnimationString => GameConstants.ANIM_DASH;
-    [Export]
-    private Timer timerNode;
+    [Export] private float duration = 0.2f;
+    private TimerHelper timerNode;
 
     public override void _Ready()
     {
         base._Ready();
-        timerNode.Timeout += playerNode.StateMachine.SwitchState<PlayerPostDashState>;
+        timerNode = new(this, playerNode.StateMachine.SwitchState<PlayerPostDashState>, duration, oneShot: true);
     }
 
     public override void EnableState()

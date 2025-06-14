@@ -9,7 +9,7 @@ public partial class EnemyIdleState : EnemyCanChaseState
     public override void _Ready()
     {
         base._Ready();
-        timerNode = new(this, HandleTimeout, duration);
+        timerNode = new(this, HandleTimeout, duration, oneShot: false);
     }
 
     public override void EnableState()
