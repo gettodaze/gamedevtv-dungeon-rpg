@@ -14,9 +14,14 @@ public partial class UIController : Control
             (element) => element.container
         );
 
-        var startUI = containers[ContainerType.Start];
         main = GetParent<Main>();
-        startUI.Visible = true;
-        startUI.buttonNode.Pressed += () => { GetTree().Paused = false; startUI.Visible = false; };
+        containers[ContainerType.Start].buttonNode.Pressed += HandleGameStart;
+    }
+
+    private void HandleGameStart()
+    {
+        GetTree().Paused = false;
+        containers[ContainerType.Start].Visible = false;
+        GameEvents.RaiseStartGame();
     }
 }
