@@ -26,13 +26,23 @@ public partial class PlayerAttackState : CharacterState
 	{
 		base.EnableState();
 		characterNode.AnimPlayerNode.AnimationFinished += OnAnimationFinished;
+		characterNode.HitBoxNode.AreaEntered += HandleHitBoxEntered;
 		NewCombo();
 
 	}
+
+	private void HandleHitBoxEntered(Area3D area)
+	{
+		Log($"HIT: Player attack combo {comboCount} entered {area.Name}");
+
+	}
+
 	public override void DisableState()
 	{
 		base.DisableState();
 		characterNode.AnimPlayerNode.AnimationFinished -= OnAnimationFinished;
+		characterNode.HitBoxNode.AreaEntered -= HandleHitBoxEntered;
+
 
 	}
 

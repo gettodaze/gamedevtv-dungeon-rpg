@@ -34,7 +34,6 @@ script = ExtResource("1_s0gyx")
 
 [node name="Player" parent="." instance=ExtResource("2_yjsus")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76748, 1.77165, 0)
-collision_layer = 2
 speed = 10.0
 dashSpeed = 18.0
 gravity = 0.35
