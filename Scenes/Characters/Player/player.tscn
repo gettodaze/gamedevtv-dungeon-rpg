@@ -43,13 +43,16 @@
 [ext_resource type="PackedScene" uid="uid://ba02b174hpscc" path="res://Scenes/Characters/state_machine.tscn" id="38_e5xbx"]
 [ext_resource type="Script" uid="uid://hp3whm1siwv7" path="res://Scripts/Characters/Player/PlayerPostDashState.cs" id="42_e5xbx"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5xbx"]
+height = 1.41595
+
 [sub_resource type="Animation" id="Animation_2qsty"]
 resource_name = "Dash"
 step = 0.166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/path = NodePath("Visual Root/Sprite3D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -66,7 +69,7 @@ step = 0.0555556
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/path = NodePath("Visual Root/Sprite3D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +86,7 @@ step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/path = NodePath("Visual Root/Sprite3D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -98,7 +101,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/path = NodePath("Visual Root/Sprite3D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -116,24 +119,12 @@ _data = {
 &"RESET": SubResource("Animation_1ujki")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5xbx"]
-height = 1.41595
-
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "VisualRootNode", "StateMachine")]
 script = ExtResource("1_eiaiy")
-AnimPlayerNode = NodePath("AnimationPlayer")
-Sprite3DNode = NodePath("Sprite3D")
+AnimPlayerNode = NodePath("Visual Root/AnimationPlayer")
+Sprite3DNode = NodePath("Visual Root/Sprite3D")
+VisualRootNode = NodePath("Visual Root")
 StateMachine = NodePath("StateMachine")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-pixel_size = 0.0025
-texture_filter = 0
-texture = ExtResource("1_7x37g")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_gs6v2")
-}
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0503924, 0.0108163, 0)
@@ -142,9 +133,8 @@ shape = SubResource("CapsuleShape3D_e5xbx")
 [node name="StateMachine" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("38_e5xbx")]
 CurrentState = NodePath("IdleState")
 
-[node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("timerNode")]
+[node name="DashState" type="Node" parent="StateMachine"]
 script = ExtResource("33_2iqoh")
-timerNode = NodePath("DashTimer")
 
 [node name="DashTimer" type="Timer" parent="StateMachine/DashState"]
 wait_time = 0.4
@@ -162,3 +152,16 @@ script = ExtResource("42_e5xbx")
 [node name="PostDashTimer" type="Timer" parent="StateMachine/PostDashState"]
 wait_time = 0.2
 one_shot = true
+
+[node name="Visual Root" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Visual Root"]
+pixel_size = 0.0025
+texture_filter = 0
+texture = ExtResource("1_7x37g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual Root"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_gs6v2")
+}

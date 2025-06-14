@@ -11,6 +11,7 @@ public partial class Character : CharacterBody3D
     [ExportGroup("Required Nodes")]
     [Export] public AnimationPlayer AnimPlayerNode { get; private set; }
     [Export] public Sprite3D Sprite3DNode { get; private set; }
+    [Export] public Node3D VisualRootNode { get; private set; }
     [Export] public StateMachine StateMachine { get; private set; }
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
@@ -59,11 +60,11 @@ public partial class Character : CharacterBody3D
     {
         if (direction.X < 0)
         {
-            Sprite3DNode.FlipH = true;
+            VisualRootNode.Scale = new Vector3(-1, 1, 1);
         }
         else if (direction.X > 0)
         {
-            Sprite3DNode.FlipH = false;
+            VisualRootNode.Scale = new Vector3(1, 1, 1);
         }
     }
 

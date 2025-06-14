@@ -295,26 +295,37 @@ radius = 6.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4k2w"]
 radius = 0.996016
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine", "NavigationAgentNode", "ChaseAreaNode", "AttackAreaNode", "SwordHitBoxAreaNode")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "VisualRootNode", "StateMachine", "NavigationAgentNode", "ChaseAreaNode", "AttackAreaNode", "SwordHitBoxAreaNode")]
 script = ExtResource("1_1215o")
-AnimPlayerNode = NodePath("AnimationPlayer")
-Sprite3DNode = NodePath("Sprite3D")
+AnimPlayerNode = NodePath("Visual Root/AnimationPlayer")
+Sprite3DNode = NodePath("Visual Root/Sprite3D")
+VisualRootNode = NodePath("Visual Root")
 StateMachine = NodePath("StateMachineARandom")
 NavigationAgentNode = NodePath("NavigationAgent3D")
 ChaseAreaNode = NodePath("ChaseArea")
 AttackAreaNode = NodePath("AttackArea")
-SwordHitBoxAreaNode = NodePath("SwordArea")
+SwordHitBoxAreaNode = NodePath("Visual Root/SwordArea")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Visual Root" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Visual Root"]
 pixel_size = 0.0025
 texture_filter = 0
 texture = ExtResource("1_g0lfc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual Root"]
 root_node = NodePath("../Sprite3D")
 libraries = {
 &"": SubResource("AnimationLibrary_hwrji")
 }
+
+[node name="SwordArea" type="Area3D" parent="Visual Root"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visual Root/SwordArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.155589, -0.298617, 0)
+shape = SubResource("CapsuleShape3D_p0c8j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0879916, -0.124832, 0)
@@ -382,11 +393,3 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
 shape = SubResource("SphereShape3D_u4k2w")
-
-[node name="SwordArea" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SwordArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.155589, -0.298617, 0)
-shape = SubResource("CapsuleShape3D_p0c8j")
