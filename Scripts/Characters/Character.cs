@@ -121,6 +121,27 @@ public partial class Character : CharacterBody3D
         CallDeferred(nameof(_TakeDamage), damage);
     }
 
+    private void ShowDamage(float damage)
+    {
+        var label = new Label3D
+        {
+            Text = damage.ToString(),
+            // Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
+            Modulate = new Color(1, 0, 0), // red text
+            FontSize = 30
+        };
+
+        AddChild(label); // or GetParent().AddChild(label) to put it outside your node
+        label.GlobalPosition = GlobalPosition + Vector3.Up; // float above head
+        // Random horizontal offset to make it look dynamic:
+        label.GlobalPosition += new Vector3((float)GD.RandRange(-0.5, 0.5), 0, 0);
+
+        // Animate upward and fade out
+        var tween = CreateTween();
+        tween.TweenProperty(label, "global_position:y", label.GlobalPosition.Y + 1.0f, 0.6f);
+        tween.TweenProperty(label, "modulate:a", 0.0f, 0.6f);
+        tween.TweenCallback(Callable.From(label.QueueFree));
+    }
 
 
     public async void _TakeDamage(int damage)
@@ -128,7 +149,7 @@ public partial class Character : CharacterBody3D
         Sprite3DNode.Modulate = new Color(1, 0, 0);  // red flash
         Log($"HIT {Name} takes {damage} damage. Current health: {Health}");
         Health -= damage;
-
+        ShowDamage(damage);
         await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 
         Sprite3DNode.Modulate = new Color(1, 1, 1);  // restore color
