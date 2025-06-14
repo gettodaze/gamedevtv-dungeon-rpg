@@ -113,9 +113,25 @@ public partial class Character : CharacterBody3D
             Log($"HIT non-character {body.Name}");
             return;
         }
-        var damageDealt = damage ?? attackStrength;
-        attackTarget.Health -= damageDealt;
-        Log($"HIT {attackTarget.Name} for {damageDealt} damage. Current health: {attackTarget.Health}");
+        attackTarget.TakeDamage(damage ?? attackStrength);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        CallDeferred(nameof(_TakeDamage), damage);
+    }
+
+
+
+    public async void _TakeDamage(int damage)
+    {
+        Sprite3DNode.Modulate = new Color(1, 0, 0);  // red flash
+        Log($"HIT {Name} takes {damage} damage. Current health: {Health}");
+        Health -= damage;
+
+        await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+
+        Sprite3DNode.Modulate = new Color(1, 1, 1);  // restore color
     }
 
 }
