@@ -15,12 +15,14 @@ public partial class DeathState : CharacterState
 
     private void HandleAnimationFinished(StringName animName)
     {
+        (characterNode as Player)?.HandleDeath();
         characterNode.QueueFree();
     }
 
     public override void DisableState()
     {
         base.DisableState();
+        // TODO: handle entering death state twice because of double damage.
         throw new InvalidOperationException("Cannot disable death state");
     }
 }
