@@ -31,7 +31,7 @@ public partial class EnemyAttackState : CharacterState
 
 	private void HandleSwordHitBoxEntered(Node3D body)
 	{
-		Log("HIT");
+		Log($"HIT {body.Name}");
 
 	}
 
