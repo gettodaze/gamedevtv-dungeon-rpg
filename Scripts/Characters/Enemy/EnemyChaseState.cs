@@ -27,6 +27,13 @@ public partial class EnemyChaseState : CharacterState
 
 	private void HandleAttackBodyEntered(Node3D body)
 	{
+		// Get the direction to the body
+		var toBody = body.GlobalPosition - characterNode.GlobalPosition;
+		characterNode.direction = new Vector2(toBody.X, toBody.Z).Normalized();
+
+		// Assuming Flip() changes facing direction based on the X axis
+		// and characterNode has a property `IsFacingRight` or similar
+		characterNode.Flip();
 		characterNode.StateMachine.SwitchState<EnemyAttackState>();
 	}
 
