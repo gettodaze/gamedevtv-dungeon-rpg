@@ -138,7 +138,7 @@ public partial class Character : CharacterBody3D
 
         // Animate upward and fade out
         var tween = CreateTween();
-        tween.TweenProperty(label, "global_position:y", label.GlobalPosition.Y + 1.0f, 0.6f);
+        tween.TweenProperty(label, "global_position:y", label.GlobalPosition.Y + .5f, 0.6f);
         tween.TweenProperty(label, "modulate:a", 0.0f, 0.6f);
         tween.TweenCallback(Callable.From(label.QueueFree));
     }

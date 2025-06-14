@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpk1eynmpag34"]
+[gd_scene load_steps=12 format=3 uid="uid://cpk1eynmpag34"]
 
 [ext_resource type="Script" uid="uid://bbwu8fhhhcrxg" path="res://Scripts/Levels/Main.cs" id="1_s0gyx"]
 [ext_resource type="PackedScene" uid="uid://t35crg5pv1l" path="res://Scenes/Characters/Player/player.tscn" id="2_yjsus"]
 [ext_resource type="MeshLibrary" uid="uid://cc6sx75alelic" path="res://Resources/tiles.tres" id="3_u872a"]
 [ext_resource type="PackedScene" uid="uid://5b7jc08scehq" path="res://Scenes/Characters/Enemy/enemy.tscn" id="4_nk5xi"]
+[ext_resource type="PackedScene" uid="uid://cnvpvqpqegv4a" path="res://Scenes/General/ui.tscn" id="5_7i1ub"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk5xi"]
 size = Vector3(0.803711, 5.14795, 52.0394)
@@ -111,6 +112,8 @@ CurrentState = NodePath("ReturnState")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nk5xi")
+
+[node name="UI" parent="." instance=ExtResource("5_7i1ub")]
 
 [editable path="Enemies/EnemyARandom"]
 [editable path="Enemies/Path3D/EnemyBPatrol"]
