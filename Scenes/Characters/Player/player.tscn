@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://t35crg5pv1l"]
+[gd_scene load_steps=78 format=3 uid="uid://t35crg5pv1l"]
 
 [ext_resource type="Texture2D" uid="uid://dt13ve78xqo8l" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Script" uid="uid://clqbk6hfnui8g" path="res://Scripts/Characters/Player/Player.cs" id="1_eiaiy"]
@@ -175,15 +175,23 @@ _data = {
 &"RESET": SubResource("Animation_1ujki")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_q6jcb"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q6jcb"]
+height = 1.41595
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5xbx"]
 height = 1.41595
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "VisualRootNode", "StateMachine")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "VisualRootNode", "StateMachine", "HitBoxNode", "HurtBoxNode")]
 script = ExtResource("1_eiaiy")
 AnimPlayerNode = NodePath("Visual Root/AnimationPlayer")
 Sprite3DNode = NodePath("Visual Root/Sprite3D")
 VisualRootNode = NodePath("Visual Root")
 StateMachine = NodePath("StateMachine")
+HitBoxNode = NodePath("Visual Root/HitBox")
+HurtBoxNode = NodePath("Visual Root/HurtBox")
 
 [node name="Visual Root" type="Node3D" parent="."]
 
@@ -198,8 +206,20 @@ libraries = {
 &"": SubResource("AnimationLibrary_gs6v2")
 }
 
+[node name="HitBox" type="Area3D" parent="Visual Root"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visual Root/HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767481, 0, 0)
+shape = SubResource("BoxShape3D_q6jcb")
+
+[node name="HurtBox" type="Area3D" parent="Visual Root"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visual Root/HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0674211, 0.00535744, 0)
+shape = SubResource("CapsuleShape3D_q6jcb")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0503924, 0.0108163, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0674211, 0.00535744, 0)
 shape = SubResource("CapsuleShape3D_e5xbx")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("38_e5xbx")]

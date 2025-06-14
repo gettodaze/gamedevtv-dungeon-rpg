@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://5b7jc08scehq"]
+[gd_scene load_steps=121 format=3 uid="uid://5b7jc08scehq"]
 
 [ext_resource type="Script" uid="uid://cavtccruymnk7" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_1215o"]
 [ext_resource type="Texture2D" uid="uid://dl31bp13kp4co" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="1_g0lfc"]
@@ -130,14 +130,14 @@ tracks/0/keys = {
 tracks/1/type = "position_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../SwordArea")
+tracks/1/path = NodePath("../HitBox")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.333333, 1, 1.2, 0, 0, 1, 1, 1.2, 0, 0, 1.04287, 1, 0, 0, 0)
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../SwordArea/CollisionShape3D:shape")
+tracks/2/path = NodePath("../HitBox/CollisionShape3D:shape")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -242,7 +242,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../SwordArea/CollisionShape3D:shape")
+tracks/2/path = NodePath("../HitBox/CollisionShape3D:shape")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -254,7 +254,7 @@ tracks/2/keys = {
 tracks/3/type = "position_3d"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../SwordArea")
+tracks/3/path = NodePath("../HitBox")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
@@ -285,6 +285,10 @@ _data = {
 &"TakeHit": SubResource("Animation_yau8p")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dwudo"]
+radius = 0.460131
+height = 1.26741
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8kh56"]
 radius = 0.460131
 height = 1.26741
@@ -295,16 +299,17 @@ radius = 6.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4k2w"]
 radius = 0.996016
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "VisualRootNode", "StateMachine", "NavigationAgentNode", "ChaseAreaNode", "AttackAreaNode", "SwordHitBoxAreaNode")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "VisualRootNode", "StateMachine", "HitBoxNode", "HurtBoxNode", "NavigationAgentNode", "ChaseAreaNode", "AttackAreaNode")]
 script = ExtResource("1_1215o")
 AnimPlayerNode = NodePath("Visual Root/AnimationPlayer")
 Sprite3DNode = NodePath("Visual Root/Sprite3D")
 VisualRootNode = NodePath("Visual Root")
 StateMachine = NodePath("StateMachineARandom")
+HitBoxNode = NodePath("Visual Root/HitBox")
+HurtBoxNode = NodePath("Visual Root/HurtBox")
 NavigationAgentNode = NodePath("NavigationAgent3D")
 ChaseAreaNode = NodePath("ChaseArea")
 AttackAreaNode = NodePath("AttackArea")
-SwordHitBoxAreaNode = NodePath("Visual Root/SwordArea")
 
 [node name="Visual Root" type="Node3D" parent="."]
 
@@ -319,13 +324,19 @@ libraries = {
 &"": SubResource("AnimationLibrary_hwrji")
 }
 
-[node name="SwordArea" type="Area3D" parent="Visual Root"]
+[node name="HitBox" type="Area3D" parent="Visual Root"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Visual Root/SwordArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visual Root/HitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.155589, -0.298617, 0)
 shape = SubResource("CapsuleShape3D_p0c8j")
+
+[node name="HurtBox" type="Area3D" parent="Visual Root"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visual Root/HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0879916, -0.124832, 0)
+shape = SubResource("CapsuleShape3D_dwudo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0879916, -0.124832, 0)

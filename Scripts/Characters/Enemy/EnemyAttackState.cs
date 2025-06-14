@@ -26,7 +26,7 @@ public partial class EnemyAttackState : CharacterState
 	{
 		base.EnableState();
 		characterNode.AnimPlayerNode.AnimationFinished += HandleAnimationEnd;
-		characterNode.SwordHitBoxAreaNode.BodyEntered += HandleSwordHitBoxEntered;
+		characterNode.HitBoxNode.BodyEntered += HandleSwordHitBoxEntered;
 	}
 
 	private void HandleSwordHitBoxEntered(Node3D body)
@@ -44,7 +44,7 @@ public partial class EnemyAttackState : CharacterState
 	public override void DisableState()
 	{
 		base.DisableState();
-		characterNode.SwordHitBoxAreaNode.BodyEntered -= HandleSwordHitBoxEntered;
+		characterNode.HitBoxNode.BodyEntered -= HandleSwordHitBoxEntered;
 		characterNode.AnimPlayerNode.AnimationFinished -= HandleAnimationEnd;
 	}
 

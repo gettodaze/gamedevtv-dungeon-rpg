@@ -13,12 +13,13 @@ public partial class Character : CharacterBody3D
     [Export] public Sprite3D Sprite3DNode { get; private set; }
     [Export] public Node3D VisualRootNode { get; private set; }
     [Export] public StateMachine StateMachine { get; private set; }
+    [Export] public Area3D HitBoxNode { get; private set; }
+    [Export] public Area3D HurtBoxNode { get; private set; }
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
     [Export] public NavigationAgent3D NavigationAgentNode { get; private set; }
     [Export] public Area3D ChaseAreaNode { get; private set; }
     [Export] public Area3D AttackAreaNode { get; private set; }
-    [Export] public Area3D SwordHitBoxAreaNode { get; private set; }
 
     public Vector2 direction = new();
 
