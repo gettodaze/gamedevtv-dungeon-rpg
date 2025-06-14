@@ -9,6 +9,7 @@ public abstract partial class EnemyCanChaseState : CharacterState
 		Log("Adding chase handler");
 		characterNode.ChaseAreaNode.BodyEntered += EnemyHandleEnterArea3DNode;
 		// needs to be done after we've finished enabling state
+		checkOverlappingBodiesDeferred();
 	}
 
 	private void EnemyHandleEnterArea3DNode(Node3D body)
@@ -17,7 +18,7 @@ public abstract partial class EnemyCanChaseState : CharacterState
 		characterNode.StateMachine.SwitchState<EnemyChaseState>();
 
 	}
-	private void checkOverlappingBodies()
+	private void checkOverlappingBodiesDeferred()
 	{
 		// Handle first overlapping body if any
 		var overlappingBodies = characterNode.ChaseAreaNode.GetOverlappingBodies();
