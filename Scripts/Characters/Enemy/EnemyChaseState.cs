@@ -23,6 +23,7 @@ public partial class EnemyChaseState : CharacterState
 		characterNode.ChaseAreaNode.BodyExited += HandleChaseBodyExit;
 		characterNode.AttackAreaNode.BodyEntered += HandleAttackBodyEntered;
 		calcMovementTimer.Start();
+		checkOverlappingBodiesDeferred();
 	}
 
 	private void HandleAttackBodyEntered(Node3D body)
@@ -57,6 +58,20 @@ public partial class EnemyChaseState : CharacterState
 		base._PhysicsProcess(delta);
 		characterNode.NavigationAgentNode.TargetPosition = target.GlobalPosition;
 		characterNode.MoveToDestination(recalc: false);
+	}
+
+	private void checkOverlappingBodiesDeferred()
+	{
+		// Handle first overlapping body if any
+		var overlappingBodies = characterNode.AttackAreaNode.GetOverlappingBodies();
+		if (overlappingBodies.Count > 0)
+		{
+			var firstBody = overlappingBodies[0];
+			if (firstBody != null)
+			{
+				CallDeferred(nameof(HandleAttackBodyEntered), firstBody);
+			}
+		}
 	}
 
 
