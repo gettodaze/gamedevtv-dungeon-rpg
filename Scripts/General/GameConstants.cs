@@ -1,3 +1,5 @@
+using Godot;
+
 public class GameConstants
 {
     // Animations
@@ -6,7 +8,7 @@ public class GameConstants
     public const string ANIM_DASH = "Dash";
     public const string ANIM_ATTACK = "Attack";
     public const string ANIM_ATTACK_KICK = "Attack1";
-    public const string ANIM_ATTACK_SWORD = "Attack";
+    public const string ANIM_ATTACK_SWORD = "Attack2";
 
     // Inputs
     public const string INPUT_MOVE_LEFT = "MoveLeft";
@@ -15,9 +17,9 @@ public class GameConstants
     public const string INPUT_MOVE_BACKWARD = "MoveBackward";
     public const string INPUT_DASH = "Dash";
     public const string INPUT_JUMP = "Jump";
+    public const string INPUT_ATTACK = "Attack";
 
 
     // Notifications
     public const int NOTIFICATION_ENABLE_STATE = 5001;
-
 }

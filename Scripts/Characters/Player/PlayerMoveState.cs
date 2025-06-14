@@ -24,6 +24,7 @@ public partial class PlayerMoveState : PlayerState
     {
         base._Input(@event);
         playerNode.SetInputDirection();
+        if (playerNode.CheckAndHandleAttackInput()) return;
 
         if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {

@@ -221,3 +221,4 @@ duration = 0.2
 
 [node name="AttackState" type="Node" parent="StateMachine"]
 script = ExtResource("67_q6jcb")
+comboTimerDuration = 2.0
