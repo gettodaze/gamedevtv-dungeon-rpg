@@ -337,12 +337,8 @@ CurrentState = NodePath("IdleState")
 [node name="IdleState" type="Node" parent="StateMachineARandom"]
 script = ExtResource("102_1215o")
 
-[node name="Timer" type="Timer" parent="StateMachineARandom/IdleState"]
-
 [node name="MoveState" type="Node" parent="StateMachineARandom"]
 script = ExtResource("103_lfk4v")
-
-[node name="Timer" type="Timer" parent="StateMachineARandom/MoveState"]
 
 [node name="ChaseState" type="Node" parent="StateMachineARandom"]
 script = ExtResource("104_u4k2w")
@@ -366,12 +362,8 @@ calcMovementInterval = 0.2
 [node name="IdleState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("102_1215o")
 
-[node name="Timer" type="Timer" parent="StateMachineBPatrol/IdleState"]
-
 [node name="MoveState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("103_lfk4v")
-
-[node name="Timer" type="Timer" parent="StateMachineBPatrol/MoveState"]
 
 [node name="AttackState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("105_dwudo")

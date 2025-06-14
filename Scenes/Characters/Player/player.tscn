@@ -67,8 +67,37 @@
 [ext_resource type="Texture2D" uid="uid://v7uxuarlclyf" path="res://Assets/Sprites/Characters/Player/Kicking/Kicking_010.png" id="65_si63r"]
 [ext_resource type="Texture2D" uid="uid://dpsg0v7fbeqlp" path="res://Assets/Sprites/Characters/Player/Kicking/Kicking_011.png" id="66_cmja1"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5xbx"]
-height = 1.41595
+[sub_resource type="Animation" id="Animation_u0fy1"]
+resource_name = "Attack1"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual Root/Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("55_d13yo"), ExtResource("56_q0b8q"), ExtResource("57_ggfjd"), ExtResource("58_a30gu"), ExtResource("59_x8se3"), ExtResource("60_f4hmr"), ExtResource("61_0lsgw"), ExtResource("62_oslfk"), ExtResource("63_8nlno"), ExtResource("64_gtnqr"), ExtResource("65_si63r"), ExtResource("66_cmja1")]
+}
+
+[sub_resource type="Animation" id="Animation_bikm2"]
+resource_name = "Attack2"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual Root/Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("43_on6jm"), ExtResource("44_q6jcb"), ExtResource("45_8bd3e"), ExtResource("46_5qakp"), ExtResource("47_j8mah"), ExtResource("48_3spsx"), ExtResource("49_a8u7n"), ExtResource("50_u2yf0"), ExtResource("51_gfg6c"), ExtResource("52_en5ka"), ExtResource("53_1v4lm"), ExtResource("54_fw07t")]
+}
 
 [sub_resource type="Animation" id="Animation_2qsty"]
 resource_name = "Dash"
@@ -135,38 +164,6 @@ tracks/0/keys = {
 "values": [ExtResource("1_7x37g")]
 }
 
-[sub_resource type="Animation" id="Animation_bikm2"]
-resource_name = "Attack2"
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual Root/Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("43_on6jm"), ExtResource("44_q6jcb"), ExtResource("45_8bd3e"), ExtResource("46_5qakp"), ExtResource("47_j8mah"), ExtResource("48_3spsx"), ExtResource("49_a8u7n"), ExtResource("50_u2yf0"), ExtResource("51_gfg6c"), ExtResource("52_en5ka"), ExtResource("53_1v4lm"), ExtResource("54_fw07t")]
-}
-
-[sub_resource type="Animation" id="Animation_u0fy1"]
-resource_name = "Attack1"
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual Root/Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("55_d13yo"), ExtResource("56_q0b8q"), ExtResource("57_ggfjd"), ExtResource("58_a30gu"), ExtResource("59_x8se3"), ExtResource("60_f4hmr"), ExtResource("61_0lsgw"), ExtResource("62_oslfk"), ExtResource("63_8nlno"), ExtResource("64_gtnqr"), ExtResource("65_si63r"), ExtResource("66_cmja1")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs6v2"]
 _data = {
 &"Attack1": SubResource("Animation_u0fy1"),
@@ -177,41 +174,15 @@ _data = {
 &"RESET": SubResource("Animation_1ujki")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5xbx"]
+height = 1.41595
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "VisualRootNode", "StateMachine")]
 script = ExtResource("1_eiaiy")
 AnimPlayerNode = NodePath("Visual Root/AnimationPlayer")
 Sprite3DNode = NodePath("Visual Root/Sprite3D")
 VisualRootNode = NodePath("Visual Root")
 StateMachine = NodePath("StateMachine")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0503924, 0.0108163, 0)
-shape = SubResource("CapsuleShape3D_e5xbx")
-
-[node name="StateMachine" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("38_e5xbx")]
-CurrentState = NodePath("IdleState")
-
-[node name="DashState" type="Node" parent="StateMachine"]
-script = ExtResource("33_2iqoh")
-
-[node name="DashTimer" type="Timer" parent="StateMachine/DashState"]
-wait_time = 0.4
-one_shot = true
-
-[node name="IdleState" type="Node" parent="StateMachine"]
-script = ExtResource("34_gii1i")
-
-[node name="MoveState" type="Node" parent="StateMachine"]
-script = ExtResource("32_me3gr")
-
-[node name="PostDashState" type="Node" parent="StateMachine"]
-script = ExtResource("42_e5xbx")
-
-[node name="PostDashTimer" type="Timer" parent="StateMachine/PostDashState"]
-wait_time = 0.2
-one_shot = true
-
-[node name="AttackState" type="Node" parent="StateMachine"]
 
 [node name="Visual Root" type="Node3D" parent="."]
 
@@ -225,3 +196,26 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_gs6v2")
 }
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0503924, 0.0108163, 0)
+shape = SubResource("CapsuleShape3D_e5xbx")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("CurrentState") instance=ExtResource("38_e5xbx")]
+CurrentState = NodePath("IdleState")
+
+[node name="DashState" type="Node" parent="StateMachine"]
+script = ExtResource("33_2iqoh")
+duration = 0.4
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("34_gii1i")
+
+[node name="MoveState" type="Node" parent="StateMachine"]
+script = ExtResource("32_me3gr")
+
+[node name="PostDashState" type="Node" parent="StateMachine"]
+script = ExtResource("42_e5xbx")
+duration = 0.2
+
+[node name="AttackState" type="Node" parent="StateMachine"]
