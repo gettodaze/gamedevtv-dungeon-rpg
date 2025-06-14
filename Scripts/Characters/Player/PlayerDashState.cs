@@ -23,7 +23,7 @@ public partial class PlayerDashState : PlayerState
         var dir = playerNode.direction;
         // note: maybe do this only when not already 0?
         // if (dir == Vector2.Zero)
-        playerNode.direction.X = playerNode.Sprite3DNode.FlipH ? -1 : 1;
+        // playerNode.direction.X = playerNode.Sprite3DNode.FlipH ? -1 : 1;
         playerNode.direction.Y = 0;
 
         // playerNode.Velocity = new(dir.X, 0, dir.Y);
