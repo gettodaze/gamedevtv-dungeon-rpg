@@ -295,7 +295,7 @@ radius = 6.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4k2w"]
 radius = 0.996016
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine", "NavigationAgentNode", "ChaseAreaNode", "AttackAreaNode")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "StateMachine", "NavigationAgentNode", "ChaseAreaNode", "AttackAreaNode", "SwordHitBoxAreaNode")]
 script = ExtResource("1_1215o")
 AnimPlayerNode = NodePath("AnimationPlayer")
 Sprite3DNode = NodePath("Sprite3D")
@@ -303,6 +303,7 @@ StateMachine = NodePath("StateMachineARandom")
 NavigationAgentNode = NodePath("NavigationAgent3D")
 ChaseAreaNode = NodePath("ChaseArea")
 AttackAreaNode = NodePath("AttackArea")
+SwordHitBoxAreaNode = NodePath("SwordArea")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
