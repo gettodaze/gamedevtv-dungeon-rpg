@@ -6,6 +6,7 @@ using System.Linq;
 public partial class UIController : Control
 {
     private Dictionary<ContainerType, UIContainer> containers;
+    private Main main;
 
     public override void _Ready()
     {
@@ -13,6 +14,9 @@ public partial class UIController : Control
             (element) => element.container
         );
 
-        containers[ContainerType.Start].Visible = true;
+        var startUI = containers[ContainerType.Start];
+        main = GetParent<Main>();
+        startUI.Visible = true;
+        startUI.buttonNode.Pressed += () => { GetTree().Paused = false; startUI.Visible = false; };
     }
 }
