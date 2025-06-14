@@ -26,7 +26,7 @@ public abstract partial class CharacterState : Node
     {
         SetPhysicsProcess(true);
         Log("EnableState");
-        characterNode.AnimPlayerNode.Play(AnimationString);
+        if (AnimationString != null) characterNode.AnimPlayerNode.Play(AnimationString);
     }
 
     public void Log(string msg)

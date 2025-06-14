@@ -8,7 +8,7 @@ public class TimerHelper
     private Action onTimeout;
     private readonly Node owner;
     private readonly bool oneShot;
-    private bool isStarted = false;
+    public bool isStarted = false;
 
     public TimerHelper(Node owner, Action onTimeout, float duration = 1.0f, bool oneShot = false)
     {
@@ -32,6 +32,22 @@ public class TimerHelper
         timer.Timeout += OnTimeout;
         timer.Start(timeToUse);
         isStarted = true;
+    }
+
+    public void Reset()
+    {
+        Log("Reset");
+        if (!isStarted)
+        {
+            throw new InvalidOperationException($"{owner.Name} timer is not running.");
+        }
+        timer.Start();
+    }
+    public void StartOrReset()
+    {
+        Log("StartOrReset");
+        if (isStarted) Reset();
+        else Start();
     }
 
     public void Stop()

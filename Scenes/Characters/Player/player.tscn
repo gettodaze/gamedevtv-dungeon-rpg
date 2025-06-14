@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://t35crg5pv1l"]
+[gd_scene load_steps=76 format=3 uid="uid://t35crg5pv1l"]
 
 [ext_resource type="Texture2D" uid="uid://dt13ve78xqo8l" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Script" uid="uid://clqbk6hfnui8g" path="res://Scripts/Characters/Player/Player.cs" id="1_eiaiy"]
@@ -66,6 +66,7 @@
 [ext_resource type="Texture2D" uid="uid://c21idxulyphvl" path="res://Assets/Sprites/Characters/Player/Kicking/Kicking_009.png" id="64_gtnqr"]
 [ext_resource type="Texture2D" uid="uid://v7uxuarlclyf" path="res://Assets/Sprites/Characters/Player/Kicking/Kicking_010.png" id="65_si63r"]
 [ext_resource type="Texture2D" uid="uid://dpsg0v7fbeqlp" path="res://Assets/Sprites/Characters/Player/Kicking/Kicking_011.png" id="66_cmja1"]
+[ext_resource type="Script" uid="uid://dhe7y1u7wyqdn" path="res://Scripts/Characters/Player/PlayerAttackState.cs" id="67_q6jcb"]
 
 [sub_resource type="Animation" id="Animation_u0fy1"]
 resource_name = "Attack1"
@@ -219,3 +220,4 @@ script = ExtResource("42_e5xbx")
 duration = 0.2
 
 [node name="AttackState" type="Node" parent="StateMachine"]
+script = ExtResource("67_q6jcb")
