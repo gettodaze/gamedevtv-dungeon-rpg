@@ -9,6 +9,7 @@ public class GameConstants
     public const string ANIM_ATTACK = "Attack";
     public const string ANIM_ATTACK_KICK = "Attack1";
     public const string ANIM_ATTACK_SWORD = "Attack2";
+    public const string ANIM_DEATH = "Death";
 
     // Inputs
     public const string INPUT_MOVE_LEFT = "MoveLeft";

@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://5b7jc08scehq"]
+[gd_scene load_steps=122 format=3 uid="uid://5b7jc08scehq"]
 
 [ext_resource type="Script" uid="uid://cavtccruymnk7" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_1215o"]
 [ext_resource type="Texture2D" uid="uid://dl31bp13kp4co" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="1_g0lfc"]
@@ -106,6 +106,7 @@
 [ext_resource type="Script" uid="uid://njfoah51jio2" path="res://Scripts/Characters/Enemy/EnemyChaseState.cs" id="104_u4k2w"]
 [ext_resource type="Script" uid="uid://j0iqqc3m4mu1" path="res://Scripts/Characters/Enemy/EnemyAttackState.cs" id="105_dwudo"]
 [ext_resource type="Script" uid="uid://4oa4v1h0lpn5" path="res://Scripts/Characters/Enemy/EnemyReturnState.cs" id="106_15hc4"]
+[ext_resource type="Script" uid="uid://bwbu2ntbvtk34" path="res://Scripts/Characters/DeathState.cs" id="106_u4k2w"]
 [ext_resource type="Script" uid="uid://ckn4gvhgsktnx" path="res://Scripts/Characters/Enemy/EnemyPatrolState.cs" id="107_dwudo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kb7ur"]
@@ -312,6 +313,7 @@ HurtBoxNode = NodePath("Visual Root/HurtBox")
 NavigationAgentNode = NodePath("NavigationAgent3D")
 ChaseAreaNode = NodePath("ChaseArea")
 AttackAreaNode = NodePath("AttackArea")
+attackStrength = 2
 
 [node name="Visual Root" type="Node3D" parent="."]
 
@@ -362,6 +364,9 @@ calcMovementInterval = 0.2
 [node name="AttackState" type="Node" parent="StateMachineARandom"]
 script = ExtResource("105_dwudo")
 
+[node name="DeathState" type="Node" parent="StateMachineARandom"]
+script = ExtResource("106_u4k2w")
+
 [node name="StateMachineBPatrol" parent="." instance=ExtResource("101_g7ysa")]
 
 [node name="ReturnState" type="Node" parent="StateMachineBPatrol"]
@@ -382,6 +387,9 @@ script = ExtResource("103_lfk4v")
 
 [node name="AttackState" type="Node" parent="StateMachineBPatrol"]
 script = ExtResource("105_dwudo")
+
+[node name="DeathState" type="Node" parent="StateMachineBPatrol"]
+script = ExtResource("106_u4k2w")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true

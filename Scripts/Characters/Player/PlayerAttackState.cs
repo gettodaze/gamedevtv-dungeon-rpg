@@ -31,10 +31,10 @@ public partial class PlayerAttackState : CharacterState
 
 	}
 
-	private void HandleHitBoxEntered(Area3D area)
+	private void HandleHitBoxEntered(Area3D body)
 	{
-		Log($"HIT: Player attack combo {comboCount} entered {area.Name}");
-
+		Log($"HIT: Player attack combo {comboCount} entered {body.Name}");
+		characterNode.Hit(body);
 	}
 
 	public override void DisableState()

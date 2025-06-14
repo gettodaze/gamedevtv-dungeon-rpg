@@ -20,6 +20,19 @@ public partial class Character : CharacterBody3D
     [Export] public NavigationAgent3D NavigationAgentNode { get; private set; }
     [Export] public Area3D ChaseAreaNode { get; private set; }
     [Export] public Area3D AttackAreaNode { get; private set; }
+    private int _health = 50;
+    [Export]
+    public int Health
+    {
+        get => _health;
+        set
+        {
+            _health = value;
+            if (_health <= 0) StateMachine.SwitchState<DeathState>();
+        }
+    }
+    [Export] public int attackStrength = 5;
+
 
     public Vector2 direction = new();
 
@@ -92,6 +105,18 @@ public partial class Character : CharacterBody3D
         GD.Print($"{Name}: {msg}");
     }
 
-
+    internal void Hit(Node3D body, int? damage = null)
+    {
+        var attackTarget = body.GetOwnerOrNull<Character>();
+        if (attackTarget == null)
+        {
+            Log($"HIT non-character {body.Name}");
+            return;
+        }
+        var damageDealt = damage ?? attackStrength;
+        attackTarget.Health -= damageDealt;
+        Log($"HIT {attackTarget.Name} for {damageDealt} damage. Current health: {attackTarget.Health}");
+    }
 
 }
+

@@ -26,13 +26,13 @@ public partial class EnemyAttackState : CharacterState
 	{
 		base.EnableState();
 		characterNode.AnimPlayerNode.AnimationFinished += HandleAnimationEnd;
-		characterNode.HitBoxNode.BodyEntered += HandleSwordHitBoxEntered;
+		characterNode.HitBoxNode.AreaEntered += HandleHitBoxEntered;
 	}
 
-	private void HandleSwordHitBoxEntered(Node3D body)
+	private void HandleHitBoxEntered(Area3D body)
 	{
-		Log($"HIT {body.Name}");
-
+		Log("HIT");
+		characterNode.Hit(body);
 	}
 
 	private void HandleAnimationEnd(StringName animName)
@@ -44,7 +44,7 @@ public partial class EnemyAttackState : CharacterState
 	public override void DisableState()
 	{
 		base.DisableState();
-		characterNode.HitBoxNode.BodyEntered -= HandleSwordHitBoxEntered;
+		characterNode.HitBoxNode.AreaEntered -= HandleHitBoxEntered;
 		characterNode.AnimPlayerNode.AnimationFinished -= HandleAnimationEnd;
 	}
 
