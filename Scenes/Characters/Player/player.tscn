@@ -185,6 +185,8 @@ height = 1.41595
 height = 1.41595
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimPlayerNode", "Sprite3DNode", "VisualRootNode", "StateMachine", "HitBoxNode", "HurtBoxNode")]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_eiaiy")
 AnimPlayerNode = NodePath("Visual Root/AnimationPlayer")
 Sprite3DNode = NodePath("Visual Root/Sprite3D")
@@ -207,12 +209,16 @@ libraries = {
 }
 
 [node name="HitBox" type="Area3D" parent="Visual Root"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visual Root/HitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767481, 0, 0)
 shape = SubResource("BoxShape3D_q6jcb")
 
 [node name="HurtBox" type="Area3D" parent="Visual Root"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visual Root/HurtBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0674211, 0.00535744, 0)
