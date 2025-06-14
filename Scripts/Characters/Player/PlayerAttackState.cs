@@ -47,7 +47,7 @@ public partial class PlayerAttackState : CharacterState
 		if (comboCount >= fullComboCount) throw new InvalidOperationException($"comboCount {comboCount} exceeds fullComboCount {fullComboCount}");
 		if (comboCount == fullComboCount - 1) animString = GameConstants.ANIM_ATTACK_SWORD;
 		else animString = GameConstants.ANIM_ATTACK_KICK;
-		characterNode.AnimPlayerNode.Play(animString);
+		characterNode.AnimPlayerNode.Play(animString, customSpeed: 2);
 		comboCount = (comboCount + 1) % fullComboCount;
 		comboTimer.StartOrReset();
 
