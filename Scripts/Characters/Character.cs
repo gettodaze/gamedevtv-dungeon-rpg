@@ -15,7 +15,9 @@ public abstract partial class Character : CharacterBody3D
     [Export] public StateMachine StateMachine { get; private set; }
     [Export] public Area3D HitBoxNode { get; private set; }
     [Export] public Area3D HurtBoxNode { get; private set; }
-    [Export] public StatResource Stats;
+    [Export] public StatResource Stats { get; private set; }
+    [Export] public PackedScene DamageLabelScene { get; private set; }
+
 
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
@@ -122,24 +124,10 @@ public abstract partial class Character : CharacterBody3D
         delta = Math.Abs(delta);
         Color color = healed ? new Color(0, 1, 0) : new Color(1, 0, 0); // green/red
 
-        var label = new Label3D
-        {
-            Text = delta.ToString(),
-            // Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
-            Modulate = color,
-            FontSize = 30
-        };
-
-        AddChild(label); // or GetParent().AddChild(label) to put it outside your node
-        label.GlobalPosition = GlobalPosition + Vector3.Up; // float above head
-                                                            // Random horizontal offset to make it look dynamic:
-        label.GlobalPosition += new Vector3((float)GD.RandRange(-0.5, 0.5), 0, 0);
-
-        // Animate upward and fade out
-        var tween = CreateTween();
-        tween.TweenProperty(label, "global_position:y", label.GlobalPosition.Y + .5f, 0.6f);
-        tween.TweenProperty(label, "modulate:a", 0.0f, 0.6f);
-        tween.TweenCallback(Callable.From(label.QueueFree));
+        var label = DamageLabelScene.Instantiate<FloatingDamage>();
+        AddChild(label); // or GetTree().Root.AddChild(label) to float independently
+        label.GlobalPosition = GlobalPosition + Vector3.Up + new Vector3((float)GD.RandRange(-0.5, 0.5), 0, 0);
+        label.Initialize(delta, healed);
 
         Sprite3DNode.Modulate = color;  // color flash
         await ToSignal(GetTree().CreateTimer(0.1f), "timeout");

@@ -1,8 +1,9 @@
-[gd_scene load_steps=122 format=3 uid="uid://5b7jc08scehq"]
+[gd_scene load_steps=123 format=3 uid="uid://5b7jc08scehq"]
 
 [ext_resource type="Script" uid="uid://cavtccruymnk7" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_1215o"]
 [ext_resource type="Texture2D" uid="uid://dl31bp13kp4co" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="1_g0lfc"]
 [ext_resource type="Texture2D" uid="uid://bkdw0nm847815" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_001.png" id="2_hdnef"]
+[ext_resource type="PackedScene" uid="uid://crlamoa50aiu5" path="res://Scenes/General/floating_damage.tscn" id="2_kb7ur"]
 [ext_resource type="Texture2D" uid="uid://c3fbjxix5ox1x" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_002.png" id="3_g7ysa"]
 [ext_resource type="Texture2D" uid="uid://dehhk7fjr0j1c" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_003.png" id="4_1215o"]
 [ext_resource type="Texture2D" uid="uid://deke5a4cp6ovu" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_004.png" id="5_lfk4v"]
@@ -310,6 +311,7 @@ VisualRootNode = NodePath("Visual Root")
 StateMachine = NodePath("StateMachineARandom")
 HitBoxNode = NodePath("Visual Root/HitBox")
 HurtBoxNode = NodePath("Visual Root/HurtBox")
+DamageLabelScene = ExtResource("2_kb7ur")
 NavigationAgentNode = NodePath("NavigationAgent3D")
 ChaseAreaNode = NodePath("ChaseArea")
 AttackAreaNode = NodePath("AttackArea")

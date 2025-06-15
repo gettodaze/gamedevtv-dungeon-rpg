@@ -3,6 +3,7 @@ using System;
 
 public partial class Player : Character
 {
+	private int enemyCount = 0;
 	public void SetInputDirection()
 	{
 		// var oldDir = direction;
@@ -24,5 +25,31 @@ public partial class Player : Character
 	{
 		GameEvents.RaiseDefeat();
 	}
+
+	public override void _Ready()
+	{
+		base._Ready();
+		GameEvents.OnStartGame += HandleStartGame;
+		GameEvents.OnNewEnemyCount += HandleNewEnemyCount;
+	}
+
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		GameEvents.OnStartGame -= HandleStartGame;
+		GameEvents.OnNewEnemyCount -= HandleNewEnemyCount;
+	}
+
+	private void HandleNewEnemyCount(int newCount)
+	{
+		if (newCount > enemyCount) Stats.Heal(5);
+		enemyCount = newCount;
+	}
+
+	private void HandleStartGame()
+	{
+		Stats.CurrentHealth = Stats.MaxHealth;
+	}
+
 
 }

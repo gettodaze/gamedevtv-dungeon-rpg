@@ -1,10 +1,11 @@
-[gd_scene load_steps=96 format=3 uid="uid://t35crg5pv1l"]
+[gd_scene load_steps=97 format=3 uid="uid://t35crg5pv1l"]
 
 [ext_resource type="Texture2D" uid="uid://dt13ve78xqo8l" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7x37g"]
 [ext_resource type="Script" uid="uid://clqbk6hfnui8g" path="res://Scripts/Characters/Player/Player.cs" id="1_eiaiy"]
 [ext_resource type="Resource" uid="uid://bw5kglnnl44lu" path="res://Resources/PlayerStats.tres" id="2_0lsgw"]
 [ext_resource type="Texture2D" uid="uid://dfuafxieyet1h" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_001.png" id="2_pr2lv"]
 [ext_resource type="Texture2D" uid="uid://bt3pavuqppony" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_002.png" id="3_cvakg"]
+[ext_resource type="PackedScene" uid="uid://crlamoa50aiu5" path="res://Scenes/General/floating_damage.tscn" id="3_oslfk"]
 [ext_resource type="Texture2D" uid="uid://c3m18xkg6gvyk" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_003.png" id="4_othne"]
 [ext_resource type="Texture2D" uid="uid://clrwaslqs4qyu" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_004.png" id="5_a7o8c"]
 [ext_resource type="Texture2D" uid="uid://75i0wap566qq" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_005.png" id="6_23420"]
@@ -265,6 +266,7 @@ StateMachine = NodePath("StateMachine")
 HitBoxNode = NodePath("Visual Root/HitBox")
 HurtBoxNode = NodePath("Visual Root/HurtBox")
 Stats = ExtResource("2_0lsgw")
+DamageLabelScene = ExtResource("3_oslfk")
 
 [node name="Visual Root" type="Node3D" parent="."]
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://crlamoa50aiu5"]
+
+[ext_resource type="Script" uid="uid://br8arrb71g2a4" path="res://Scripts/General/FloatingDamage.cs" id="1_h50l8"]
+[ext_resource type="FontFile" uid="uid://ch5s3w1atstrh" path="res://Assets/RifficFree-Bold.ttf" id="1_pg5ol"]
+
+[node name="FloatingDamage" type="Node3D" node_paths=PackedStringArray("LabelNode")]
+script = ExtResource("1_h50l8")
+LabelNode = NodePath("Label3D")
+
+[node name="Label3D" type="Label3D" parent="."]
+text = "100"
+font = ExtResource("1_pg5ol")
+font_size = 300
