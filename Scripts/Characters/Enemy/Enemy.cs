@@ -10,6 +10,12 @@ public partial class Enemy : Character
 		Log(PathNode);
 	}
 
+	public override void HandleDeath()
+	{
+		if (PathNode != null) PathNode.QueueFree();
+		else QueueFree();
+	}
+
 
 
 }

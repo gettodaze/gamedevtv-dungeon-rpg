@@ -17,6 +17,12 @@ public partial class UIController : Control
         main = GetParent<Main>();
         containers[ContainerType.Start].buttonNode.Pressed += HandleStartButtonPressed;
         containers[ContainerType.Victory].buttonNode.Pressed += HandleRestartButtonPressed;
+        GameEvents.OnVictory += HandleOnVictory;
+    }
+
+    private void HandleOnVictory()
+    {
+        containers[ContainerType.Victory].Visible = true;
     }
 
     private void HandleRestartButtonPressed()

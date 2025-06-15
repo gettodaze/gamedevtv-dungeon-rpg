@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Character : CharacterBody3D
+public abstract partial class Character : CharacterBody3D
 {
     [ExportGroup("Physics Settings")]
     [Export(PropertyHint.Range, "0,20,1")] private float speed = 5.0f;
@@ -20,6 +20,7 @@ public partial class Character : CharacterBody3D
     [Export] public NavigationAgent3D NavigationAgentNode { get; private set; }
     [Export] public Area3D ChaseAreaNode { get; private set; }
     [Export] public Area3D AttackAreaNode { get; private set; }
+    public bool Dead { get; private set; } = false;
     private int _health = 50;
     [Export]
     public int Health
@@ -28,10 +29,15 @@ public partial class Character : CharacterBody3D
         set
         {
             _health = value;
-            if (_health <= 0) StateMachine.SwitchState<DeathState>();
+            if (_health <= 0 && !Dead)
+            {
+                Dead = true;
+                StateMachine.SwitchState<DeathState>();
+            }
         }
     }
-    [Export] public int attackStrength = 5;
+    [Export]
+    public int attackStrength = 5;
 
 
     public Vector2 direction = new();
@@ -155,5 +161,6 @@ public partial class Character : CharacterBody3D
         Sprite3DNode.Modulate = new Color(1, 1, 1);  // restore color
     }
 
+    public abstract void HandleDeath();
 }
 

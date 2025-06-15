@@ -21,7 +21,7 @@ public partial class Player : Character
 		return false;
 	}
 
-	internal void HandleDeath()
+	public override void HandleDeath()
 	{
 		GameEvents.RaiseDefeat();
 	}

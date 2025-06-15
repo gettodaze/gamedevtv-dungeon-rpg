@@ -15,8 +15,7 @@ public partial class DeathState : CharacterState
 
     private void HandleAnimationFinished(StringName animName)
     {
-        (characterNode as Player)?.HandleDeath();
-        characterNode.QueueFree();
+        characterNode.HandleDeath();
     }
 
     public override void DisableState()

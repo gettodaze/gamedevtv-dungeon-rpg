@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpk1eynmpag34"]
+[gd_scene load_steps=14 format=3 uid="uid://cpk1eynmpag34"]
 
 [ext_resource type="Script" uid="uid://bbwu8fhhhcrxg" path="res://Scripts/Levels/Main.cs" id="1_s0gyx"]
 [ext_resource type="PackedScene" uid="uid://t35crg5pv1l" path="res://Scenes/Characters/Player/player.tscn" id="2_yjsus"]
 [ext_resource type="MeshLibrary" uid="uid://cc6sx75alelic" path="res://Resources/tiles.tres" id="3_u872a"]
 [ext_resource type="PackedScene" uid="uid://5b7jc08scehq" path="res://Scenes/Characters/Enemy/enemy.tscn" id="4_nk5xi"]
+[ext_resource type="Script" uid="uid://dxmeu1xnwrme" path="res://Scripts/Characters/Enemy/Enemies.cs" id="4_tpkgp"]
 [ext_resource type="PackedScene" uid="uid://cnvpvqpqegv4a" path="res://Scenes/General/ui.tscn" id="5_7i1ub"]
 [ext_resource type="Script" uid="uid://bjyrhiwuc2vrq" path="res://Scripts/General/Camera.cs" id="6_w0lsm"]
 
@@ -87,6 +88,7 @@ data = {
 }
 
 [node name="Enemies" type="Node" parent="."]
+script = ExtResource("4_tpkgp")
 
 [node name="EnemyARandom" parent="Enemies" instance=ExtResource("4_nk5xi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.57026, 1.83187, 1.93042)
