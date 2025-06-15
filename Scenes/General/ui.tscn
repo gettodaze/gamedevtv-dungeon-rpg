@@ -207,40 +207,49 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 script = ExtResource("9_6qvwe")
 Health = ExtResource("10_6qvwe")
-HealthBar = NodePath("HBox/HealthBar")
-StrengthLabel = NodePath("HBox/StrengthLabel")
-EnemyLabel = NodePath("HBox/EnemyCount")
+HealthBar = NodePath("HBox/HBoxContainer3/HealthBar")
+StrengthLabel = NodePath("HBox/HBoxContainer/StrengthLabel")
+EnemyLabel = NodePath("HBox/HBoxContainer2/EnemyCount")
 container = 4
 
 [node name="HBox" type="HBoxContainer" parent="StatsContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 30
 
-[node name="StengthIcon" type="TextureRect" parent="StatsContainer/HBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="StatsContainer/HBox"]
+layout_mode = 2
+
+[node name="StengthIcon" type="TextureRect" parent="StatsContainer/HBox/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("11_imqc7")
 
-[node name="StrengthLabel" type="Label" parent="StatsContainer/HBox"]
+[node name="StrengthLabel" type="Label" parent="StatsContainer/HBox/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p7v8i")
 theme_override_font_sizes/font_size = 28
 text = "---"
 
-[node name="EnemyIcon" type="TextureRect" parent="StatsContainer/HBox"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="StatsContainer/HBox"]
+layout_mode = 2
+
+[node name="EnemyIcon" type="TextureRect" parent="StatsContainer/HBox/HBoxContainer2"]
 layout_mode = 2
 texture = ExtResource("12_uu2ew")
 
-[node name="EnemyCount" type="Label" parent="StatsContainer/HBox"]
+[node name="EnemyCount" type="Label" parent="StatsContainer/HBox/HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p7v8i")
 theme_override_font_sizes/font_size = 28
 text = "..."
 
-[node name="HeartIcon" type="TextureRect" parent="StatsContainer/HBox"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="StatsContainer/HBox"]
+layout_mode = 2
+
+[node name="HeartIcon" type="TextureRect" parent="StatsContainer/HBox/HBoxContainer3"]
 layout_mode = 2
 texture = ExtResource("11_26myh")
 
-[node name="HealthBar" type="TextureProgressBar" parent="StatsContainer/HBox"]
+[node name="HealthBar" type="TextureProgressBar" parent="StatsContainer/HBox/HBoxContainer3"]
 custom_minimum_size = Vector2(120, 20)
 layout_mode = 2
 value = 50.0
