@@ -1,8 +1,9 @@
-[gd_scene load_steps=122 format=3 uid="uid://5b7jc08scehq"]
+[gd_scene load_steps=124 format=3 uid="uid://5b7jc08scehq"]
 
 [ext_resource type="Script" uid="uid://cavtccruymnk7" path="res://Scripts/Characters/Enemy/Enemy.cs" id="1_1215o"]
 [ext_resource type="Texture2D" uid="uid://dl31bp13kp4co" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_000.png" id="1_g0lfc"]
 [ext_resource type="Texture2D" uid="uid://bkdw0nm847815" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_001.png" id="2_hdnef"]
+[ext_resource type="Script" uid="uid://cqka8etggm2sv" path="res://Scripts/Resources/HealthData.cs" id="2_kb7ur"]
 [ext_resource type="Texture2D" uid="uid://c3fbjxix5ox1x" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_002.png" id="3_g7ysa"]
 [ext_resource type="Texture2D" uid="uid://dehhk7fjr0j1c" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_003.png" id="4_1215o"]
 [ext_resource type="Texture2D" uid="uid://deke5a4cp6ovu" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_004.png" id="5_lfk4v"]
@@ -108,6 +109,12 @@
 [ext_resource type="Script" uid="uid://4oa4v1h0lpn5" path="res://Scripts/Characters/Enemy/EnemyReturnState.cs" id="106_15hc4"]
 [ext_resource type="Script" uid="uid://bwbu2ntbvtk34" path="res://Scripts/Characters/DeathState.cs" id="106_u4k2w"]
 [ext_resource type="Script" uid="uid://ckn4gvhgsktnx" path="res://Scripts/Characters/Enemy/EnemyPatrolState.cs" id="107_dwudo"]
+
+[sub_resource type="Resource" id="Resource_kb7ur"]
+script = ExtResource("2_kb7ur")
+MaxHealth = 20
+CurrentHealth = 20
+metadata/_custom_type_script = "uid://cqka8etggm2sv"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kb7ur"]
 radius = 0.1
@@ -310,10 +317,11 @@ VisualRootNode = NodePath("Visual Root")
 StateMachine = NodePath("StateMachineARandom")
 HitBoxNode = NodePath("Visual Root/HitBox")
 HurtBoxNode = NodePath("Visual Root/HurtBox")
+HealthResource = SubResource("Resource_kb7ur")
+attackStrength = 2
 NavigationAgentNode = NodePath("NavigationAgent3D")
 ChaseAreaNode = NodePath("ChaseArea")
 AttackAreaNode = NodePath("AttackArea")
-attackStrength = 2
 
 [node name="Visual Root" type="Node3D" parent="."]
 

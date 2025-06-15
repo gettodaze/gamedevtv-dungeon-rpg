@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnvpvqpqegv4a"]
+[gd_scene load_steps=15 format=3 uid="uid://cnvpvqpqegv4a"]
 
 [ext_resource type="Texture2D" uid="uid://bwshoc36x5nfx" path="res://Assets/Sprites/UI/UI Element 1.png" id="1_2kjud"]
 [ext_resource type="Script" uid="uid://16acl1dpokqo" path="res://Scripts/UI/UIController.cs" id="1_ucxub"]
@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dufxi8w8m8lb3" path="res://Assets/Sprites/UI/UI Element 3.png" id="6_y1xua"]
 [ext_resource type="Texture2D" uid="uid://c4hhxjfdcc4fh" path="res://Assets/Sprites/UI/UI ElementUI 11.png" id="7_c4okg"]
 [ext_resource type="Texture2D" uid="uid://dm27oacov2hyp" path="res://Assets/Sprites/UI/UI ElementUI 10.png" id="8_c4okg"]
+[ext_resource type="Script" uid="uid://dsjrfmjwvwf77" path="res://Scripts/UI/StatsContainer.cs" id="9_6qvwe"]
+[ext_resource type="Resource" uid="uid://cyswehupe1sul" path="res://Resources/PlayerHealth.tres" id="10_c5l50"]
+[ext_resource type="Texture2D" uid="uid://cy2fjb14ef78w" path="res://Assets/Sprites/UI/UI ElementUI 7.png" id="11_26myh"]
+[ext_resource type="Texture2D" uid="uid://ohsip6rbieyp" path="res://JohnAssets/HealthBar/healthbarUnder.png" id="12_imqc7"]
+[ext_resource type="Texture2D" uid="uid://d22bmglwhg8sc" path="res://JohnAssets/HealthBar/healthbarProgress.png" id="13_uu2ew"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kdkgu"]
 texture = ExtResource("3_ucxub")
@@ -187,3 +192,33 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_kdkgu")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_kdkgu")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kdkgu")
 text = "Restart"
+
+[node name="Margin Container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBox" type="HBoxContainer" parent="Margin Container" node_paths=PackedStringArray("HealthBar")]
+layout_mode = 2
+script = ExtResource("9_6qvwe")
+Health = ExtResource("10_c5l50")
+HealthBar = NodePath("TextureProgressBar")
+container = 4
+
+[node name="TextureRect" type="TextureRect" parent="Margin Container/HBox"]
+layout_mode = 2
+texture = ExtResource("11_26myh")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Margin Container/HBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 50.0
+texture_under = ExtResource("12_imqc7")
+texture_progress = ExtResource("13_uu2ew")

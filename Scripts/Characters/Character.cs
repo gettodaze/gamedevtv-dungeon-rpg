@@ -15,30 +15,16 @@ public abstract partial class Character : CharacterBody3D
     [Export] public StateMachine StateMachine { get; private set; }
     [Export] public Area3D HitBoxNode { get; private set; }
     [Export] public Area3D HurtBoxNode { get; private set; }
+    [Export] public HealthData HealthResource;
+
+    [Export] public int attackStrength = 5;
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
     [Export] public NavigationAgent3D NavigationAgentNode { get; private set; }
     [Export] public Area3D ChaseAreaNode { get; private set; }
     [Export] public Area3D AttackAreaNode { get; private set; }
     public bool Dead { get; private set; } = false;
-    [Export] public HealthData HealthResource;
-    public int Health
-    {
-        get => HealthResource.CurrentHealth;
-        set
-        {
-            var newHealth = Mathf.Clamp(value, 0, HealthResource.MaxHealth);
-            HealthResource.CurrentHealth = newHealth;
-            HealthResource.EmitSignal(HealthData.SignalName.HealthChanged, HealthResource.CurrentHealth, HealthResource.MaxHealth);
-            if (newHealth == 0 && !Dead) // TODO: this !Dead is a workaround
-            {
-                Dead = true;
-                StateMachine.SwitchState<DeathState>();
-            }
-        }
-    }
-    [Export]
-    public int attackStrength = 5;
+
 
 
     public Vector2 direction = new();
@@ -50,7 +36,9 @@ public abstract partial class Character : CharacterBody3D
         StateMachine.CurrentState.EnableState();
         if (NavigationAgentNode == null) return;
         NavigationAgentNode.NavigationFinished += () => Log($"navigation finished.");
+        HealthResource.HealthChanged += HandleHealthChanged;
     }
+
 
 
 
@@ -121,21 +109,24 @@ public abstract partial class Character : CharacterBody3D
             Log($"HIT non-character {body.Name}");
             return;
         }
-        attackTarget.TakeDamage(damage ?? attackStrength);
+        attackTarget.HealthResource.TakeDamage(damage ?? attackStrength);
     }
 
-    public void TakeDamage(int damage)
+    private async void HandleHealthChanged(int current, int max, int delta)
     {
-        CallDeferred(nameof(_TakeDamage), damage);
-    }
+        if (!Dead && current == 0)
+        {
+            StateMachine.SwitchState<DeathState>();
+        }
+        var healed = delta > 0;
+        delta = Math.Abs(delta);
+        Color color = healed ? new Color(0, 1, 0) : new Color(1, 0, 0); // green/red
 
-    private void ShowDamage(float damage)
-    {
         var label = new Label3D
         {
-            Text = damage.ToString(),
+            Text = delta.ToString(),
             // Billboard = BaseMaterial3D.BillboardModeEnum.Enabled,
-            Modulate = new Color(1, 0, 0), // red text
+            Modulate = color,
             FontSize = 30
         };
 
@@ -149,17 +140,9 @@ public abstract partial class Character : CharacterBody3D
         tween.TweenProperty(label, "global_position:y", label.GlobalPosition.Y + .5f, 0.6f);
         tween.TweenProperty(label, "modulate:a", 0.0f, 0.6f);
         tween.TweenCallback(Callable.From(label.QueueFree));
-    }
 
-
-    public async void _TakeDamage(int damage)
-    {
-        Sprite3DNode.Modulate = new Color(1, 0, 0);  // red flash
-        Log($"HIT {Name} takes {damage} damage. Current health: {Health}");
-        Health -= damage;
-        ShowDamage(damage);
+        Sprite3DNode.Modulate = color;  // color flash
         await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-
         Sprite3DNode.Modulate = new Color(1, 1, 1);  // restore color
     }
 
