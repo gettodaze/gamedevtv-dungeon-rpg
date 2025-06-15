@@ -34,9 +34,9 @@ public abstract partial class Character : CharacterBody3D
         base._Ready();
         HealthResource.EmitSignal(HealthData.SignalName.HealthChanged, HealthResource.CurrentHealth, HealthResource.MaxHealth);
         StateMachine.CurrentState.EnableState();
-        if (NavigationAgentNode == null) return;
-        NavigationAgentNode.NavigationFinished += () => Log($"navigation finished.");
         HealthResource.HealthChanged += HandleHealthChanged;
+        if (NavigationAgentNode != null)
+            NavigationAgentNode.NavigationFinished += () => Log($"navigation finished.");
     }
 
 
@@ -114,6 +114,7 @@ public abstract partial class Character : CharacterBody3D
 
     private async void HandleHealthChanged(int current, int max, int delta)
     {
+        Log("HandleHealthChanged");
         if (!Dead && current == 0)
         {
             StateMachine.SwitchState<DeathState>();
