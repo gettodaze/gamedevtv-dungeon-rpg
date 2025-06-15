@@ -21,15 +21,16 @@ public abstract partial class Character : CharacterBody3D
     [Export] public Area3D ChaseAreaNode { get; private set; }
     [Export] public Area3D AttackAreaNode { get; private set; }
     public bool Dead { get; private set; } = false;
-    private int _health = 50;
-    [Export]
+    [Export] public HealthData HealthResource;
     public int Health
     {
-        get => _health;
+        get => HealthResource.CurrentHealth;
         set
         {
-            _health = value;
-            if (_health <= 0 && !Dead)
+            var newHealth = Mathf.Clamp(value, 0, HealthResource.MaxHealth);
+            HealthResource.CurrentHealth = newHealth;
+            HealthResource.EmitSignal(HealthData.SignalName.HealthChanged, HealthResource.CurrentHealth, HealthResource.MaxHealth);
+            if (newHealth == 0 && !Dead) // TODO: this !Dead is a workaround
             {
                 Dead = true;
                 StateMachine.SwitchState<DeathState>();
@@ -45,6 +46,7 @@ public abstract partial class Character : CharacterBody3D
     public override void _Ready()
     {
         base._Ready();
+        HealthResource.EmitSignal(HealthData.SignalName.HealthChanged, HealthResource.CurrentHealth, HealthResource.MaxHealth);
         StateMachine.CurrentState.EnableState();
         if (NavigationAgentNode == null) return;
         NavigationAgentNode.NavigationFinished += () => Log($"navigation finished.");
@@ -139,7 +141,7 @@ public abstract partial class Character : CharacterBody3D
 
         AddChild(label); // or GetParent().AddChild(label) to put it outside your node
         label.GlobalPosition = GlobalPosition + Vector3.Up; // float above head
-        // Random horizontal offset to make it look dynamic:
+                                                            // Random horizontal offset to make it look dynamic:
         label.GlobalPosition += new Vector3((float)GD.RandRange(-0.5, 0.5), 0, 0);
 
         // Animate upward and fade out

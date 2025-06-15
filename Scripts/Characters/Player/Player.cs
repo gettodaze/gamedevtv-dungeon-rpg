@@ -3,7 +3,6 @@ using System;
 
 public partial class Player : Character
 {
-
 	public void SetInputDirection()
 	{
 		// var oldDir = direction;
