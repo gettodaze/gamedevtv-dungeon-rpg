@@ -33,6 +33,7 @@ public abstract partial class Character : CharacterBody3D
     public override void _Ready()
     {
         base._Ready();
+        Stats.CurrentHealth = Stats.MaxHealth;
         Stats.EmitSignal(StatResource.SignalName.HealthChanged, Stats.CurrentHealth, Stats.MaxHealth, 0);
         StateMachine.CurrentState.EnableState();
         Stats.HealthChanged += HandleHealthChanged;
@@ -125,6 +126,7 @@ public abstract partial class Character : CharacterBody3D
         Log($"HandleHealthChanged(delta={delta})");
         if (!Dead && current == 0)
         {
+            Dead = true;
             StateMachine.SwitchState<DeathState>();
         }
         var healed = delta > 0;
