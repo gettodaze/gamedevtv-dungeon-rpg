@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnvpvqpqegv4a"]
+[gd_scene load_steps=18 format=3 uid="uid://cnvpvqpqegv4a"]
 
 [ext_resource type="Texture2D" uid="uid://bwshoc36x5nfx" path="res://Assets/Sprites/UI/UI Element 1.png" id="1_2kjud"]
 [ext_resource type="Script" uid="uid://16acl1dpokqo" path="res://Scripts/UI/UIController.cs" id="1_ucxub"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ohsip6rbieyp" path="res://JohnAssets/HealthBar/healthbarUnder.png" id="12_imqc7"]
 [ext_resource type="Texture2D" uid="uid://2xsa15k1edsb" path="res://Assets/Sprites/UI/UI ElementUI 9.png" id="12_uu2ew"]
 [ext_resource type="Texture2D" uid="uid://d22bmglwhg8sc" path="res://JohnAssets/HealthBar/healthbarProgress.png" id="13_uu2ew"]
+[ext_resource type="Texture2D" uid="uid://dbwwdlclvuec6" path="res://Assets/Sprites/UI/UI Element 5.png" id="16_imqc7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kdkgu"]
 texture = ExtResource("3_ucxub")
@@ -130,6 +131,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_kdkgu")
 text = "Restart"
 
 [node name="DefeatContainer" type="TextureRect" parent="." node_paths=PackedStringArray("buttonNode")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -196,6 +198,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_kdkgu")
 text = "Restart"
 
 [node name="StatsContainer" type="MarginContainer" parent="." node_paths=PackedStringArray("HealthBar", "StrengthLabel", "EnemyLabel")]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -256,3 +259,65 @@ value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("12_imqc7")
 texture_progress = ExtResource("13_uu2ew")
+
+[node name="PausedContainer" type="TextureRect" parent="." node_paths=PackedStringArray("buttonNode")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.5
+offset_top = -257.5
+offset_right = 262.5
+offset_bottom = 257.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_y1xua")
+script = ExtResource("2_kdkgu")
+container = 1
+buttonNode = NodePath("MarginContainer/VBoxContainer/Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="PausedContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.5
+offset_right = 146.5
+offset_bottom = 407.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausedContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="PausedContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_p7v8i")
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PausedContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("16_imqc7")
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="PausedContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p7v8i")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_kdkgu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_kdkgu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kdkgu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kdkgu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kdkgu")
+text = "Restart"

@@ -7,6 +7,7 @@ public partial class UIController : Control
 {
     private Dictionary<ContainerType, UIContainer> containers;
     private Main main;
+    private bool canPause = false;
 
     public override void _Ready()
     {
@@ -18,6 +19,7 @@ public partial class UIController : Control
         containers[ContainerType.Start].buttonNode.Pressed += HandleStartButtonPressed;
         containers[ContainerType.Victory].buttonNode.Pressed += HandleRestartButtonPressed;
         containers[ContainerType.Defeat].buttonNode.Pressed += HandleRestartButtonPressed;
+        containers[ContainerType.Pause].buttonNode.Pressed += HandleRestartButtonPressed;
         GameEvents.OnVictory += HandleOnVictory;
         GameEvents.OnDefeat += HandleOnDefeat;
 
@@ -25,14 +27,32 @@ public partial class UIController : Control
 
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+        if (Input.IsActionJustPressed(GameConstants.INPUT_PAUSE) && canPause)
+        {
+            bool pause = !containers[ContainerType.Pause].Visible;
+            containers[ContainerType.Pause].Visible = pause;
+            main.SetTreePaused(pause);
+        }
+    }
+
+    private void HandlePauseButtonPressed()
+    {
+        throw new NotImplementedException();
+    }
+
     private void HandleOnDefeat()
     {
         containers[ContainerType.Defeat].Visible = true;
+        canPause = false;
     }
 
     private void HandleOnVictory()
     {
         containers[ContainerType.Victory].Visible = true;
+        canPause = false;
     }
 
 
@@ -47,6 +67,7 @@ public partial class UIController : Control
         containers[ContainerType.Start].Visible = false;
         containers[ContainerType.Stats].Visible = true;
         GameEvents.RaiseStartGame();
+        canPause = true;
     }
 
     public override void _ExitTree()
@@ -55,6 +76,7 @@ public partial class UIController : Control
         containers[ContainerType.Start].buttonNode.Pressed -= HandleStartButtonPressed;
         containers[ContainerType.Victory].buttonNode.Pressed -= HandleRestartButtonPressed;
         containers[ContainerType.Defeat].buttonNode.Pressed -= HandleRestartButtonPressed;
+        containers[ContainerType.Pause].buttonNode.Pressed -= HandleRestartButtonPressed;
         GameEvents.OnVictory -= HandleOnVictory;
         GameEvents.OnDefeat -= HandleOnDefeat;
     }
