@@ -33,13 +33,19 @@ public abstract partial class Character : CharacterBody3D
     public override void _Ready()
     {
         base._Ready();
-        Stats.EmitSignal(StatResource.SignalName.HealthChanged, Stats.CurrentHealth, Stats.MaxHealth);
+        Stats.EmitSignal(StatResource.SignalName.HealthChanged, Stats.CurrentHealth, Stats.MaxHealth, 0);
         StateMachine.CurrentState.EnableState();
         Stats.HealthChanged += HandleHealthChanged;
         if (NavigationAgentNode != null)
             NavigationAgentNode.NavigationFinished += () => Log($"navigation finished.");
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Stats.HealthChanged -= HandleHealthChanged;
+
+    }
 
 
 
@@ -115,7 +121,8 @@ public abstract partial class Character : CharacterBody3D
 
     private async void HandleHealthChanged(int current, int max, int delta)
     {
-        Log("HandleHealthChanged");
+        if (delta == 0) return;
+        Log($"HandleHealthChanged(delta={delta})");
         if (!Dead && current == 0)
         {
             StateMachine.SwitchState<DeathState>();

@@ -42,7 +42,7 @@ public partial class Player : Character
 
 	private void HandleNewEnemyCount(int newCount)
 	{
-		if (newCount > enemyCount) Stats.Heal(5);
+		if (newCount < enemyCount) Stats.Heal(5);
 		enemyCount = newCount;
 	}
 
