@@ -6,10 +6,23 @@ public partial class StatResource : Resource
 {
 	[Signal]
 	public delegate void HealthChangedEventHandler(int current, int max, int delta);
+	[Signal]
+	public delegate void AttackChangedEventHandler(int attack);
 
 	[Export] public int MaxHealth = 100;
 	[Export] public int CurrentHealth = 100;
-	[Export] public int AttackStrength = 5;
+	private int _attackStrength;
+	[Export]
+	public int AttackStrength
+	{
+		get => _attackStrength;
+		set
+		{
+			_attackStrength = value;
+			EmitSignal(SignalName.AttackChanged, _attackStrength);
+
+		}
+	}
 
 	public void TakeDamage(int amount)
 	{

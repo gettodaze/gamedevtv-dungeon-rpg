@@ -24,7 +24,7 @@ agent_max_climb = 0.5
 script = ExtResource("6_irfg1")
 MaxHealth = 30
 CurrentHealth = 30
-AttackStrength = 5
+AttackStrength = 0
 metadata/_custom_type_script = "uid://cqka8etggm2sv"
 
 [sub_resource type="Curve3D" id="Curve3D_nk5xi"]
@@ -39,7 +39,7 @@ point_count = 4
 script = ExtResource("6_irfg1")
 MaxHealth = 20
 CurrentHealth = 20
-AttackStrength = 5
+AttackStrength = 0
 metadata/_custom_type_script = "uid://cqka8etggm2sv"
 
 [sub_resource type="Sky" id="Sky_u872a"]
