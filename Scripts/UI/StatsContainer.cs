@@ -4,7 +4,7 @@ using System;
 public partial class StatsContainer : UIContainer
 {
 	// Called when the node enters the scene tree for the first time.
-	[Export] public HealthData Health;
+	[Export] public StatResource Health;
 	[Export] public TextureProgressBar HealthBar;
 
 	public override void _Ready()

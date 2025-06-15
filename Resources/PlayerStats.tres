@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatResource" load_steps=2 format=3 uid="uid://bw5kglnnl44lu"]
+
+[ext_resource type="Script" uid="uid://cqka8etggm2sv" path="res://Scripts/Resources/StatResource.cs" id="1_c26vb"]
+
+[resource]
+script = ExtResource("1_c26vb")
+MaxHealth = 50
+CurrentHealth = 50
+AttackStrength = 5
+metadata/_custom_type_script = "uid://cqka8etggm2sv"

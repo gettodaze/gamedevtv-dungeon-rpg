@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="HealthData" load_steps=2 format=3 uid="uid://cyswehupe1sul"]
-
-[ext_resource type="Script" uid="uid://cqka8etggm2sv" path="res://Scripts/Resources/HealthData.cs" id="1_muxd6"]
-
-[resource]
-script = ExtResource("1_muxd6")
-MaxHealth = 50
-CurrentHealth = 50
-metadata/_custom_type_script = "uid://cqka8etggm2sv"

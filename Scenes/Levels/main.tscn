@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://5b7jc08scehq" path="res://Scenes/Characters/Enemy/enemy.tscn" id="4_nk5xi"]
 [ext_resource type="Script" uid="uid://dxmeu1xnwrme" path="res://Scripts/Characters/Enemy/Enemies.cs" id="4_tpkgp"]
 [ext_resource type="PackedScene" uid="uid://cnvpvqpqegv4a" path="res://Scenes/General/ui.tscn" id="5_7i1ub"]
-[ext_resource type="Script" uid="uid://cqka8etggm2sv" path="res://Scripts/Resources/HealthData.cs" id="6_irfg1"]
+[ext_resource type="Script" uid="uid://cqka8etggm2sv" path="res://Scripts/Resources/StatResource.cs" id="6_irfg1"]
 [ext_resource type="Script" uid="uid://bjyrhiwuc2vrq" path="res://Scripts/General/Camera.cs" id="6_w0lsm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk5xi"]
@@ -22,8 +22,9 @@ agent_max_climb = 0.5
 
 [sub_resource type="Resource" id="Resource_5sf7f"]
 script = ExtResource("6_irfg1")
-MaxHealth = 20
-CurrentHealth = 20
+MaxHealth = 30
+CurrentHealth = 30
+AttackStrength = 5
 metadata/_custom_type_script = "uid://cqka8etggm2sv"
 
 [sub_resource type="Curve3D" id="Curve3D_nk5xi"]
@@ -38,6 +39,7 @@ point_count = 4
 script = ExtResource("6_irfg1")
 MaxHealth = 20
 CurrentHealth = 20
+AttackStrength = 5
 metadata/_custom_type_script = "uid://cqka8etggm2sv"
 
 [sub_resource type="Sky" id="Sky_u872a"]
@@ -106,7 +108,7 @@ script = ExtResource("4_tpkgp")
 [node name="EnemyARandom" parent="Enemies" instance=ExtResource("4_nk5xi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.57026, 1.83187, 1.93042)
 speed = 2.0
-HealthResource = SubResource("Resource_5sf7f")
+Stats = SubResource("Resource_5sf7f")
 
 [node name="Path3D" type="Path3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643897, 0)
@@ -116,7 +118,7 @@ curve = SubResource("Curve3D_nk5xi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2784, 1.19863, -2.57326)
 speed = 3.0
 StateMachine = NodePath("StateMachineBPatrol")
-HealthResource = SubResource("Resource_d8okw")
+Stats = SubResource("Resource_d8okw")
 PathNode = NodePath("..")
 
 [node name="StateMachineARandom" parent="Enemies/Path3D/EnemyBPatrol" index="2" node_paths=PackedStringArray("CurrentState")]

@@ -15,9 +15,8 @@ public abstract partial class Character : CharacterBody3D
     [Export] public StateMachine StateMachine { get; private set; }
     [Export] public Area3D HitBoxNode { get; private set; }
     [Export] public Area3D HurtBoxNode { get; private set; }
-    [Export] public HealthData HealthResource;
+    [Export] public StatResource Stats;
 
-    [Export] public int attackStrength = 5;
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
     [Export] public NavigationAgent3D NavigationAgentNode { get; private set; }
@@ -32,9 +31,9 @@ public abstract partial class Character : CharacterBody3D
     public override void _Ready()
     {
         base._Ready();
-        HealthResource.EmitSignal(HealthData.SignalName.HealthChanged, HealthResource.CurrentHealth, HealthResource.MaxHealth);
+        Stats.EmitSignal(StatResource.SignalName.HealthChanged, Stats.CurrentHealth, Stats.MaxHealth);
         StateMachine.CurrentState.EnableState();
-        HealthResource.HealthChanged += HandleHealthChanged;
+        Stats.HealthChanged += HandleHealthChanged;
         if (NavigationAgentNode != null)
             NavigationAgentNode.NavigationFinished += () => Log($"navigation finished.");
     }
@@ -109,7 +108,7 @@ public abstract partial class Character : CharacterBody3D
             Log($"HIT non-character {body.Name}");
             return;
         }
-        attackTarget.HealthResource.TakeDamage(damage ?? attackStrength);
+        attackTarget.Stats.TakeDamage(damage ?? Stats.AttackStrength);
     }
 
     private async void HandleHealthChanged(int current, int max, int delta)

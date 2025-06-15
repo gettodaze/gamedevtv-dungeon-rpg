@@ -34,7 +34,7 @@ public partial class PlayerAttackState : CharacterState
 	private void HandleHitBoxEntered(Area3D body)
 	{
 		Log($"HIT: Player attack combo {comboCount} entered {body.Name}");
-		var damage = characterNode.attackStrength;
+		var damage = characterNode.Stats.AttackStrength;
 		if (comboCount == 0) damage *= 2;
 		characterNode.Hit(body, damage);
 	}
