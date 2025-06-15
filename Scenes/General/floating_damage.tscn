@@ -10,4 +10,4 @@ LabelNode = NodePath("Label3D")
 [node name="Label3D" type="Label3D" parent="."]
 text = "100"
 font = ExtResource("1_pg5ol")
-font_size = 300
+font_size = 10

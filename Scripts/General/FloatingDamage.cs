@@ -7,6 +7,7 @@ public partial class FloatingDamage : Node3D
 
 	[Export] public float FloatAmount { get; private set; } = 0.5f;
 	[Export] public float Duration { get; private set; } = 0.6f;
+	[Export] public float ScaleFactor { get; private set; } = 1.0f;
 
 	public void Initialize(int delta, bool healed)
 	{
@@ -23,8 +24,15 @@ public partial class FloatingDamage : Node3D
 
 	private int GetScaledFontSize(int originalFontSize, int delta)
 	{
-		float multiplier = MathF.Min(1.0f, (float)delta / 10);
-		return (int)(originalFontSize * multiplier);
+		float multiplier = MathF.Max(1.0f, delta / ScaleFactor);
+		int newFontSize = (int)(originalFontSize * multiplier);
+		if (newFontSize < 1)
+			throw new InvalidOperationException($"newFontSize cannot be less than 1: {newFontSize}");
+
+		GD.Print($"[Floating Font] Scaled for delta {delta}: {originalFontSize}*{multiplier}={newFontSize}");
+		return newFontSize;
 	}
+
+
 
 }
