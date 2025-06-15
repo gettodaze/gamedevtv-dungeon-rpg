@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnvpvqpqegv4a"]
+[gd_scene load_steps=17 format=3 uid="uid://cnvpvqpqegv4a"]
 
 [ext_resource type="Texture2D" uid="uid://bwshoc36x5nfx" path="res://Assets/Sprites/UI/UI Element 1.png" id="1_2kjud"]
 [ext_resource type="Script" uid="uid://16acl1dpokqo" path="res://Scripts/UI/UIController.cs" id="1_ucxub"]
@@ -11,7 +11,9 @@
 [ext_resource type="Script" uid="uid://dsjrfmjwvwf77" path="res://Scripts/UI/StatsContainer.cs" id="9_6qvwe"]
 [ext_resource type="Resource" uid="uid://bw5kglnnl44lu" path="res://Resources/PlayerStats.tres" id="10_6qvwe"]
 [ext_resource type="Texture2D" uid="uid://cy2fjb14ef78w" path="res://Assets/Sprites/UI/UI ElementUI 7.png" id="11_26myh"]
+[ext_resource type="Texture2D" uid="uid://bq77d51o6mh3a" path="res://Assets/Sprites/UI/UI ElementUI 8.png" id="11_imqc7"]
 [ext_resource type="Texture2D" uid="uid://ohsip6rbieyp" path="res://JohnAssets/HealthBar/healthbarUnder.png" id="12_imqc7"]
+[ext_resource type="Texture2D" uid="uid://2xsa15k1edsb" path="res://Assets/Sprites/UI/UI ElementUI 9.png" id="12_uu2ew"]
 [ext_resource type="Texture2D" uid="uid://d22bmglwhg8sc" path="res://JohnAssets/HealthBar/healthbarProgress.png" id="13_uu2ew"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kdkgu"]
@@ -193,32 +195,55 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_kdkgu")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kdkgu")
 text = "Restart"
 
-[node name="StatsContainer" type="MarginContainer" parent="." node_paths=PackedStringArray("HealthBar")]
+[node name="StatsContainer" type="MarginContainer" parent="." node_paths=PackedStringArray("HealthBar", "StrengthLabel", "EnemyLabel")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -64.0
-offset_bottom = 40.0
+offset_left = -209.0
+offset_bottom = 44.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 script = ExtResource("9_6qvwe")
 Health = ExtResource("10_6qvwe")
-HealthBar = NodePath("HBox/TextureProgressBar")
+HealthBar = NodePath("HBox/HealthBar")
+StrengthLabel = NodePath("HBox/StrengthLabel")
+EnemyLabel = NodePath("HBox/EnemyCount")
 container = 4
 
 [node name="HBox" type="HBoxContainer" parent="StatsContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="StatsContainer/HBox"]
+[node name="StengthIcon" type="TextureRect" parent="StatsContainer/HBox"]
+layout_mode = 2
+texture = ExtResource("11_imqc7")
+
+[node name="StrengthLabel" type="Label" parent="StatsContainer/HBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_p7v8i")
+theme_override_font_sizes/font_size = 28
+text = "---"
+
+[node name="EnemyIcon" type="TextureRect" parent="StatsContainer/HBox"]
+layout_mode = 2
+texture = ExtResource("12_uu2ew")
+
+[node name="EnemyCount" type="Label" parent="StatsContainer/HBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_p7v8i")
+theme_override_font_sizes/font_size = 28
+text = "..."
+
+[node name="HeartIcon" type="TextureRect" parent="StatsContainer/HBox"]
 layout_mode = 2
 texture = ExtResource("11_26myh")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="StatsContainer/HBox"]
+[node name="HealthBar" type="TextureProgressBar" parent="StatsContainer/HBox"]
+custom_minimum_size = Vector2(120, 20)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 value = 50.0
+nine_patch_stretch = true
 texture_under = ExtResource("12_imqc7")
 texture_progress = ExtResource("13_uu2ew")
