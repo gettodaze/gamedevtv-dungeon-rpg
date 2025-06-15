@@ -17,13 +17,24 @@ public partial class UIController : Control
         main = GetParent<Main>();
         containers[ContainerType.Start].buttonNode.Pressed += HandleStartButtonPressed;
         containers[ContainerType.Victory].buttonNode.Pressed += HandleRestartButtonPressed;
+        containers[ContainerType.Defeat].buttonNode.Pressed += HandleRestartButtonPressed;
         GameEvents.OnVictory += HandleOnVictory;
+        GameEvents.OnDefeat += HandleOnDefeat;
+
+        foreach (var pair in containers) pair.Value.Visible = pair.Key == ContainerType.Start;
+
+    }
+
+    private void HandleOnDefeat()
+    {
+        containers[ContainerType.Defeat].Visible = true;
     }
 
     private void HandleOnVictory()
     {
         containers[ContainerType.Victory].Visible = true;
     }
+
 
     private void HandleRestartButtonPressed()
     {
@@ -35,5 +46,15 @@ public partial class UIController : Control
         GetTree().Paused = false;
         containers[ContainerType.Start].Visible = false;
         GameEvents.RaiseStartGame();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        containers[ContainerType.Start].buttonNode.Pressed -= HandleStartButtonPressed;
+        containers[ContainerType.Victory].buttonNode.Pressed -= HandleRestartButtonPressed;
+        containers[ContainerType.Defeat].buttonNode.Pressed -= HandleRestartButtonPressed;
+        GameEvents.OnVictory -= HandleOnVictory;
+        GameEvents.OnDefeat -= HandleOnDefeat;
     }
 }

@@ -263,6 +263,7 @@ VisualRootNode = NodePath("Visual Root")
 StateMachine = NodePath("StateMachine")
 HitBoxNode = NodePath("Visual Root/HitBox")
 HurtBoxNode = NodePath("Visual Root/HurtBox")
+Health = 5
 attackStrength = 10
 
 [node name="Visual Root" type="Node3D" parent="."]
