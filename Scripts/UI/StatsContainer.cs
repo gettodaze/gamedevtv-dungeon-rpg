@@ -37,5 +37,6 @@ public partial class StatsContainer : UIContainer
 	public override void _ExitTree()
 	{
 		Health.HealthChanged -= OnHealthChanged;
+		GameEvents.OnNewEnemyCount -= HandleNewEnemyCount;
 	}
 }

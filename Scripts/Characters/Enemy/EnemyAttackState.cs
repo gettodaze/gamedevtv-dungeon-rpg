@@ -19,7 +19,7 @@ public partial class EnemyAttackState : CharacterState
 	private void HandleFatigueTimerTimeout()
 	{
 		Log($"attack fatigue timer ended");
-		if (characterNode.Dead) return;
+		if (characterNode.Dead) return; // TODO: this is a workaround for a bug
 		characterNode.StateMachine.SwitchState<EnemyIdleState>();
 	}
 
