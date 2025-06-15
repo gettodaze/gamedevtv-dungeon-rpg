@@ -26,4 +26,11 @@ public partial class Camera : Camera3D
 		Position = positionFromTarget;
 	}
 
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		GameEvents.OnStartGame -= HandleStartGame;
+		GameEvents.OnDefeat -= HandleDefeat;
+	}
+
 }
