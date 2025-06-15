@@ -13,4 +13,10 @@ public partial class Main : Node3D
 	{
 		GetTree().Paused = value;
 	}
+
+	internal void Restart()
+	{
+		var currentScene = GetTree().CurrentScene.SceneFilePath;
+		GetTree().ChangeSceneToFile(currentScene);
+	}
 }

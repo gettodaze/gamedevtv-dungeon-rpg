@@ -15,10 +15,16 @@ public partial class UIController : Control
         );
 
         main = GetParent<Main>();
-        containers[ContainerType.Start].buttonNode.Pressed += HandleGameStart;
+        containers[ContainerType.Start].buttonNode.Pressed += HandleStartButtonPressed;
+        containers[ContainerType.Victory].buttonNode.Pressed += HandleRestartButtonPressed;
     }
 
-    private void HandleGameStart()
+    private void HandleRestartButtonPressed()
+    {
+        main.Restart();
+    }
+
+    private void HandleStartButtonPressed()
     {
         GetTree().Paused = false;
         containers[ContainerType.Start].Visible = false;

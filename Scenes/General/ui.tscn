@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnvpvqpqegv4a"]
+[gd_scene load_steps=9 format=3 uid="uid://cnvpvqpqegv4a"]
 
 [ext_resource type="Texture2D" uid="uid://bwshoc36x5nfx" path="res://Assets/Sprites/UI/UI Element 1.png" id="1_2kjud"]
 [ext_resource type="Script" uid="uid://16acl1dpokqo" path="res://Scripts/UI/UIController.cs" id="1_ucxub"]
 [ext_resource type="Script" uid="uid://bd2lh76vardei" path="res://Scripts/UI/UIContainer.cs" id="2_kdkgu"]
 [ext_resource type="FontFile" uid="uid://ch5s3w1atstrh" path="res://Assets/RifficFree-Bold.ttf" id="2_p7v8i"]
 [ext_resource type="Texture2D" uid="uid://dhdbd3by6dhvo" path="res://Assets/Sprites/UI/UI Element 2.png" id="3_ucxub"]
+[ext_resource type="Texture2D" uid="uid://dufxi8w8m8lb3" path="res://Assets/Sprites/UI/UI Element 3.png" id="6_y1xua"]
+[ext_resource type="Texture2D" uid="uid://c4hhxjfdcc4fh" path="res://Assets/Sprites/UI/UI ElementUI 11.png" id="7_c4okg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kdkgu"]
 texture = ExtResource("3_ucxub")
@@ -23,7 +25,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ucxub")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("buttonNode")]
+[node name="StartContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("buttonNode")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -39,11 +42,11 @@ grow_vertical = 2
 script = ExtResource("2_kdkgu")
 buttonNode = NodePath("Button")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="StartContainer"]
 layout_mode = 2
 texture = ExtResource("1_2kjud")
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="StartContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_p7v8i")
@@ -54,3 +57,66 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_kdkgu")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_kdkgu")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kdkgu")
 text = "Start"
+
+[node name="VictoryContainer" type="TextureRect" parent="." node_paths=PackedStringArray("buttonNode")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.5
+offset_top = -257.5
+offset_right = 262.5
+offset_bottom = 257.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_y1xua")
+script = ExtResource("2_kdkgu")
+container = 2
+buttonNode = NodePath("MarginContainer/VBoxContainer/Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="VictoryContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.5
+offset_right = 146.5
+offset_bottom = 407.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VictoryContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VictoryContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_p7v8i")
+theme_override_font_sizes/font_size = 40
+text = "Victory!"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VictoryContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_c4okg")
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="VictoryContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_p7v8i")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_kdkgu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_kdkgu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kdkgu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kdkgu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kdkgu")
+text = "Restart"
